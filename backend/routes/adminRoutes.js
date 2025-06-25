@@ -3,6 +3,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const Admin = require('../models/Admin');
+const adminAuth = require('../middleware/adminAuth');
 
 // Register
 router.post('/register', async (req, res) => {
@@ -30,5 +31,17 @@ router.post('/login', async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
+
+router.post("/profile", adminAuth, async (req, res) => {
+  try {
+      const student = await Admin.findById(req.admin.id).select('-password');
+      if (!student) {
+        return res.status(404).json({ error: 'Student not found' });
+      }
+      res.json(student);
+    } catch (err) {
+      res.status(500).json({ error: 'Server error' });
+    }
+})
 
 module.exports = router;
