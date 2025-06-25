@@ -1,0 +1,63 @@
+const express = require('express');
+const router = express.Router();
+const StudentUser = require('../models/StudentUser');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+// Register Student
+router.post('/register', async (req, res) => {
+  const {
+    username,
+    password,
+    name,
+    mobile,
+    email,
+    city,
+    address,
+    state,
+    pinCode
+  } = req.body;
+
+  try {
+    const user = new StudentUser({
+      username,
+      password,
+      name,
+      mobile,
+      email,
+      city,
+      address,
+      state,
+      pinCode
+    });
+
+    await user.save();
+    res.status(201).json({ message: 'Student registered successfully' });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Login Student
+router.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const user = await StudentUser.findOne({ username });
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    const token = jwt.sign(
+      { id: user._id, userType: 'student' },
+      process.env.JWT_SECRET,
+      { expiresIn: '1d' }
+    );
+
+    res.json({ token });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+module.exports = router;
