@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Users, Search, Filter, Plus, Edit3, Trash2, Mail, Phone } from 'lucide-react';
 
 const ParentsManagement = ({setShowAdminHeader}) => {
@@ -7,6 +7,27 @@ const ParentsManagement = ({setShowAdminHeader}) => {
     useEffect(() => {
       setShowAdminHeader(false)
     }, [])
+
+    const [showAddForm, setShowAddForm] = useState(false);
+    const [newParent, setNewParent] = useState({
+      name: '',
+      email: '',
+      phone: '',
+      children: '', // comma separated
+      grade: ''
+    });
+
+    const handleAddParentChange = (e) => {
+      const { name, value } = e.target;
+      setNewParent(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleAddParentSubmit = (e) => {
+      e.preventDefault();
+      // Here you would send newParent to backend or update state
+      setShowAddForm(false);
+      setNewParent({ name: '', email: '', phone: '', children: '', grade: '' });
+    };
 
   return (
     <div className="h-screen bg-gradient-to-br from-yellow-50 via-yellow-100 to-amber-100 flex flex-col">
@@ -45,7 +66,7 @@ const ParentsManagement = ({setShowAdminHeader}) => {
               </select>
             </div>
 
-            <button className="flex items-center space-x-2 bg-yellow-500 text-black px-4 py-2 rounded-lg hover:bg-yellow-600 transition-colors">
+            <button className="flex items-center space-x-2 bg-yellow-500 text-black px-4 py-2 rounded-lg hover:bg-yellow-600 transition-colors" onClick={() => setShowAddForm(true)}>
               <Plus className="w-4 h-4" />
               <span>Add Parent</span>
             </button>
@@ -124,9 +145,32 @@ const ParentsManagement = ({setShowAdminHeader}) => {
             </table>
           </div>
         </div>
+
+        {showAddForm && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 transition-colors duration-200">
+    <div className="bg-white rounded-2xl shadow-2xl p-10 w-full max-w-xl relative border border-yellow-300 animate-fadeIn">
+      <button className="absolute top-4 right-4 text-gray-400 hover:text-yellow-600 text-3xl font-bold focus:outline-none" onClick={() => setShowAddForm(false)}>&times;</button>
+      <h2 className="text-3xl font-extrabold mb-6 text-yellow-700 text-center tracking-tight">Add Parent</h2>
+      <form onSubmit={handleAddParentSubmit} className="space-y-5">
+        <div className="flex gap-4">
+          <input name="name" value={newParent.name} onChange={handleAddParentChange} required placeholder="Full Name" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+          <input name="email" value={newParent.email} onChange={handleAddParentChange} required placeholder="Email" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+        </div>
+        <div className="flex gap-4">
+          <input name="phone" value={newParent.phone} onChange={handleAddParentChange} required placeholder="Phone" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+          <input name="children" value={newParent.children} onChange={handleAddParentChange} required placeholder="Children's Name" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+        </div>
+        <div>
+          <input name="grade" value={newParent.grade} onChange={handleAddParentChange} required placeholder="Grade(s)" className="w-full border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+        </div>
+        <button type="submit" className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white py-3 rounded-xl font-bold shadow-lg transition-all text-lg tracking-wide">Add Parent</button>
+      </form>
+    </div>
+  </div>
+)}
       </div>
     </div>
   );
 };
 
-export default ParentsManagement; 
+export default ParentsManagement;

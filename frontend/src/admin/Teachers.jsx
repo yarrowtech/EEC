@@ -195,6 +195,22 @@ const Teachers = ({setShowAdminHeader}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('All');
   const [teachers] = useState(mockTeachers);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [newTeacher, setNewTeacher] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    department: '',
+    experience: '',
+    qualification: '',
+    students: '',
+    rating: '',
+    status: 'Active',
+    joinDate: '',
+    location: '',
+    avatar: ''
+  });
 
   // Filter teachers based on search and status
   const filteredTeachers = teachers.filter(teacher => {
@@ -210,6 +226,21 @@ const Teachers = ({setShowAdminHeader}) => {
     setShowAdminHeader(false)
   }, [])
 
+  const handleAddTeacherChange = (e) => {
+    const { name, value } = e.target;
+    setNewTeacher(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleAddTeacherSubmit = (e) => {
+    e.preventDefault();
+    // Here you would send newTeacher to backend or update state
+    setShowAddForm(false);
+    // Optionally reset form
+    setNewTeacher({
+      name: '', email: '', phone: '', subject: '', department: '', experience: '', qualification: '', students: '', rating: '', status: 'Active', joinDate: '', location: '', avatar: ''
+    });
+  };
+
   return (
     <div className="h-screen bg-gradient-to-br from-yellow-50 via-yellow-100 to-amber-100 flex flex-col">
       <div className="flex-1 flex flex-col max-w-7xl mx-auto w-full bg-white/90 rounded-2xl shadow-2xl m-4 border border-yellow-200 overflow-hidden">
@@ -222,7 +253,7 @@ const Teachers = ({setShowAdminHeader}) => {
               <h1 className="text-3xl font-bold text-yellow-700">Teacher Management</h1>
               <p className="text-gray-600 mt-2">Manage and monitor teaching staff</p>
             </div>
-            <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors">
+            <button className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-lg flex items-center gap-2 transition-colors" onClick={() => setShowAddForm(true)}>
               <Plus size={20} />
               Add New Teacher
             </button>
@@ -351,6 +382,52 @@ const Teachers = ({setShowAdminHeader}) => {
           </div>
         </div>
       </div>
+
+      {/* Add Teacher Modal */}
+      {showAddForm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 transition-colors duration-200">
+          <div className="scale-[0.9] bg-white rounded-2xl shadow-2xl p-10 w-full max-w-xl relative border border-yellow-300 animate-fadeIn">
+            <button className="absolute top-4 right-4 text-gray-400 hover:text-yellow-600 text-3xl font-bold focus:outline-none" onClick={() => setShowAddForm(false)}>&times;</button>
+            <h2 className="text-3xl font-extrabold mb-6 text-yellow-700 text-center tracking-tight">Add New Teacher</h2>
+            <form onSubmit={handleAddTeacherSubmit} className="space-y-5">
+              <div className="flex gap-4">
+                <input name="name" value={newTeacher.name} onChange={handleAddTeacherChange} required placeholder="Full Name" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+                <input name="email" value={newTeacher.email} onChange={handleAddTeacherChange} required placeholder="Email" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+              </div>
+              <div className="flex gap-4">
+                <input name="phone" value={newTeacher.phone} onChange={handleAddTeacherChange} required placeholder="Phone" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+                <input name="subject" value={newTeacher.subject} onChange={handleAddTeacherChange} required placeholder="Subject" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+              </div>
+              <div className="flex gap-4">
+                <input name="department" value={newTeacher.department} onChange={handleAddTeacherChange} required placeholder="Department" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+                <input name="qualification" value={newTeacher.qualification} onChange={handleAddTeacherChange} required placeholder="Qualification" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+              </div>
+              <div className="flex gap-4">
+                <input name="experience" value={newTeacher.experience} onChange={handleAddTeacherChange} required placeholder="Experience (years)" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="number" min="0" />
+                </div>
+              <div className="flex gap-4">
+								<select name="gender" value={newTeacher.gender} onChange={handleAddTeacherChange} required className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 text-gray-800 text-base shadow-sm">
+									<option value="">Gender</option>
+									<option value="Male">Male</option>
+									<option value="Female">Female</option>
+									<option value="Other">Other</option>
+								</select>
+              </div>
+              <div className='flex gap-4'>
+                <input type="text" name="pincode" value={newTeacher.location} onChange={handleAddTeacherChange} required placeholder="PIN CODE" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+              </div>
+             
+              <div className="flex gap-4">
+                <input name="joinDate" value={newTeacher.joinDate} onChange={handleAddTeacherChange} required placeholder="Join Date" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="date" />
+                {/*<input name="location" value={newTeacher.location} onChange={handleAddTeacherChange} required placeholder="Location" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" /> */}
+              </div>
+              
+            
+              <button type="submit" className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white py-3 rounded-xl font-bold shadow-lg transition-all text-lg tracking-wide">Add Teacher</button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
