@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { BookOpen, Search, Filter, Plus, Edit3, Trash2, Users, Clock, Calendar } from 'lucide-react';
 
 const CourseManagement = ({setShowAdminHeader}) => {
@@ -7,6 +7,29 @@ const CourseManagement = ({setShowAdminHeader}) => {
     useEffect(() => {
       setShowAdminHeader(false)
     }, [])
+
+    const [showAddForm, setShowAddForm] = useState(false);
+    const [newCourse, setNewCourse] = useState({
+      title: '',
+      department: '',
+      instructor: '',
+      students: '',
+      duration: '',
+      startDate: '',
+      description: ''
+    });
+
+    const handleAddCourseChange = (e) => {
+      const { name, value } = e.target;
+      setNewCourse(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleAddCourseSubmit = (e) => {
+      e.preventDefault();
+      // Here you would send newCourse to backend or update state
+      setShowAddForm(false);
+      setNewCourse({ title: '', department: '', instructor: '', students: '', duration: '', startDate: '', description: '' });
+    };
 
   return (
     <div className="h-screen bg-gradient-to-br from-yellow-50 via-yellow-100 to-amber-100 flex flex-col">
@@ -50,7 +73,7 @@ const CourseManagement = ({setShowAdminHeader}) => {
               </select>
             </div>
 
-            <button className="flex items-center space-x-2 bg-yellow-500 text-black px-4 py-2 rounded-lg hover:bg-yellow-600 transition-colors">
+            <button className="flex items-center space-x-2 bg-yellow-500 text-black px-4 py-2 rounded-lg hover:bg-yellow-600 transition-colors" onClick={() => setShowAddForm(true)}>
               <Plus className="w-4 h-4" />
               <span>Add Course</span>
             </button>
@@ -136,9 +159,36 @@ const CourseManagement = ({setShowAdminHeader}) => {
             </div>
           </div>
         </div>
+
+        {showAddForm && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 transition-colors duration-200">
+    <div className="bg-white rounded-2xl shadow-2xl p-10 w-full max-w-xl relative border border-yellow-300 animate-fadeIn">
+      <button className="absolute top-4 right-4 text-gray-400 hover:text-yellow-600 text-3xl font-bold focus:outline-none" onClick={() => setShowAddForm(false)}>&times;</button>
+      <h2 className="text-3xl font-extrabold mb-6 text-yellow-700 text-center tracking-tight">Add Course</h2>
+      <form onSubmit={handleAddCourseSubmit} className="space-y-5">
+        <div className="flex gap-4">
+          <input name="title" value={newCourse.title} onChange={handleAddCourseChange} required placeholder="Course Title" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+          <input name="department" value={newCourse.department} onChange={handleAddCourseChange} required placeholder="Department" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+        </div>
+        <div className="flex gap-4">
+          <input name="instructor" value={newCourse.instructor} onChange={handleAddCourseChange} required placeholder="Instructor" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+          <input name="students" value={newCourse.students} onChange={handleAddCourseChange} required placeholder="No. of Students" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="number" min="0" />
+        </div>
+        <div className="flex gap-4">
+          <input name="duration" value={newCourse.duration} onChange={handleAddCourseChange} required placeholder="Duration (e.g. 6 months)" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+          <input name="startDate" value={newCourse.startDate} onChange={handleAddCourseChange} required placeholder="Start Date" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="date" />
+        </div>
+        <div>
+          <textarea name="description" value={newCourse.description} onChange={handleAddCourseChange} required placeholder="Course Description" className="w-full border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm resize-none" rows={3} />
+        </div>
+        <button type="submit" className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white py-3 rounded-xl font-bold shadow-lg transition-all text-lg tracking-wide">Add Course</button>
+      </form>
+    </div>
+  </div>
+)}
       </div>
     </div>
   );
 };
 
-export default CourseManagement; 
+export default CourseManagement;
