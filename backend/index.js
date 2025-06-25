@@ -22,6 +22,11 @@ mongoose
   .then(() => console.log('MongoDB Connected'))
   .catch((err) => console.log(err));
 
+
+app.get("/", (req, res) => {
+  res.send("Welcome to the Electronic Educare API");
+})
+
 // Mount auth routes separately
 app.use('/api/admin/users', adminUserManagementRoutes);
 app.use('/api/admin/auth', adminAuthRoutes);
