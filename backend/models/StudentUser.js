@@ -40,13 +40,15 @@ const studentUserSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   name: String,
+  grade: String,
+  section: String,
+  gender: String,
+  dob: String,
   mobile:  String,
   email: String,
-  city: String,
   address: String,
-  state: String,
   pinCode: String,
-  profilePic: { type: String },
+  profilePic: { type: String, default: "" },
 
 
   // Embedded attendance array

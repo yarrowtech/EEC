@@ -3,32 +3,33 @@ const router = express.Router();
 const StudentUser = require('../models/StudentUser');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const adminAuth = require('../middleware/adminAuth');
 
 // Register Student
-router.post('/register', async (req, res) => {
+router.post('/register', adminAuth, async (req, res) => {
   const {
-    username,
-    password,
     name,
+    grade,
+    section,
+    gender,
+    dob,
     mobile,
     email,
-    city,
     address,
-    state,
-    pinCode
-  } = req.body;
+    pinCode,
+  } = req.body
 
   try {
     const user = new StudentUser({
-      username,
-      password,
-      name,
-      mobile,
-      email,
-      city,
-      address,
-      state,
-      pinCode
+       name,
+    grade,
+    section,
+    gender,
+    dob,
+    mobile,
+    email,
+    address,
+    pinCode,
     });
 
     await user.save();
@@ -39,7 +40,7 @@ router.post('/register', async (req, res) => {
 });
 
 // Login Student
-router.post('/login', async (req, res) => {
+router.post('/login', adminAuth, async (req, res) => {
   const { username, password } = req.body;
 
   try {

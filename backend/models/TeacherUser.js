@@ -4,14 +4,17 @@ const bcrypt = require('bcryptjs');
 const teacherUserSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true },
   password: { type: String, required: true },
+  empId: Number,
   name: String,
-
-   mobile: String,
+  mobile: String,
   email: String,
-  city: String,
+  subject: String,
+  department: String,
+  qualification: String,
+  experience: String,
   address: String,
-  state: String,
   pinCode: String,
+  profilePic: { type: String, default: "" },
 });
 
 teacherUserSchema.pre('save', async function (next) {
