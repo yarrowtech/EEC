@@ -6,6 +6,7 @@ const teacherUserSchema = new mongoose.Schema({
   password: { type: String, required: true },
   empId: Number,
   name: String,
+  gender: { type: String, enum: ["male", "female", "other"], default: "male" },
   mobile: String,
   email: String,
   subject: String,

@@ -42,7 +42,7 @@ const studentUserSchema = new mongoose.Schema({
   name: String,
   grade: String,
   section: String,
-  gender: String,
+  gender: { type: String, enum: ["male", "female", "other"], default: "male" },
   dob: String,
   mobile:  String,
   email: String,
