@@ -3,32 +3,32 @@ const router = express.Router();
 const ParentUser = require('../models/ParentUser');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const adminAuth = require('../middleware/adminAuth');
+const { generateUsername, generatePassword } = require('../utils/generator');
 
 // Parent Registration
-router.post('/register', async (req, res) => {
+router.post('/register', adminAuth, async (req, res) => {
   const {
-    username,
-    password,
     name,
     mobile,
     email,
-    city,
-    address,
-    state,
-    pinCode
+    children,
+    grade,
   } = req.body;
 
   try {
+    const username = await generateUsername(name, 'parent');
+    const password = generatePassword();
+    const allChild = children.split(',').map(child => child.trim());
+    const allGrade = grade.split(',').map(g => g.trim());
     const user = new ParentUser({
       username,
       password,
       name,
       mobile,
       email,
-      city,
-      address,
-      state,
-      pinCode
+      children: allChild,
+      grade: allGrade,
     });
 
     await user.save();

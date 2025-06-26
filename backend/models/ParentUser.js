@@ -8,10 +8,8 @@ const parentUserSchema = new mongoose.Schema({
 
    mobile: String,
   email: String,
-  city: String,
-  address: String,
-  state: String,
-  pinCode: String,
+  children: [String],
+  grade: [String],
 });
 
 parentUserSchema.pre('save', async function (next) {

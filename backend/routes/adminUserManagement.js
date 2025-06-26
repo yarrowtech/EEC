@@ -49,4 +49,13 @@ router.get("/get-teachers", adminAuth, async (req, res) => {
   }
 });
 
+router.get("/get-parents", adminAuth, async (req, res) => {
+  try {
+    const teachers = await ParentUser.find();
+    res.status(200).json(teachers);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;
