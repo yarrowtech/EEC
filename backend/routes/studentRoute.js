@@ -12,6 +12,7 @@ router.post('/register', adminAuth, async (req, res) => {
     name,
     grade,
     section,
+    roll,
     gender,
     dob,
     mobile,
@@ -25,17 +26,18 @@ router.post('/register', adminAuth, async (req, res) => {
     const password = generatePassword();
     const user = new StudentUser({
       username, password,
-       name,
-    grade,
-    section,
-    gender,
-    dob,
-    mobile,
-    email,
-    address,
-    pinCode,
+      name,
+      grade,
+      section,
+      roll,
+      gender,
+      dob,
+      mobile,
+      email,
+      address,
+      pinCode,
     });
-    
+
     await user.save();
     res.status(201).json({ message: 'Student registered successfully', username, password });
   } catch (err) {
