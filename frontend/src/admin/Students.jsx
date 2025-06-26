@@ -1,35 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Plus, Edit2, Trash2, MoreVertical } from 'lucide-react';
 
-const studentData = [
-	{
-		id: 1,
-		name: 'John Doe',
-		roll: '2024001',
-		class: 'X',
-		section: 'A',
-		gender: 'Male',
-		phone: '+1234567890',
-		email: 'john.doe@example.com',
-		address: '123 Student St, Education City',
-		status: 'Active',
-	},
-	{
-		id: 2,
-		name: 'Jane Smith',
-		roll: '2024002',
-		class: 'X',
-		section: 'B',
-		gender: 'Female',
-		phone: '+1234567891',
-		email: 'jane.smith@example.com',
-		address: '456 Learning Ave, Knowledge Town',
-		status: 'Active',
-	},
-	// Add more sample data as needed
-];
-
 const Students = ({ setShowAdminHeader }) => {
+	const [studentData, setStudentData] = useState([])
 	const [searchTerm, setSearchTerm] = useState('');
 	const [showAddForm, setShowAddForm] = useState(false);
 	const [newStudent, setNewStudent] = useState({
@@ -53,6 +26,24 @@ const Students = ({ setShowAdminHeader }) => {
 	// making the admin header invisible
 	useEffect(() => {
 		setShowAdminHeader(false);
+		fetch(`${import.meta.env.VITE_API_URL}/api/admin/users/get-students`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'authorization': `Bearer ${localStorage.getItem('token')}`
+			}
+		})
+		.then(res => {
+			if(!res.ok) {
+				throw new Error('Failed to fetch students');
+			}
+			return res.json();
+		})
+		.then(data => {
+			setStudentData(data);
+		}).catch(err => {
+			console.error('Error fetching students:', err);
+		})
 	}, []);
 
 	const handleAddStudentChange = (e) => {
@@ -79,7 +70,8 @@ const Students = ({ setShowAdminHeader }) => {
 		// Here you would send newStudent to backend or update state
 		setShowAddForm(false);
 		setNewStudent({
-			name: '', roll: '', class: '', section: '', gender: '', phone: '', email: '', address: '', status: 'Active'
+			name: '', roll: '', grade: '', section: '', gender: '', mobile: '', email: '', address: '', dob: '',
+			pincode: ''
 		});
 	};
 
@@ -135,7 +127,7 @@ const Students = ({ setShowAdminHeader }) => {
 								<th className="border-b border-yellow-100 px-6 py-3 text-left text-sm font-semibold text-yellow-800">Section</th>
 								<th className="border-b border-yellow-100 px-6 py-3 text-left text-sm font-semibold text-yellow-800">Gender</th>
 								<th className="border-b border-yellow-100 px-6 py-3 text-left text-sm font-semibold text-yellow-800">Phone</th>
-								<th className="border-b border-yellow-100 px-6 py-3 text-left text-sm font-semibold text-yellow-800">Status</th>
+								{/* <th className="border-b border-yellow-100 px-6 py-3 text-left text-sm font-semibold text-yellow-800">Status</th> */}
 								<th className="border-b border-yellow-100 px-6 py-3 text-left text-sm font-semibold text-yellow-800">Actions</th>
 							</tr>
 						</thead>
@@ -157,16 +149,16 @@ const Students = ({ setShowAdminHeader }) => {
 										</div>
 									</td>
 									<td className="border-b border-yellow-100 px-6 py-4 text-gray-600">{student.roll}</td>
-									<td className="border-b border-yellow-100 px-6 py-4 text-gray-600">{student.class}</td>
+									<td className="border-b border-yellow-100 px-6 py-4 text-gray-600">{student.grade}</td>
 									<td className="border-b border-yellow-100 px-6 py-4 text-gray-600">{student.section}</td>
 									<td className="border-b border-yellow-100 px-6 py-4 text-gray-600">{student.gender}</td>
-									<td className="border-b border-yellow-100 px-6 py-4 text-gray-600">{student.phone}</td>
-									<td className="border-b border-yellow-100 px-6 py-4">
+									<td className="border-b border-yellow-100 px-6 py-4 text-gray-600">{student.mobile}</td>
+									{/* <td className="border-b border-yellow-100 px-6 py-4">
 										<span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
                       ${student.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
 											{student.status}
 										</span>
-									</td>
+									</td> */}
 									<td className="border-b border-yellow-100 px-6 py-4">
 										<div className="flex items-center gap-2">
 											<button className="text-blue-600 hover:text-blue-800">
@@ -210,7 +202,7 @@ const Students = ({ setShowAdminHeader }) => {
 								<input name="roll" value={newStudent.roll} onChange={handleAddStudentChange} required placeholder="Roll No." className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
 							</div>
 							<div className="flex gap-4">
-								<input name="class" value={newStudent.class} onChange={handleAddStudentChange} required placeholder="Grade" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+								<input name="grade" value={newStudent.grade} onChange={handleAddStudentChange} required placeholder="Grade" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
 								<input name="section" value={newStudent.section} onChange={handleAddStudentChange} required placeholder="Section" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
 							</div>
 							<div className="flex gap-4">
@@ -220,7 +212,7 @@ const Students = ({ setShowAdminHeader }) => {
 									<option value="female">Female</option>
 									<option value="other">Other</option>
 								</select>
-								<input name="phone" value={newStudent.phone} onChange={handleAddStudentChange} required placeholder="Phone" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+								<input name="mobile" value={newStudent.mobile} onChange={handleAddStudentChange} required placeholder="Phone" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
 							</div>
 							<div className="flex gap-4">
 								<input name="email" value={newStudent.email} onChange={handleAddStudentChange} required placeholder="Email" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
@@ -228,7 +220,7 @@ const Students = ({ setShowAdminHeader }) => {
 							</div>
               <div className="flex gap-4">
                 <input type="date" name="dob" value={newStudent.dob} onChange={handleAddStudentChange} required className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 text-gray-800 text-base shadow-sm" />
-                <input type="text" name="PIN CODE" value={newStudent.pincode} onChange={handleAddStudentChange} required placeholder="PIN CODE" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+                <input type="text" name="pinCode" value={newStudent.pinCode} onChange={handleAddStudentChange} required placeholder="PIN CODE" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
               </div>
 							
 							<button type="submit" className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white py-3 rounded-xl font-bold shadow-lg transition-all text-lg tracking-wide">Add Student</button>
