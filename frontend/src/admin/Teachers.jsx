@@ -80,25 +80,30 @@ const Teachers = ({setShowAdminHeader}) => {
   const handleAddTeacherSubmit = async (e) => {
     e.preventDefault();
     // Here you would send newTeacher to backend or update state
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/teacher/auth/register`,{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'authorization': `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify(newTeacher)
-      })
-      const data = await res.json();
-      if (!res.ok) { 
-        console.error('Registration failed:', data);
-        throw new Error('Registration failed');
-      }
-    console.log('New teacher added:', data);
-    setShowAddForm(false);
-    // Optionally reset form
-    setNewTeacher({
-      name: '', email: '', mobile: '', subject: '', department: '', experience: '', qualification: '', joiningDate: '', address: '', pinCode: '', gender: ''
-    });
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/teacher/auth/register`,{
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'authorization': `Bearer ${localStorage.getItem('token')}`
+          },
+          body: JSON.stringify(newTeacher)
+        })
+        const data = await res.json();
+        if (!res.ok) { 
+          console.error('Registration failed:', data);
+          throw new Error('Registration failed');
+        }
+      console.log('New teacher added:', data);
+      setShowAddForm(false);
+      // Optionally reset form
+      setNewTeacher({
+        name: '', email: '', mobile: '', subject: '', department: '', experience: '', qualification: '', joiningDate: '', address: '', pinCode: '', gender: ''
+      });
+    }
+    catch (error) {
+      console.error('Error adding teacher:', error);
+    }
   };
 
 

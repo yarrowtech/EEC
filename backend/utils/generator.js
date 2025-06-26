@@ -1,5 +1,6 @@
 const StudentUser = require('../models/StudentUser');
 const TeacherUser = require('../models/TeacherUser');
+const ParentUser = require('../models/ParentUser');
 
 /**
  * Generates a random username based on student name
@@ -33,6 +34,13 @@ const generateUsername = async (name, type) => {
                 // If username exists, try again with a different number
                 return generateUsername(name, type);
             }
+        case 'parent':
+            const existingParent = await ParentUser.findOne({ username });
+            if (existingParent) {
+                // If username exists, try again with a different number
+                return generateUsername(name, type);
+            }
+            break;
         default:
             break;
     }
