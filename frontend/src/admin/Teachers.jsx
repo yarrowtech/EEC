@@ -251,7 +251,7 @@ const Teachers = ({setShowAdminHeader}) => {
     setShowAddForm(false);
     // Optionally reset form
     setNewTeacher({
-      name: '', email: '', phone: '', subject: '', department: '', experience: '', qualification: '', students: '', rating: '', status: 'Active', joinDate: '', location: '', avatar: ''
+      name: '', email: '', mobile: '', subject: '', department: '', experience: '', qualification: '', joiningDate: '', address: '', pinCode: '', gender: ''
     });
   };
 
@@ -410,7 +410,7 @@ const Teachers = ({setShowAdminHeader}) => {
                 <input name="email" value={newTeacher.email} onChange={handleAddTeacherChange} required placeholder="Email" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
               </div>
               <div className="flex gap-4">
-                <input name="phone" value={newTeacher.phone} onChange={handleAddTeacherChange} required placeholder="Phone" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+                <input name="mobile" value={newTeacher.mobile} onChange={handleAddTeacherChange} required placeholder="Phone" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
                 <input name="subject" value={newTeacher.subject} onChange={handleAddTeacherChange} required placeholder="Subject" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
               </div>
               <div className="flex gap-4">
@@ -429,12 +429,12 @@ const Teachers = ({setShowAdminHeader}) => {
 								</select>
               </div>
               <div className='flex gap-4'>
-                <input type="text" name="pinCode" value={newTeacher.pinCode} onChange={handleAddTeacherChange} required placeholder="PIN CODE" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+                <input name="address" value={newTeacher.address} onChange={handleAddTeacherChange} required placeholder="Address" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
               </div>
              
               <div className="flex gap-4">
-                <input name="joinDate" value={newTeacher.joinDate} onChange={handleAddTeacherChange} required placeholder="Join Date" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="date" />
-                {/*<input name="location" value={newTeacher.location} onChange={handleAddTeacherChange} required placeholder="Location" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" /> */}
+                <input type="text" name="pinCode" value={newTeacher.pinCode} onChange={handleAddTeacherChange} required placeholder="PIN CODE" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+                <input name="joiningDate" value={newTeacher.joiningDate} onChange={handleAddTeacherChange} required placeholder="Join Date" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="date" />
               </div>
               
             
