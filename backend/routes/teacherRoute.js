@@ -17,7 +17,8 @@ router.post('/register', async (req, res) => {
     qualification,
     experience,
     address,
-    pinCode
+    pinCode,
+    joiningDate
   } = req.body;
 
   try {
@@ -39,7 +40,8 @@ router.post('/register', async (req, res) => {
       qualification,
       experience,
       address,
-      pinCode
+      pinCode,
+      joiningDate
     });
 
     await user.save();
