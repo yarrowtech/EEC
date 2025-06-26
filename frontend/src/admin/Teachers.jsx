@@ -231,15 +231,30 @@ const Teachers = ({setShowAdminHeader}) => {
     setNewTeacher(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleAddTeacherSubmit = (e) => {
+  const handleAddTeacherSubmit = async (e) => {
     e.preventDefault();
     // Here you would send newTeacher to backend or update state
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/teacher/auth/register`,{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(newTeacher)
+      })
+      const data = await res.json();
+      if (!res.ok) { 
+        console.error('Registration failed:', data);
+        throw new Error('Registration failed');
+      }
+    console.log('New teacher added:', data);
     setShowAddForm(false);
     // Optionally reset form
     setNewTeacher({
       name: '', email: '', phone: '', subject: '', department: '', experience: '', qualification: '', students: '', rating: '', status: 'Active', joinDate: '', location: '', avatar: ''
     });
   };
+
 
   return (
     <div className="h-screen bg-gradient-to-br from-yellow-50 via-yellow-100 to-amber-100 flex flex-col">
@@ -408,13 +423,13 @@ const Teachers = ({setShowAdminHeader}) => {
               <div className="flex gap-4">
 								<select name="gender" value={newTeacher.gender} onChange={handleAddTeacherChange} required className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 text-gray-800 text-base shadow-sm">
 									<option value="">Gender</option>
-									<option value="Male">Male</option>
-									<option value="Female">Female</option>
-									<option value="Other">Other</option>
+									<option value="male">Male</option>
+									<option value="female">Female</option>
+									<option value="other">Other</option>
 								</select>
               </div>
               <div className='flex gap-4'>
-                <input type="text" name="pincode" value={newTeacher.location} onChange={handleAddTeacherChange} required placeholder="PIN CODE" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+                <input type="text" name="pinCode" value={newTeacher.pinCode} onChange={handleAddTeacherChange} required placeholder="PIN CODE" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
               </div>
              
               <div className="flex gap-4">

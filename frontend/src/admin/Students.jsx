@@ -60,8 +60,22 @@ const Students = ({ setShowAdminHeader }) => {
 		setNewStudent(prev => ({ ...prev, [name]: value }));
 	};
 
-	const handleAddStudentSubmit = (e) => {
+	const handleAddStudentSubmit = async (e) => {
 		e.preventDefault();
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/student/auth/register`,{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(newStudent)
+      })
+      const data = await res.json();
+      if (!res.ok) { 
+        console.error('Registration failed:', data);
+        throw new Error('Registration failed');
+      }
+      console.log('New student added:', data);
 		// Here you would send newStudent to backend or update state
 		setShowAddForm(false);
 		setNewStudent({
@@ -202,9 +216,9 @@ const Students = ({ setShowAdminHeader }) => {
 							<div className="flex gap-4">
 								<select name="gender" value={newStudent.gender} onChange={handleAddStudentChange} required className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 text-gray-800 text-base shadow-sm">
 									<option value="">Gender</option>
-									<option value="Male">Male</option>
-									<option value="Female">Female</option>
-									<option value="Other">Other</option>
+									<option value="male">Male</option>
+									<option value="female">Female</option>
+									<option value="other">Other</option>
 								</select>
 								<input name="phone" value={newStudent.phone} onChange={handleAddStudentChange} required placeholder="Phone" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
 							</div>
