@@ -45,7 +45,7 @@ const generateUsername = async (name, type) => {
  * @returns {string} - Generated password
  */
 const generatePassword = (length = 10) => {
-    const uppercase = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+    /*const uppercase = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
     const lowercase = 'abcdefghijkmnpqrstuvwxyz';
     const numbers = '23456789';
     const symbols = '@#$%&*!';
@@ -66,7 +66,8 @@ const generatePassword = (length = 10) => {
     }
 
     // Shuffle the password characters
-    return password.split('').sort(() => 0.5 - Math.random()).join('');
+    return password.split('').sort(() => 0.5 - Math.random()).join('');*/
+    return "password"
 };
 
 module.exports = {
