@@ -45,8 +45,55 @@ const LoginForm = () => {
     if (!validateForm()) return;
     setIsLoading(true);
     try {
-     // await new Promise(resolve => setTimeout(resolve, 1500));
-     // console.log('Login attempt:', formData);
+      let url = "";
+      switch (userType) {
+        case "Student":
+          url = "/api/student/auth/login";
+          break;
+        case "Teacher":
+          url = "/api/teacher/auth/login";
+          break;
+        case "Parent":
+          url = "/api/parent/auth/login";
+          break;
+        case "Admin":
+          url = "/api/admin/auth/login";
+          break;
+        default:
+          break;
+      }
+      const res = await fetch(`${import.meta.env.VITE_API_URL}${url}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password
+        })
+      })
+      if (!res.ok) {
+        throw new Error('Login failed');
+      }
+      const data = await res.json();
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('userType', userType);
+      switch (userType) {
+        case "Student":
+          navigate('/dashboard');
+          break;
+        case "Teacher":
+          navigate('/teachers');
+          break;
+        case "Parent":
+          navigate('/parent/dashboard');
+          break;
+        case "Admin":
+          navigate('/admin/dashboard');
+          break;
+        default:
+          break;
+      }
     } catch (error) {
       console.error('Login failed:', error);
     } finally {
