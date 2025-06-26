@@ -31,4 +31,22 @@ router.post('/create-user', adminAuth, async (req, res) => {
   }
 });
 
+router.get("/get-students", adminAuth, async (req, res) => {
+  try {
+    const students = await StudentUser.find();
+    res.status(200).json(students);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.get("/get-teachers", adminAuth, async (req, res) => {
+  try {
+    const teachers = await TeacherUser.find();
+    res.status(200).json(teachers);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;
