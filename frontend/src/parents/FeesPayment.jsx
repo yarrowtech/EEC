@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { CreditCard, DollarSign, Calendar, Download, ChevronDown, CheckCircle, AlertCircle } from 'lucide-react';
+import { CreditCard, DollarSign, Calendar, Download, ChevronDown, CheckCircle, AlertCircle, X } from 'lucide-react';
 
 const FeesPayment = () => {
   const [selectedPayment, setSelectedPayment] = useState(null);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [showUPIModal, setShowUPIModal] = useState(false);
+  const [showCardModal, setShowCardModal] = useState(false);
+  const [showBankModal, setShowBankModal] = useState(false);
 
   const feesData = {
     studentName: "Sarah Smith",
@@ -138,7 +142,7 @@ const FeesPayment = () => {
                   <td className="px-6 py-4">
                     {payment.status === 'Pending' ? (
                       <button
-                        onClick={() => setSelectedPayment(payment)}
+                        onClick={() => setShowPaymentModal(true)}
                         className="inline-flex items-center px-3 py-1 border border-yellow-500 text-yellow-500 rounded hover:bg-yellow-50"
                       >
                         <CreditCard className="w-4 h-4 mr-1" />
@@ -157,6 +161,110 @@ const FeesPayment = () => {
           </table>
         </div>
       </div>
+
+      {/* Total Fees Due & Pay Now Button */}
+      <div className="flex items-center justify-between bg-white rounded-xl p-6 shadow-sm mb-6 mt-6">
+        <div>
+          <h2 className="text-xl font-bold text-gray-800">Total Fees Due</h2>
+          <p className="text-2xl text-red-600 font-semibold">₹{feesData.pendingFees}</p>
+        </div>
+        <button
+          className="bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white px-6 py-3 rounded-xl font-bold shadow-lg transition-all text-lg tracking-wide"
+          onClick={() => setShowPaymentModal(true)}
+        >
+          Pay Now
+        </button>
+      </div>
+
+      {/* Payment Modal */}
+      {showPaymentModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative border border-yellow-300 animate-fadeIn">
+            <button className="absolute top-4 right-4 text-gray-400 hover:text-yellow-600 text-3xl font-bold focus:outline-none" onClick={() => setShowPaymentModal(false)}><X /></button>
+            <h2 className="text-2xl font-bold mb-6 text-yellow-700 text-center">Select Payment Method</h2>
+            <div className="space-y-4">
+              <button
+                className="w-full flex items-center gap-3 border border-yellow-300 py-3 rounded-xl hover:bg-yellow-50 transition-all duration-200 group justify-center"
+                onClick={() => setShowUPIModal(true)}
+              >
+                <DollarSign className="w-6 h-6 text-yellow-500" />
+                <span className="text-base font-medium text-gray-700 group-hover:text-gray-900">UPI</span>
+              </button>
+              <button
+                className="w-full flex items-center gap-3 border border-yellow-300 py-3 rounded-xl hover:bg-yellow-50 transition-all duration-200 group justify-center"
+                onClick={() => setShowCardModal(true)}
+              >
+                <CreditCard className="w-6 h-6 text-yellow-500" />
+                <span className="text-base font-medium text-gray-700 group-hover:text-gray-900">Credit/Debit Card</span>
+              </button>
+              <button
+                className="w-full flex items-center gap-3 border border-yellow-300 py-3 rounded-xl hover:bg-yellow-50 transition-all duration-200 group justify-center"
+                onClick={() => setShowBankModal(true)}
+              >
+                <DollarSign className="w-6 h-6 text-yellow-500" />
+                <span className="text-base font-medium text-gray-700 group-hover:text-gray-900">Net Banking</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* UPI QR Modal */}
+      {showUPIModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-sm relative border border-yellow-300 animate-fadeIn flex flex-col items-center">
+            <button className="absolute top-4 right-4 text-gray-400 hover:text-yellow-600 text-3xl font-bold focus:outline-none" onClick={() => setShowUPIModal(false)}><X /></button>
+            <h2 className="text-xl font-bold mb-4 text-yellow-700 text-center">Scan UPI QR to Pay</h2>
+            <img src="/koushik-upi-qr.jpeg" alt="UPI QR Code" className="w-64 h-64 object-contain rounded-lg border-2 border-yellow-300 mb-4" />
+            <p className="text-gray-600 text-center">Open your UPI app and scan the QR code to complete the payment.</p>
+          </div>
+        </div>
+      )}
+
+      {/* Card Payment Modal */}
+      {showCardModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-lg relative border border-yellow-300 animate-fadeIn flex flex-col items-center">
+            <button className="absolute top-4 right-4 text-gray-400 hover:text-yellow-600 text-3xl font-bold focus:outline-none" onClick={() => setShowCardModal(false)}><X /></button>
+            <h2 className="text-xl font-bold mb-4 text-yellow-700 text-center">Pay with Card</h2>
+            <form className="w-full space-y-4">
+              <input type="text" placeholder="Card Number" maxLength={19} className="w-full border border-yellow-300 rounded-lg px-4 py-4 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-lg shadow-sm" />
+              <div className="flex gap-6">
+                <input type="text" placeholder="MM/YY" maxLength={5} className="flex-1 border border-yellow-300 rounded-lg px-4 py-4 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-lg shadow-sm" />
+                <input type="text" placeholder="CVV" maxLength={4} className="w-24 border border-yellow-300 rounded-lg px-4 py-4 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-lg shadow-sm" />
+              </div>
+              <input type="text" placeholder="Cardholder Name" className="w-full border border-yellow-300 rounded-lg px-4 py-4 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-lg shadow-sm" />
+              <button type="button" className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white py-4 rounded-xl font-bold shadow-lg transition-all text-lg tracking-wide">Pay</button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Net Banking Modal */}
+      {showBankModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-sm relative border border-yellow-300 animate-fadeIn flex flex-col items-center">
+            <button className="absolute top-4 right-4 text-gray-400 hover:text-yellow-600 text-3xl font-bold focus:outline-none" onClick={() => setShowBankModal(false)}><X /></button>
+            <h2 className="text-xl font-bold mb-4 text-yellow-700 text-center">Net Banking</h2>
+            <form className="w-full space-y-4">
+              <select className="w-full border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 text-gray-800 text-base shadow-sm">
+                <option value="">Select Bank</option>
+                <option value="SBI">State Bank of India</option>
+                <option value="HDFC">HDFC Bank</option>
+                <option value="ICICI">ICICI Bank</option>
+                <option value="AXIS">Axis Bank</option>
+                <option value="PNB">Punjab National Bank</option>
+                <option value="BOB">Bank of Baroda</option>
+              </select>
+              <input type="text" placeholder="Account Holder Name" className="w-full border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+              <input type="text" placeholder="Account Number" className="w-full border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+              <input type="text" placeholder="IFSC Code" className="w-full border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+              <input type="text" placeholder="Branch Name" className="w-full border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+              <button type="button" className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white py-3 rounded-xl font-bold shadow-lg transition-all text-lg tracking-wide">Pay</button>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Payment Methods */}
       <div className="mt-6">
@@ -206,4 +314,4 @@ const FeesPayment = () => {
   );
 };
 
-export default FeesPayment; 
+export default FeesPayment;
