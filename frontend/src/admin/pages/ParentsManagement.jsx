@@ -3,17 +3,38 @@ import { Users, Search, Filter, Plus, Edit3, Trash2, Mail, Phone } from 'lucide-
 
 const ParentsManagement = ({setShowAdminHeader}) => {
 
+  const [parents, setParents] = useState([]);
+
   // making the admin header invisible
     useEffect(() => {
       setShowAdminHeader(false)
+
+      fetch(`${import.meta.env.VITE_API_URL}/api/admin/users/get-parents`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then(res => {
+      if (!res.ok) {
+        throw new Error('Failed to fetch parents');
+      }
+      return res.json();
+    })
+    .then(data => {
+      setParents(data)
+    })
+    .catch(err => {
+      console.error('Error fetching parents:', err);
+    });
     }, [])
 
     const [showAddForm, setShowAddForm] = useState(false);
     const [newParent, setNewParent] = useState({
       name: '',
       email: '',
-      phone: '',
-      children: '', // comma separated
+      mobile: '',
+      children: '',
       grade: ''
     });
 
@@ -22,11 +43,30 @@ const ParentsManagement = ({setShowAdminHeader}) => {
       setNewParent(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleAddParentSubmit = (e) => {
+    const handleAddParentSubmit = async (e) => {
       e.preventDefault();
       // Here you would send newParent to backend or update state
+      try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/parent/auth/register`,{
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'authorization': `Bearer ${localStorage.getItem('token')}`
+          },
+          body: JSON.stringify(newParent)
+        })
+        const data = await res.json();
+        if (!res.ok) { 
+          console.error('Registration failed:', data);
+          throw new Error('Registration failed');
+        }
+      console.log('New teacher added:', data);
+      setNewParent({ name: '', email: '', mobile: '', children: '', grade: '' });
       setShowAddForm(false);
-      setNewParent({ name: '', email: '', phone: '', children: '', grade: '' });
+    }
+    catch (error) {
+      console.error('Error adding teacher:', error);
+    }
     };
 
   return (
@@ -87,24 +127,7 @@ const ParentsManagement = ({setShowAdminHeader}) => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {[
-                  {
-                    id: 1,
-                    name: "John Smith",
-                    email: "john.smith@example.com",
-                    phone: "+1 234-567-8900",
-                    children: ["Sarah Smith"],
-                    grade: "Grade 10"
-                  },
-                  {
-                    id: 2,
-                    name: "Mary Johnson",
-                    email: "mary.j@example.com",
-                    phone: "+1 234-567-8901",
-                    children: ["Tom Johnson", "Lisa Johnson"],
-                    grade: "Grade 11, Grade 12"
-                  }
-                ].map((parent) => (
+                {parents.map((parent) => (
                   <tr key={parent.id} className="hover:bg-yellow-50 transition-colors">
                     <td className="px-6 py-4">
                       <div className="font-medium text-gray-900">{parent.name}</div>
@@ -117,7 +140,7 @@ const ParentsManagement = ({setShowAdminHeader}) => {
                         </div>
                         <div className="flex items-center text-sm text-gray-600">
                           <Phone className="w-4 h-4 mr-2" />
-                          <span>{parent.phone}</span>
+                          <span>{parent.mobile}</span>
                         </div>
                       </div>
                     </td>
@@ -128,7 +151,13 @@ const ParentsManagement = ({setShowAdminHeader}) => {
                         ))}
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-gray-600">{parent.grade}</td>
+                    <td className="px-6 py-4 text-gray-600">
+                      <div className="flex flex-col space-y-1">
+                        {parent.grade.map((g, index) => (
+                          <span key={index} className="text-sm text-gray-600">{g}</span>
+                        ))}
+                      </div>
+                    </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2">
                         <button className="text-blue-600 hover:text-blue-800 p-1 hover:bg-blue-50 rounded">
@@ -157,7 +186,7 @@ const ParentsManagement = ({setShowAdminHeader}) => {
           <input name="email" value={newParent.email} onChange={handleAddParentChange} required placeholder="Email" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
         </div>
         <div className="flex gap-4">
-          <input name="phone" value={newParent.phone} onChange={handleAddParentChange} required placeholder="Phone" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+          <input name="mobile" value={newParent.mobile} onChange={handleAddParentChange} required placeholder="Phone" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
           <input name="children" value={newParent.children} onChange={handleAddParentChange} required placeholder="Children's Name" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
         </div>
         <div>

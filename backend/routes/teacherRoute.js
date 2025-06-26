@@ -4,9 +4,10 @@ const TeacherUser = require('../models/TeacherUser');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { generateUsername, generatePassword } = require('../utils/generator');
+const adminAuth = require('../middleware/adminAuth');
 
 // Register Teacher
-router.post('/register', async (req, res) => {
+router.post('/register', adminAuth, async (req, res) => {
   const {
     name,
     gender,
