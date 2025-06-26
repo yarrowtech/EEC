@@ -3,36 +3,47 @@ const router = express.Router();
 const TeacherUser = require('../models/TeacherUser');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { generateUsername, generatePassword } = require('../utils/generator');
 
 // Register Teacher
 router.post('/register', async (req, res) => {
   const {
-    username,
-    password,
     name,
+    gender,
     mobile,
     email,
-    city,
+    subject,
+    department,
+    qualification,
+    experience,
     address,
-    state,
     pinCode
   } = req.body;
 
   try {
+
+    const username = await generateUsername(name, "teacher")
+    const password = generatePassword();
+    const empId = await generateEmpId();
+
     const user = new TeacherUser({
       username,
       password,
+      empId,
       name,
+      gender,
       mobile,
       email,
-      city,
+      subject,
+      department,
+      qualification,
+      experience,
       address,
-      state,
       pinCode
     });
 
     await user.save();
-    res.status(201).json({ message: 'Teacher registered successfully' });
+    res.status(201).json({ message: 'Teacher registered successfully', username, password, empId });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -59,5 +70,18 @@ router.post('/login', async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
+
+/**
+ * Generate a random empid
+ * @returns {number} - Random 3-digit employee ID
+ */
+async function generateEmpId() {
+  const num = Math.floor(Math.random() * 1000);
+  const user = await TeacherUser.findOne({ empId: num });
+  if (user) {
+    return generateEmpId(); // Recursively generate a new ID if it already exists
+  }
+  return num;
+}
 
 module.exports = router;
