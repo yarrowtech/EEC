@@ -3,17 +3,40 @@ import { BookOpen, Search, Filter, Plus, Edit3, Trash2, Users, Clock } from 'luc
 
 const SubjectManagement = ({setShowAdminHeader}) => {
 
+  const [subjects, setSubjects] = useState([]);
+  const [filteredSubjects, setFilteredSubjects] = useState([]);
+
   // making the admin header invisible
     useEffect(() => {
       setShowAdminHeader(false)
+      fetch(`${import.meta.env.VITE_API_URL}/api/subject/fetch`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      }).then(res => {
+        if (!res.ok) {
+          throw new Error('Failed to fetch subjects');
+        }
+        return res.json();
+      }).then(data => {
+        setSubjects(data)
+      }).catch(err => {
+        console.error("Error fetching subjects: ", err);
+      })
     }, [])
+
+    useEffect(() => {
+      setFilteredSubjects(subjects);
+    }, [subjects])
 
     const [showAddForm, setShowAddForm] = useState(false);
     const [newSubject, setNewSubject] = useState({
-      name: '',
+      subjectName: '',
       grade: '',
       teachers: '', // comma separated
-      students: '',
+      totalStudents: '',
       hoursPerWeek: ''
     });
 
@@ -22,11 +45,46 @@ const SubjectManagement = ({setShowAdminHeader}) => {
       setNewSubject(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleAddSubjectSubmit = (e) => {
+    const handleAddSubjectSubmit = async (e) => {
       e.preventDefault();
       // Here you would send newSubject to backend or update state
-      setShowAddForm(false);
-      setNewSubject({ name: '', grade: '', teachers: '', students: '', hoursPerWeek: '' });
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/subject/add`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'authorization': `Bearer ${localStorage.getItem('token')}`
+          },
+          body: JSON.stringify(newSubject),
+        })
+        if (!res.ok) {
+          throw new Error('Failed to add subject');
+        }
+        const data = await res.json();
+        console.log(data);
+        setShowAddForm(false);
+        setNewSubject({ subjectName: '', grade: '', teachers: '', totalStudents: '', hoursPerWeek: '' });
+      } catch(err) {
+        console.log("Error: ", err);
+      }
+    };
+
+    const handleFilterChange = (e) => {
+      const value = e.target.value;
+      if (value === 'all') {
+        setFilteredSubjects(subjects);
+      } else {
+        const filtered = subjects.filter(subject => subject.grade === value);
+        setFilteredSubjects(filtered);
+      }
+    };
+    const handleSearchChange = (e) => {
+      const query = e.target.value.toLowerCase();
+      const filtered = subjects.filter(subject => 
+        subject.subjectName.toLowerCase().includes(query) ||
+        subject.teachers.some(teacher => teacher.toLowerCase().includes(query))
+      );
+      setFilteredSubjects(filtered);
     };
 
   return (
@@ -55,10 +113,11 @@ const SubjectManagement = ({setShowAdminHeader}) => {
                   type="text"
                   placeholder="Search subjects..."
                   className="pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  onChange={handleSearchChange}
                 />
               </div>
               
-              <select className="border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+              <select className="border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500" onChange={handleFilterChange}>
                 <option value="all">All Grades</option>
                 <option value="10">Grade 10</option>
                 <option value="11">Grade 11</option>
@@ -88,35 +147,10 @@ const SubjectManagement = ({setShowAdminHeader}) => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {[
-                  {
-                    id: 1,
-                    name: "Mathematics",
-                    grade: "Grade 10",
-                    teachers: ["Dr. Sarah Johnson", "Mr. Robert Brown"],
-                    students: 45,
-                    hoursPerWeek: 6
-                  },
-                  {
-                    id: 2,
-                    name: "Physics",
-                    grade: "Grade 11",
-                    teachers: ["Prof. Michael Chen"],
-                    students: 38,
-                    hoursPerWeek: 5
-                  },
-                  {
-                    id: 3,
-                    name: "English Literature",
-                    grade: "Grade 12",
-                    teachers: ["Ms. Emily Davis", "Mrs. Laura Wilson"],
-                    students: 42,
-                    hoursPerWeek: 4
-                  }
-                ].map((subject) => (
+                {filteredSubjects.map((subject) => (
                   <tr key={subject.id} className="hover:bg-yellow-50 transition-colors">
                     <td className="px-6 py-4">
-                      <div className="font-medium text-gray-900">{subject.name}</div>
+                      <div className="font-medium text-gray-900">{subject.subjectName}</div>
                     </td>
                     <td className="px-6 py-4 text-gray-600">{subject.grade}</td>
                     <td className="px-6 py-4">
@@ -126,7 +160,7 @@ const SubjectManagement = ({setShowAdminHeader}) => {
                         ))}
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-gray-600">{subject.students}</td>
+                    <td className="px-6 py-4 text-gray-600">{subject.totalStudents}</td>
                     <td className="px-6 py-4 text-gray-600">{subject.hoursPerWeek}</td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2">
@@ -152,12 +186,12 @@ const SubjectManagement = ({setShowAdminHeader}) => {
       <h2 className="text-3xl font-extrabold mb-6 text-yellow-700 text-center tracking-tight">Add Subject</h2>
       <form onSubmit={handleAddSubjectSubmit} className="space-y-5">
         <div className="flex gap-4">
-          <input name="name" value={newSubject.name} onChange={handleAddSubjectChange} required placeholder="Subject Name" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
+          <input name="subjectName" value={newSubject.subjectName} onChange={handleAddSubjectChange} required placeholder="Subject Name" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
           <input name="grade" value={newSubject.grade} onChange={handleAddSubjectChange} required placeholder="Grade" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
         </div>
         <div className="flex gap-4">
           <input name="teachers" value={newSubject.teachers} onChange={handleAddSubjectChange} required placeholder="Teachers (comma separated)" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
-          <input name="students" value={newSubject.students} onChange={handleAddSubjectChange} required placeholder="No. of Students" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="number" min="0" />
+          <input name="totalStudents" value={newSubject.totalStudents} onChange={handleAddSubjectChange} required placeholder="No. of Students" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="number" min="0" />
         </div>
         <div>
           <input name="hoursPerWeek" value={newSubject.hoursPerWeek} onChange={handleAddSubjectChange} required placeholder="Hours/Week" className="w-full border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="number" min="0" />

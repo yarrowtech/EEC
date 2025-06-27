@@ -12,6 +12,7 @@ const parentAuthRoutes = require('./routes/parentRoute');
 const attendanceRoutes = require('./routes/attendanceRoutes');
 const adminUserManagementRoutes = require('./routes/adminUserManagement');
 const courseRouter = require("./routes/courseRoute")
+const subjectRouter = require("./routes/subjectRoute");
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.use('/api/attendance', attendanceRoutes);
 app.use('/api/student', require('./routes/student'));
 
 app.use('/api/course', courseRouter)
+app.use('/api/subject', subjectRouter);
 
 
 const PORT = process.env.PORT || 5000;
