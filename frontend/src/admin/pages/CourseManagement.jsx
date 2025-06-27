@@ -62,7 +62,7 @@ const CourseManagement = ({setShowAdminHeader}) => {
           throw new Error('Network response was not ok');
         }
         const data = await res.json();
-        console.log("Course added successfully:", data);
+        console.log(data);
         setShowAddForm(false);
         setNewCourse({ title: '', department: '', instructor: '', students: '', duration: '', startingDate: '', desc: '' });
       } catch(err) {
