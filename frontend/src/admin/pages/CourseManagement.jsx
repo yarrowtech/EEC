@@ -3,20 +3,42 @@ import { BookOpen, Search, Filter, Plus, Edit3, Trash2, Users, Clock, Calendar }
 
 const CourseManagement = ({setShowAdminHeader}) => {
 
+  const [allCourses, setAllCourses] = useState([])
+  const [filteredCourses, setFilteredCourses] = useState([])
+
   // making the admin header invisible
     useEffect(() => {
+      fetch(`${import.meta.env.VITE_API_URL}/api/course/fetch`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      }).then((res) => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return res.json();
+      }).then((data) => {
+        setAllCourses(data)
+      }).catch((error) => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
       setShowAdminHeader(false)
     }, [])
+
+    useEffect(() => {
+      setFilteredCourses(allCourses)
+    }, [allCourses])
 
     const [showAddForm, setShowAddForm] = useState(false);
     const [newCourse, setNewCourse] = useState({
       title: '',
       department: '',
       instructor: '',
-      students: '',
       duration: '',
-      startDate: '',
-      description: ''
+      startingDate: '',
+      desc: ''
     });
 
     const handleAddCourseChange = (e) => {
@@ -24,11 +46,48 @@ const CourseManagement = ({setShowAdminHeader}) => {
       setNewCourse(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleAddCourseSubmit = (e) => {
+    const handleAddCourseSubmit = async (e) => {
       e.preventDefault();
       // Here you would send newCourse to backend or update state
-      setShowAddForm(false);
-      setNewCourse({ title: '', department: '', instructor: '', students: '', duration: '', startDate: '', description: '' });
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/course/add`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'authorization': `Bearer ${localStorage.getItem('token')}`
+          },
+          body: JSON.stringify(newCourse)
+        })
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await res.json();
+        console.log("Course added successfully:", data);
+        setShowAddForm(false);
+        setNewCourse({ title: '', department: '', instructor: '', students: '', duration: '', startingDate: '', desc: '' });
+      } catch(err) {
+        console.log("Error: ", err)
+      }
+    };
+
+    const handleSearchChange = (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      const filtered = allCourses.filter(course => 
+        course.title.toLowerCase().includes(searchTerm) ||
+        course.department.toLowerCase().includes(searchTerm) ||
+        course.instructor.toLowerCase().includes(searchTerm)
+      );
+      setFilteredCourses(filtered);
+    }
+
+    const handleFilterChange = (e) => {
+      const selectedDepartment = e.target.value;
+      if (selectedDepartment === '') {
+        setFilteredCourses(allCourses);
+      } else {
+        const filtered = allCourses.filter(course => course.department === selectedDepartment);
+        setFilteredCourses(filtered);
+      }
     };
 
   return (
@@ -57,10 +116,11 @@ const CourseManagement = ({setShowAdminHeader}) => {
                   type="text"
                   placeholder="Search courses..."
                   className="pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  onChange={handleSearchChange}
                 />
               </div>
               
-              <select className="border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+              <select className="border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500" onChange={handleFilterChange}>
                 <option value="">All Departments</option>
                 <option value="Mathematics">Mathematics</option>
                 <option value="Physics">Physics</option>
@@ -84,39 +144,8 @@ const CourseManagement = ({setShowAdminHeader}) => {
         <div className="flex-1 overflow-hidden p-8">
           <div className="h-full overflow-y-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                {
-                  id: 1,
-                  title: "Advanced Mathematics",
-                  department: "Science",
-                  instructor: "Dr. Sarah Johnson",
-                  students: 32,
-                  duration: "6 months",
-                  startDate: "2024-01-15",
-                  description: "Advanced level mathematics covering calculus and linear algebra"
-                },
-                {
-                  id: 2,
-                  title: "Physics Fundamentals",
-                  department: "Science",
-                  instructor: "Prof. Michael Chen",
-                  students: 28,
-                  duration: "6 months",
-                  startDate: "2024-01-15",
-                  description: "Comprehensive study of basic physics principles and mechanics"
-                },
-                {
-                  id: 3,
-                  title: "English Literature",
-                  department: "Arts",
-                  instructor: "Ms. Emily Davis",
-                  students: 25,
-                  duration: "6 months",
-                  startDate: "2024-01-15",
-                  description: "Study of classic literature and contemporary works"
-                }
-              ].map((course) => (
-                <div key={course.id} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all border border-gray-200">
+              {filteredCourses.map((course) => (
+                <div key={course._id} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all border border-gray-200">
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">{course.title}</h3>
@@ -134,7 +163,7 @@ const CourseManagement = ({setShowAdminHeader}) => {
                     </div>
                   </div>
 
-                  <p className="text-sm text-gray-600 mb-4">{course.description}</p>
+                  <p className="text-sm text-gray-600 mb-4">{course.desc}</p>
 
                   <div className="space-y-2">
                     <div className="flex items-center text-sm text-gray-600">
@@ -143,15 +172,15 @@ const CourseManagement = ({setShowAdminHeader}) => {
                     </div>
                     <div className="flex items-center text-sm text-gray-600">
                       <Users className="w-4 h-4 mr-2" />
-                      <span>{course.students} Students</span>
+                      <span>{course.totalStudents} Students</span>
                     </div>
                     <div className="flex items-center text-sm text-gray-600">
                       <Clock className="w-4 h-4 mr-2" />
-                      <span>{course.duration}</span>
+                      <span>{course.duration} months</span>
                     </div>
                     <div className="flex items-center text-sm text-gray-600">
                       <Calendar className="w-4 h-4 mr-2" />
-                      <span>Starts: {new Date(course.startDate).toLocaleDateString()}</span>
+                      <span>Starts: {new Date(course.startingDate).toLocaleDateString()}</span>
                     </div>
                   </div>
                 </div>
@@ -172,14 +201,14 @@ const CourseManagement = ({setShowAdminHeader}) => {
         </div>
         <div className="flex gap-4">
           <input name="instructor" value={newCourse.instructor} onChange={handleAddCourseChange} required placeholder="Instructor" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
-          <input name="students" value={newCourse.students} onChange={handleAddCourseChange} required placeholder="No. of Students" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="number" min="0" />
+          {/* <input name="students" value={newCourse.students} onChange={handleAddCourseChange} required placeholder="No. of Students" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="number" min="0" /> */}
         </div>
         <div className="flex gap-4">
           <input name="duration" value={newCourse.duration} onChange={handleAddCourseChange} required placeholder="Duration (e.g. 6 months)" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
-          <input name="startDate" value={newCourse.startDate} onChange={handleAddCourseChange} required placeholder="Start Date" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="date" />
+          <input name="startingDate" value={newCourse.startingDate} onChange={handleAddCourseChange} required placeholder="Start Date" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="date" />
         </div>
         <div>
-          <textarea name="description" value={newCourse.description} onChange={handleAddCourseChange} required placeholder="Course Description" className="w-full border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm resize-none" rows={3} />
+          <textarea name="desc" value={newCourse.desc} onChange={handleAddCourseChange} required placeholder="Course Description" className="w-full border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm resize-none" rows={3} />
         </div>
         <button type="submit" className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white py-3 rounded-xl font-bold shadow-lg transition-all text-lg tracking-wide">Add Course</button>
       </form>

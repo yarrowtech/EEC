@@ -11,6 +11,7 @@ const studentAuthRoutes = require('./routes/studentRoute');
 const parentAuthRoutes = require('./routes/parentRoute');
 const attendanceRoutes = require('./routes/attendanceRoutes');
 const adminUserManagementRoutes = require('./routes/adminUserManagement');
+const courseRouter = require("./routes/courseRoute")
 
 const app = express();
 
@@ -37,6 +38,8 @@ app.use('/api/parent/auth', parentAuthRoutes);
 
 app.use('/api/attendance', attendanceRoutes);
 app.use('/api/student', require('./routes/student'));
+
+app.use('/api/course', courseRouter)
 
 
 const PORT = process.env.PORT || 5000;
