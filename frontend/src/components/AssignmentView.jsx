@@ -177,6 +177,25 @@ const AssignmentView = () => {
     return diffDays;
   };
 
+  // State for EEC Tryout answers and feedback
+  const [eecAnswers, setEecAnswers] = useState({}); // { [idx]: userInput }
+  const [eecFeedback, setEecFeedback] = useState({}); // { [idx]: 'correct' | 'incorrect' | '' }
+
+  // Handler for answer input
+  const handleEecInput = (idx, value) => {
+    setEecAnswers(prev => ({ ...prev, [idx]: value }));
+    setEecFeedback(prev => ({ ...prev, [idx]: '' }));
+  };
+  // Handler for answer check
+  const handleEecCheck = (idx, correctAnswer) => {
+    const userAns = (eecAnswers[idx] || '').trim().toLowerCase();
+    const correct = (correctAnswer || '').trim().toLowerCase();
+    setEecFeedback(prev => ({
+      ...prev,
+      [idx]: userAns === correct ? 'correct' : 'incorrect'
+    }));
+  };
+
   return (
     <div className="space-y-6">
       {/* Assignment Type Dropdown */}
@@ -384,7 +403,28 @@ const AssignmentView = () => {
             {(eecSubject === 'science' ? eecScience[selectedClass] : eecSubject === 'math' ? eecMath[selectedClass] : eecGames[selectedClass]).map((q, idx) => (
               <div key={idx} className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg">
                 <div className="font-semibold text-gray-800 mb-1">Q{idx+1}: {q.q}</div>
-                <div className="text-sm text-gray-600 italic">Answer: {q.a}</div>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 mt-2">
+                  <input
+                    type="text"
+                    className="border border-gray-300 rounded px-3 py-1 focus:ring-2 focus:ring-blue-400 focus:border-transparent w-full sm:w-auto"
+                    placeholder="Your answer..."
+                    value={eecAnswers[idx] || ''}
+                    onChange={e => handleEecInput(idx, e.target.value)}
+                  />
+                  <button
+                    className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                    onClick={() => handleEecCheck(idx, q.a)}
+                  >
+                    Check
+                  </button>
+                  {eecFeedback[idx] === 'correct' && (
+                    <span className="text-green-600 font-semibold ml-2">Correct!</span>
+                  )}
+                  {eecFeedback[idx] === 'incorrect' && (
+                    <span className="text-red-600 font-semibold ml-2">Incorrect, try again</span>
+                  )}
+                </div>
+                <div className="text-sm text-gray-400 italic mt-1">Answer: {q.a}</div>
               </div>
             ))}
           </div>
