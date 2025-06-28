@@ -13,6 +13,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+input, select, textarea {
+  color: black;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
