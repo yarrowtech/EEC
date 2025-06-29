@@ -29,7 +29,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-gray-50 flex w-screen">
       <Sidebar 
         activeView={activeView} 
         setActiveView={setActiveView}
