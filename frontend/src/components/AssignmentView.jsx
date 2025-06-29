@@ -8,12 +8,12 @@ import {
   FileText,
   Download,
 } from "lucide-react";
+import { questionPaper } from "./questionPaper";
 
 const AssignmentView = () => {
   const [filter, setFilter] = useState("all"); // all, pending, completed, overdue
   const [assignmentType, setAssignmentType] = useState("school"); // 'school' or 'eec'
-  const [selectedClass, setSelectedClass] = useState("5");
-  const [eecSubject, setEecSubject] = useState("science"); // 'science', 'math', 'game'
+
 
   // Sample assignment data
   const assignments = [
@@ -66,37 +66,6 @@ const AssignmentView = () => {
     },
   ];
 
-  // EEC Tryout questions and brain games
-  const eecScience = {};
-  const eecMath = {
-    4: {
-      mcq: [
-        {
-          q: "What is the sum of 245 and 137?",
-          a: "382",
-          o: ["372", "382", "362", "392"],
-        },
-        {
-          q: "If a book costs ₹25 and a pen costs ₹10, how much will 3 books and 2 pens cost?",
-          a: "95",
-          o: ["85", "95", "75", "90"],
-        },
-      ],
-      blank: [
-        {
-          q: "The sum of 356 and 129 is __________.",
-          a: "485",
-          e: "356 + 129 = 485"
-        },
-        {
-          q: "If you subtract 247 from 500, the result is __________",
-          a: "253",
-          e: "500 - 247 = 253"
-        }
-      ],
-    },
-  };
-  const eecGames = {};
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -158,7 +127,40 @@ const AssignmentView = () => {
 
   // State for EEC Tryout answers and feedback
   const [questionType, setQuestionType] = useState("mcq");
-  
+  // EEC Tryout questions and brain games
+  const [selectedClass, setSelectedClass] = useState("5");
+  const [eecSubject, setEecSubject] = useState("science"); // 'science', 'math', 'game'
+  const [questionData, setQuestionData] = useState(questionPaper);
+  const eecScience = {};
+  const eecMath = {
+    4: {
+      mcq: [
+        {
+          q: "What is the sum of 245 and 137?",
+          a: "382",
+          o: ["372", "382", "362", "392"],
+        },
+        {
+          q: "If a book costs ₹25 and a pen costs ₹10, how much will 3 books and 2 pens cost?",
+          a: "95",
+          o: ["85", "95", "75", "90"],
+        },
+      ],
+      blank: [
+        {
+          q: "The sum of 356 and 129 is __________.",
+          a: "485",
+          e: "356 + 129 = 485"
+        },
+        {
+          q: "If you subtract 247 from 500, the result is __________",
+          a: "253",
+          e: "500 - 247 = 253"
+        }
+      ],
+    },
+  };
+  const eecGames = {};
 
   return (
     <div className="space-y-6">
@@ -376,7 +378,7 @@ const AssignmentView = () => {
               onChange={(e) => setSelectedClass(e.target.value)}
               className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
-              {[4, 5, 6, 7].map((cls) => (
+              {Object.keys(questionData).map((cls) => (
                 <option key={cls} value={cls}>{`Class ${cls}`}</option>
               ))}
             </select>
@@ -392,9 +394,9 @@ const AssignmentView = () => {
               onChange={(e) => setEecSubject(e.target.value)}
               className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
-              <option value="science">Science</option>
-              <option value="math">Mathematics</option>
-              <option value="game">Learning Game</option>
+              {Object.keys(questionData[selectedClass]).map((subject) => (
+                <option key={subject} value={subject}>{subject.charAt(0).toUpperCase() + subject.slice(1)}</option>
+              ))}
             </select>
           </div>
           <div>
@@ -411,8 +413,8 @@ const AssignmentView = () => {
           </div>
           <div className="space-y-4">
             {
-              questionType === "mcq" ? <MCQ array={eecSubject === "math" ? eecMath[selectedClass]?.mcq : ""} /> :
-              <Blank array={eecSubject === "math" ? eecMath[selectedClass]?.blank : ""} />
+              questionType === "mcq" ? <MCQ array={questionData[selectedClass][eecSubject]?.mcq} /> :
+              <Blank array={questionData[selectedClass][eecSubject]?.blank} />
             }
           </div>
         </div>
@@ -434,19 +436,13 @@ function MCQ({array}) {
   };
   // Handler for answer check
   const handleEecCheck = () => {
-    // const userAns = (eecAnswers[idx] || "").trim().toLowerCase();
-    // const correct = (correctAnswer || "").trim().toLowerCase();
-    // setEecFeedback((prev) => ({
-    //   ...prev,
-    //   [idx]: userAns === correct ? "correct" : "incorrect",
-    // }));
-    let flag = false;
+    let correction = []
     array.forEach((q, idx) => {
       const userAns = (eecAnswers[idx] || "").trim().toLowerCase();
       const correct = (q.a || "").trim().toLowerCase();
-      flag = userAns === correct;
+      correction.push(userAns === correct)
     });
-    setEecFeedback(flag);
+    setEecFeedback(correction);
   };
 
   return (
@@ -459,13 +455,6 @@ function MCQ({array}) {
           Q{idx + 1}: {q.q}
         </div>
         <div className="flex flex-col sm:flex-row sm:items-center gap-2 mt-2">
-          {/* <input
-          type="text"
-          className="border border-gray-300 rounded px-3 py-1 focus:ring-2 focus:ring-blue-400 focus:border-transparent w-full sm:w-auto"
-          placeholder="Your answer..."
-          value={eecAnswers[idx] || ''}
-          onChange={e => handleEecInput(idx, e.target.value)}
-        /> */}
           <div className="flex flex-col gap-2">
             {q.o &&
               q.o.map((option) => (
@@ -486,16 +475,16 @@ function MCQ({array}) {
         {showAnwers && (
           <div className="text-sm text-gray-400 italic mt-1">Answer: {q.a}</div>
         )}
-      </div>))}
       {eecFeedback !== null && (
         <p
           className={`${
-            eecFeedback ? "text-green-500" : "text-red-500"
+            eecFeedback[idx] ? "text-green-500" : "text-red-500"
           } font-bold text-lg`}
         >
-          {eecFeedback ? "Correct" : "Incorrect"}
+          {eecFeedback[idx] ? "Correct" : "Incorrect"}
         </p>
       )}
+      </div>))}
       <div className="flex items-center gap-2">
         <button
           className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
@@ -522,6 +511,7 @@ function MCQ({array}) {
 }
 
 function Blank({array}) {
+
   const [eecFeedback, setEecFeedback] = useState(null);
   const [showAnwers, setShowAnswers] = useState(false);
   const [eecAnswers, setEecAnswers] = useState({}); // { [idx]: userInput }
@@ -534,19 +524,13 @@ function Blank({array}) {
   };
   // Handler for answer check
   const handleEecCheck = () => {
-    // const userAns = (eecAnswers[idx] || "").trim().toLowerCase();
-    // const correct = (correctAnswer || "").trim().toLowerCase();
-    // setEecFeedback((prev) => ({
-    //   ...prev,
-    //   [idx]: userAns === correct ? "correct" : "incorrect",
-    // }));
-    let flag = false;
+    let correction = []
     array.forEach((q, idx) => {
       const userAns = (eecAnswers[idx] || "").trim().toLowerCase();
       const correct = (q.a || "").trim().toLowerCase();
-      flag = userAns === correct;
+      correction.push(userAns === correct)
     });
-    setEecFeedback(flag);
+    setEecFeedback(correction);
   };
 
   return (
@@ -570,16 +554,16 @@ function Blank({array}) {
         {showAnwers && (
           <div className="text-sm text-gray-400 italic mt-1">Answer: {q.a}</div>
         )}
-      </div>))}
-      {eecFeedback !== null && (
+        {eecFeedback !== null && (
         <p
           className={`${
-            eecFeedback ? "text-green-500" : "text-red-500"
+            eecFeedback[idx] ? "text-green-500" : "text-red-500"
           } font-bold text-lg`}
         >
-          {eecFeedback ? "Correct" : "Incorrect"}
+          {eecFeedback[idx] ? "Correct" : "Incorrect"}
         </p>
       )}
+      </div>))}
       <div className="flex items-center gap-2">
         <button
           className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
