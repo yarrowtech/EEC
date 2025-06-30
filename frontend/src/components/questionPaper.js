@@ -714,4 +714,586 @@ export const questionPaper = {
       ],
     },
   },
+  "6": {
+    "math": {
+      "mcq": [
+        {
+          "q": "What is the place value of 7 in the number 5,472?",
+          "a": "700",
+          "o": ["7", "70", "700", "7,000"],
+          "e": "In the number 5,472, the digit 7 is in the hundreds place. So its place value is 7 × 100 = 700."
+        },
+        {
+          "q": "Which of the following is a prime number?",
+          "a": "11",
+          "o": ["4", "9", "11", "15"],
+          "e": "A prime number has only two factors: 1 and itself. 4 = 2 × 2, 9 = 3 × 3, 15 = 3 × 5, 11 has no divisors except 1 and 11, so it is prime."
+        },
+        {
+          "q": "What is the sum of 3/5 and 2/5?",
+          "a": "5/5",
+          "o": ["1/5", "5/5", "6/5", "1/10"],
+          "e": "When adding fractions with the same denominator: 3/5 + 2/5 = (3+2)/5 = 5/5 = 1."
+        },
+        {
+          "q": "How many sides does a hexagon have?",
+          "a": "6",
+          "o": ["4", "5", "6", "8"],
+          "e": "The prefix 'hexa-' means six, so a hexagon has 6 sides."
+        },
+        {
+          "q": "What is the value of 15 × 4?",
+          "a": "60",
+          "o": ["60", "50", "45", "75"],
+          "e": "Multiplying: 15 × 4 = 60."
+        },
+        {
+          "q": "Which fraction is equivalent to 2/3?",
+          "a": "6/9",
+          "o": ["4/9", "6/9", "3/6", "1/3"],
+          "e": "2/3 = (2×3)/(3×3) = 6/9 (same value in different form)."
+        },
+        {
+          "q": "What is the perimeter of a rectangle with length 8 cm and width 5 cm?",
+          "a": "26 cm",
+          "o": ["13 cm", "26 cm", "40 cm", "18 cm"],
+          "e": "Perimeter of a rectangle = 2 × (length + width) = 2 × (8 + 5) = 2 × 13 = 26 cm."
+        },
+        {
+          "q": "Which of the following is a proper fraction?",
+          "a": "7/8",
+          "o": ["5/4", "3/2", "7/8", "9/5"],
+          "e": "A proper fraction has a numerator smaller than the denominator. Only 7/8 fits this rule."
+        },
+        {
+          "q": "What is 0.75 as a fraction in its simplest form?",
+          "a": "3/4",
+          "o": ["3/4", "75/100", "7/5", "1/2"],
+          "e": "0.75 = 75/100 = divide numerator and denominator by 25 → 3/4."
+        },
+        {
+          "q": "How many right angles are there in a square?",
+          "a": "4",
+          "o": ["2", "3", "4", "1"],
+          "e": "A square has 4 angles, and each is 90 degrees, making 4 right angles."
+        }
+      ],
+      "blank": [
+        {
+          "q": "The place value of 4 in the number 7,428 is ______.",
+          "a": "400",
+          "e": "In 7,428, the digit 4 is in the hundreds place. Its place value is 4 × 100 = 400."
+        },
+        {
+          "q": "The smallest prime number is ______.",
+          "a": "2",
+          "e": "A prime number has only two factors: 1 and itself. The smallest prime number is 2."
+        },
+        {
+          "q": "The sum of 2/3 and 1/3 is ______.",
+          "a": "1",
+          "e": "Adding fractions with the same denominator: 2/3 + 1/3 = (2 + 1)/3 = 3/3 = 1."
+        },
+        {
+          "q": "A triangle with all sides equal is called an ______ triangle.",
+          "a": "Equilateral",
+          "e": "An equilateral triangle has all three sides of equal length."
+        },
+        {
+          "q": "The product of 12 and 7 is ______.",
+          "a": "84",
+          "e": "Multiply 12 × 7 = 84."
+        },
+        {
+          "q": "The simplest form of the fraction 8/12 is ______.",
+          "a": "2/3",
+          "e": "Divide numerator and denominator by their greatest common divisor (4): 8 ÷ 4 = 2, 12 ÷ 4 = 3. So, 8/12 = 2/3."
+        },
+        {
+          "q": "The perimeter of a square with a side length of 6 cm is ______ cm.",
+          "a": "24",
+          "e": "The perimeter of a square is 4 × side length. So, 4 × 6 = 24 cm."
+        },
+        {
+          "q": "The decimal form of the fraction 3/4 is ______.",
+          "a": "0.75",
+          "e": "Divide 3 by 4: 3 ÷ 4 = 0.75."
+        },
+        {
+          "q": "The number of vertices in a cube is ______.",
+          "a": "8",
+          "e": "A cube has 8 vertices, as it is a three-dimensional shape with 8 corners."
+        },
+        {
+          "q": "The difference between 5.6 and 2.3 is ______.",
+          "a": "3.3",
+          "e": "Subtract 2.3 from 5.6: 5.6 – 2.3 = 3.3."
+        }
+      ]
+    },
+    "eng": {
+      "mcq": [
+        {
+          "q": "What is the plural form of “child”?",
+          "a": "Children",
+          "o": ["Childs", "Children", "Childes", "Childrens"],
+          "e": "\"Child\" is an irregular noun. Unlike most words that add an \"s\" or \"es\" for the plural, the plural of “child” is “children.”"
+        },
+        {
+          "q": "Which word is a synonym for “happy”?",
+          "a": "Joyful",
+          "o": ["Sad", "Angry", "Joyful", "Tired"],
+          "e": "A synonym is a word with a similar meaning. “Joyful” means full of joy or happiness, so it is a synonym for “happy.”"
+        },
+        {
+          "q": "Choose the correct verb to complete the sentence: She ___ to school every day.",
+          "a": "Walks",
+          "o": ["Walk", "Walks", "Walking", "Walked"],
+          "e": "The subject \"She\" is third-person singular, so the verb should be in present simple form with an “s”: “walks.”"
+        },
+        {
+          "q": "What is the opposite of “big”?",
+          "a": "Small",
+          "o": ["Large", "Small", "Huge", "Tall"],
+          "e": "\"Big\" means large in size, and its opposite (antonym) is \"small,\" which means little in size."
+        },
+        {
+          "q": "Which of these is a proper noun?",
+          "a": "India",
+          "o": ["City", "River", "India", "Book"],
+          "e": "A proper noun is the specific name of a person, place, or thing. “India” is the name of a specific country, so it is a proper noun."
+        },
+        {
+          "q": "Identify the adjective in the sentence: The bright sun shines in the sky.",
+          "a": "Bright",
+          "o": ["Sun", "Shines", "Bright", "Sky"],
+          "e": "An adjective describes a noun. “Bright” describes the noun “sun,” so it is the adjective in the sentence."
+        },
+        {
+          "q": "Choose the correct pronoun to replace “Mary” in the sentence: Mary is reading a book.",
+          "a": "She",
+          "o": ["He", "She", "It", "They"],
+          "e": "“She” is the correct pronoun to replace the feminine singular noun “Mary.”"
+        },
+        {
+          "q": "What is the past tense of the verb “go”?",
+          "a": "Went",
+          "o": ["Goes", "Going", "Went", "Gone"],
+          "e": "\"Go\" is an irregular verb. Its simple past tense is “went,” not “goed” or “gone.”"
+        },
+        {
+          "q": "Which sentence is in the present continuous tense?",
+          "a": "I am reading a book.",
+          "o": ["I read a book.", "I am reading a book.", "I will read a book.", "I have read a book."],
+          "e": "The present continuous tense is formed with “am/is/are + verb + ing.” “I am reading” shows an action happening right now."
+        },
+        {
+          "q": "What is the meaning of the word “generous”?",
+          "a": "Kind and giving",
+          "o": ["Selfish", "Kind and giving", "Angry", "Lazy"],
+          "e": "A generous person is someone who is kind and gives help or shares things willingly, often more than expected."
+        }
+      ],
+      "blank": [
+        {
+          "q": "The plural form of \"mouse\" is ______.",
+          "a": "Mice",
+          "e": "The word \"mouse\" has an irregular plural form, which is \"mice.\""
+        },
+        {
+          "q": "She ______ to the park every evening. (Use the correct form of the verb \"go\")",
+          "a": "Goes",
+          "e": "For a singular subject \"she\" in the present tense, the verb \"go\" takes the form \"goes.\""
+        },
+        {
+          "q": "The opposite of \"happy\" is ______.",
+          "a": "Sad",
+          "e": "\"Sad\" is an antonym of \"happy,\" meaning the opposite emotion."
+        },
+        {
+          "q": "A ______ noun names a specific person, place, or thing.",
+          "a": "Proper",
+          "e": "A proper noun refers to a specific name, like \"Delhi\" or \"Ravi,\" and is always capitalized."
+        },
+        {
+          "q": "The dog is barking ______ in the garden. (Use an adverb)",
+          "a": "Loudly",
+          "e": "\"Loudly\" is an adverb that describes how the dog is barking, modifying the verb."
+        },
+        {
+          "q": "The past tense of the verb \"run\" is ______.",
+          "a": "Ran",
+          "e": "The verb \"run\" has an irregular past tense form, which is \"ran.\""
+        },
+        {
+          "q": "I have two cats, and ______ love to play. (Use a pronoun)",
+          "a": "They",
+          "e": "\"They\" is the correct pronoun to replace the plural noun \"cats.\""
+        },
+        {
+          "q": "The ______ sun made the day very hot. (Use an adjective)",
+          "a": "Scorching",
+          "e": "\"Scorching\" is an adjective that describes the sun, indicating intense heat."
+        },
+        {
+          "q": "A sentence that asks a question is called a ______ sentence.",
+          "a": "Interrogative",
+          "e": "An interrogative sentence is used to ask questions, e.g., \"What is your name?\""
+        },
+        {
+          "q": "The synonym of \"big\" is ______.",
+          "a": "Large",
+          "e": "\"Large\" is a synonym for \"big,\" meaning similar in size or extent."
+        }
+      ]
+    },
+    "biology": {
+      "mcq": [
+        {
+          "q": "Which part of a plant absorbs water and nutrients from the soil?",
+          "a": "Root",
+          "o": ["Stem", "Leaf", "Root", "Flower"],
+          "e": "Roots anchor the plant and absorb water and nutrients from the soil."
+        },
+        {
+          "q": "What is the process by which plants make their own food using sunlight?",
+          "a": "Photosynthesis",
+          "o": ["Respiration", "Photosynthesis", "Digestion", "Transpiration"],
+          "e": "Photosynthesis is the process where plants use sunlight, carbon dioxide, and water to produce food (glucose) in their leaves."
+        },
+        {
+          "q": "Which of the following is a herbivore?",
+          "a": "Cow",
+          "o": ["Lion", "Cow", "Tiger", "Crocodile"],
+          "e": "Herbivores eat only plants, and a cow is an example of a herbivore."
+        },
+        {
+          "q": "Which organ in the human body is responsible for pumping blood?",
+          "a": "Heart",
+          "o": ["Brain", "Lungs", "Heart", "Stomach"],
+          "e": "The heart is a muscular organ that pumps blood throughout the body."
+        },
+        {
+          "q": "What is the main function of leaves in a plant?",
+          "a": "Make food",
+          "o": ["Absorb water", "Support the plant", "Make food", "Store seeds"],
+          "e": "Leaves contain chlorophyll, which helps in photosynthesis to produce food for the plant."
+        },
+        {
+          "q": "Which of these animals is a carnivore?",
+          "a": "Wolf",
+          "o": ["Elephant", "Deer", "Wolf", "Goat"],
+          "e": "Carnivores eat other animals, and a wolf is a carnivore that preys on other animals."
+        },
+        {
+          "q": "Which part of the human body helps in breathing?",
+          "a": "Lungs",
+          "o": ["Kidneys", "Lungs", "Liver", "Pancreas"],
+          "e": "Lungs are the organs responsible for taking in oxygen and expelling carbon dioxide during breathing."
+        },
+        {
+          "q": "What is the hard, outer covering of insects called?",
+          "a": "Exoskeleton",
+          "o": ["Skin", "Shell", "Exoskeleton", "Spine"],
+          "e": "Insects have a hard outer covering called an exoskeleton, which provides support and protection."
+        },
+        {
+          "q": "Which of the following is a function of the stem in a plant?",
+          "a": "Transports water and nutrients",
+          "o": ["Produces seeds", "Transports water and nutrients", "Absorbs sunlight", "Stores food"],
+          "e": "The stem supports the plant and transports water and nutrients between roots and leaves."
+        },
+        {
+          "q": "Which type of joint allows the movement of the arm in all directions?",
+          "a": "Ball and socket joint",
+          "o": ["Hinge joint", "Pivot joint", "Ball and socket joint", "Fixed joint"],
+          "e": "The ball and socket joint, found in the shoulder and hip, allows movement in multiple directions."
+        }
+      ],
+      "blank": [
+        {
+          "q": "The process by which plants make their own food using sunlight is called ______.",
+          "a": "Photosynthesis",
+          "e": "Photosynthesis is the process where plants use sunlight, carbon dioxide, and water to produce glucose in their leaves."
+        },
+        {
+          "q": "The part of a plant that anchors it to the ground and absorbs water is the ______.",
+          "a": "Root",
+          "e": "Roots anchor the plant in the soil and absorb water and nutrients."
+        },
+        {
+          "q": "Animals that eat only plants are called ______.",
+          "a": "Herbivores",
+          "e": "Herbivores, such as cows and deer, consume only plant-based food."
+        },
+        {
+          "q": "The organ in the human body that pumps blood is the ______.",
+          "a": "Heart",
+          "e": "The heart is a muscular organ responsible for circulating blood throughout the body."
+        },
+        {
+          "q": "The green pigment in leaves that helps in photosynthesis is called ______.",
+          "a": "Chlorophyll",
+          "e": "Chlorophyll absorbs sunlight, enabling plants to produce food during photosynthesis."
+        },
+        {
+          "q": "The hard outer covering of insects is called an ______.",
+          "a": "Exoskeleton",
+          "e": "The exoskeleton is a tough external structure that supports and protects insects."
+        },
+        {
+          "q": "The human body system responsible for breathing is the ______ system.",
+          "a": "Respiratory",
+          "e": "The respiratory system, including the lungs, facilitates breathing by taking in oxygen and expelling carbon dioxide."
+        },
+        {
+          "q": "The part of a plant that transports water and nutrients between roots and leaves is the ______.",
+          "a": "Stem",
+          "e": "The stem supports the plant and acts as a conduit for water and nutrients."
+        },
+        {
+          "q": "The type of joint in the shoulder that allows movement in all directions is called a ______ joint.",
+          "a": "Ball and socket",
+          "e": "The ball and socket joint, found in the shoulder and hip, allows multi-directional movement."
+        },
+        {
+          "q": "Animals that eat both plants and animals are called ______.",
+          "a": "Omnivores",
+          "e": "Omnivores, such as humans and bears, consume both plant and animal-based foods."
+        }
+      ]
+    },
+    "chemistry": {
+      "mcq": [
+        {
+          "q": "Which of the following is a solid state of matter?",
+          "a": "Ice",
+          "o": ["Water", "Air", "Ice", "Steam"],
+          "e": "Ice is the solid state of water, characterized by a fixed shape and volume."
+        },
+        {
+          "q": "What is the process called when a liquid turns into a gas?",
+          "a": "Evaporation",
+          "o": ["Freezing", "Evaporation", "Condensation", "Melting"],
+          "e": "Evaporation occurs when a liquid, like water, turns into a gas (vapor) due to heat."
+        },
+        {
+          "q": "Which of these materials is a good conductor of electricity?",
+          "a": "Copper",
+          "o": ["Plastic", "Wood", "Copper", "Glass"],
+          "e": "Copper is a metal and a good conductor of electricity, unlike non-metals like plastic, wood, and glass."
+        },
+        {
+          "q": "Which of the following is an example of a physical change?",
+          "a": "Melting ice",
+          "o": ["Burning paper", "Rusting iron", "Melting ice", "Cooking food"],
+          "e": "Melting ice is a physical change because it changes state (solid to liquid) without altering its chemical composition."
+        },
+        {
+          "q": "What is the main component of air?",
+          "a": "Nitrogen",
+          "o": ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+          "e": "Nitrogen makes up about 78% of the Earth’s atmosphere, making it the most abundant gas."
+        },
+        {
+          "q": "Which of these is a natural fiber?",
+          "a": "Cotton",
+          "o": ["Nylon", "Polyester", "Cotton", "Acrylic"],
+          "e": "Cotton is a natural fiber obtained from the cotton plant, while the others are synthetic."
+        },
+        {
+          "q": "What happens to water when it is cooled below 0°C?",
+          "a": "It freezes",
+          "o": ["It evaporates", "It freezes", "It condenses", "It boils"],
+          "e": "Water freezes and turns into a solid (ice) when cooled below its freezing point of 0°C."
+        },
+        {
+          "q": "Which of the following is a chemical change?",
+          "a": "Burning wood",
+          "o": ["Tearing paper", "Boiling water", "Burning wood", "Cutting vegetables"],
+          "e": "Burning wood produces new substances (like ash and gases), making it a chemical change."
+        },
+        {
+          "q": "Which material is transparent?",
+          "a": "Glass",
+          "o": ["Wood", "Glass", "Metal", "Paper"],
+          "e": "Transparent materials allow light to pass through clearly, and glass is an example."
+        },
+        {
+          "q": "What is the smallest unit of an element?",
+          "a": "Atom",
+          "o": ["Molecule", "Atom", "Compound", "Mixture"],
+          "e": "An atom is the smallest unit of an element that retains its chemical properties."
+        }
+      ],
+      "blank": [
+        {
+          "q": "The process by which a liquid changes into a gas is called ______.",
+          "a": "Evaporation",
+          "e": "Evaporation occurs when a liquid, such as water, turns into a gas (vapor) due to heat."
+        },
+        {
+          "q": "The ______ state of matter has a definite shape and volume.",
+          "a": "Solid",
+          "e": "Solids have particles tightly packed, giving them a fixed shape and volume."
+        },
+        {
+          "q": "A material that allows electricity to pass through it easily is called a ______.",
+          "a": "Conductor",
+          "e": "Conductors, like metals (e.g., copper), allow electricity to flow through them."
+        },
+        {
+          "q": "The process of a gas turning into a liquid is called ______.",
+          "a": "Condensation",
+          "e": "Condensation occurs when a gas cools and turns back into a liquid, like water droplets forming on a cold surface."
+        },
+        {
+          "q": "A change that does not produce a new substance, such as melting ice, is called a ______ change.",
+          "a": "Physical",
+          "e": "Physical changes alter the form or state of a substance without changing its chemical composition."
+        },
+        {
+          "q": "The most abundant gas in the Earth’s atmosphere is ______.",
+          "a": "Nitrogen",
+          "e": "Nitrogen makes up approximately 78% of the air we breathe."
+        },
+        {
+          "q": "A ______ fiber is obtained from plants or animals, such as cotton or wool.",
+          "a": "Natural",
+          "e": "Natural fibers come from natural sources, unlike synthetic fibers like nylon."
+        },
+        {
+          "q": "The smallest unit of an element that retains its properties is called an ______.",
+          "a": "Atom",
+          "e": "An atom is the basic building block of an element, maintaining its chemical properties."
+        },
+        {
+          "q": "A material that allows light to pass through it clearly is called ______.",
+          "a": "Transparent",
+          "e": "Transparent materials, like glass, allow light to pass through, making objects visible on the other side."
+        },
+        {
+          "q": "Burning wood is an example of a ______ change because it produces new substances.",
+          "a": "Chemical",
+          "e": "Chemical changes result in new substances, such as ash and gases, as seen when wood burns."
+        }
+      ]
+    },
+    "physics": {
+      "mcq": [
+        {
+          "q": "What is the push or pull on an object called?",
+          "a": "Force",
+          "o": ["Energy", "Force", "Motion", "Speed"],
+          "e": "A force is a push or pull that can change an object’s motion or shape."
+        },
+        {
+          "q": "Which of these is a source of light?",
+          "a": "Sun",
+          "o": ["Moon", "Sun", "Mirror", "Glass"],
+          "e": "The Sun produces its own light, making it a natural source of light, while the Moon reflects light."
+        },
+        {
+          "q": "What type of energy is stored in a stretched rubber band?",
+          "a": "Potential energy",
+          "o": ["Kinetic energy", "Potential energy", "Heat energy", "Sound energy"],
+          "e": "A stretched rubber band stores potential energy due to its stretched position."
+        },
+        {
+          "q": "Which of the following is an example of a non-contact force?",
+          "a": "Gravity",
+          "o": ["Friction", "Gravity", "Pushing a cart", "Pulling a rope"],
+          "e": "Gravity acts without physical contact, unlike friction or pushing/pulling."
+        },
+        {
+          "q": "What is the term for the distance covered by an object in a unit of time?",
+          "a": "Speed",
+          "o": ["Speed", "Force", "Energy", "Mass"],
+          "e": "Speed is the rate at which an object covers a distance, measured as distance per unit time."
+        },
+        {
+          "q": "Which of these materials allows light to pass through completely?",
+          "a": "Glass",
+          "o": ["Wood", "Paper", "Glass", "Metal"],
+          "e": "Glass is transparent, allowing light to pass through clearly."
+        },
+        {
+          "q": "What do we call an object that does not allow light to pass through it?",
+          "a": "Opaque",
+          "o": ["Transparent", "Translucent", "Opaque", "Reflective"],
+          "e": "Opaque objects, like wood or metal, block light completely."
+        },
+        {
+          "q": "Which of the following is a renewable source of energy?",
+          "a": "Solar energy",
+          "o": ["Coal", "Solar energy", "Petrol", "Natural gas"],
+          "e": "Solar energy is renewable as it comes from the Sun and is not depleted when used."
+        },
+        {
+          "q": "What is the SI unit of force?",
+          "a": "Newton",
+          "o": ["Meter", "Kilogram", "Newton", "Second"],
+          "e": "The SI unit of force is the Newton, named after Sir Isaac Newton."
+        },
+        {
+          "q": "Which type of motion is exhibited by a pendulum swinging back and forth?",
+          "a": "Periodic motion",
+          "o": ["Linear motion", "Circular motion", "Periodic motion", "Rotational motion"],
+          "e": "A pendulum’s swinging is periodic motion, as it repeats at regular intervals."
+        }
+      ],
+      "blank": [
+        {
+          "q": "A push or pull on an object is called a ______.",
+          "a": "Force",
+          "e": "A force is any interaction that can change an object’s motion or shape, such as pushing or pulling."
+        },
+        {
+          "q": "The energy stored in an object due to its position or shape is called ______ energy.",
+          "a": "Potential",
+          "e": "Potential energy is stored energy, like in a stretched spring or an object held at a height."
+        },
+        {
+          "q": "The Sun is an example of a ______ source of light.",
+          "a": "Natural",
+          "e": "The Sun produces its own light, making it a natural source, unlike artificial sources like bulbs."
+        },
+        {
+          "q": "An object that does not allow light to pass through it is called ______.",
+          "a": "Opaque",
+          "e": "Opaque objects, such as wood or metal, block light completely."
+        },
+        {
+          "q": "The rate at which an object covers a distance is called ______.",
+          "a": "Speed",
+          "e": "Speed is the distance traveled by an object per unit of time."
+        },
+        {
+          "q": "The force that pulls objects toward the Earth is called ______.",
+          "a": "Gravity",
+          "e": "Gravity is a non-contact force that causes objects to fall toward the Earth."
+        },
+        {
+          "q": "A material that allows light to pass through clearly is called ______.",
+          "a": "Transparent",
+          "e": "Transparent materials, like glass, allow light to pass through, making objects visible on the other side."
+        },
+        {
+          "q": "The SI unit of force is the ______.",
+          "a": "Newton",
+          "e": "The Newton is the standard unit of force in the International System of Units (SI)."
+        },
+        {
+          "q": "The type of motion that repeats at regular intervals, like a pendulum, is called ______ motion.",
+          "a": "Periodic",
+          "e": "Periodic motion involves repeated movement at fixed intervals, as seen in a swinging pendulum."
+        },
+        {
+          "q": "A ______ source of energy, like solar energy, can be replenished naturally.",
+          "a": "Renewable",
+          "e": "Renewable energy sources, such as solar or wind energy, are naturally replenished and not depleted when used."
+        }
+      ]
+    }
+  }
 };
