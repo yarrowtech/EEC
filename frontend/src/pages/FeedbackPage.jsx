@@ -52,7 +52,7 @@ const FeedbackPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-6 sm:py-3 px-4 sm:px-6 lg:px-8 flex items-center justify-center absolute top-0 left-1/2 -translate-x-1/2">
+    <div className="min-h-screen w-screen lg:w-[60%] bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-6 sm:py-3 px-4 sm:px-6 lg:px-8 flex items-center justify-center absolute top-0 left-1/2 -translate-x-1/2">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-20 sm:-top-40 -right-20 sm:-right-40 w-40 sm:w-80 h-40 sm:h-80 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-full opacity-20 blur-3xl"></div>
