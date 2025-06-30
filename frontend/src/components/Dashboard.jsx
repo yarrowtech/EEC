@@ -21,7 +21,7 @@ const Dashboard = () => {
     assignments: <AssignmentView />,
     courses: <CoursesView />,
     achievements: <AchievementsView />,
-    themecustomizer:<ThemeCustomizer/>,
+    themecustomizer: <ThemeCustomizer />,
   };
 
   const renderContent = () => {
@@ -29,16 +29,18 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row w-full">
+    <div className="min-h-screen w-full bg-gray-50 flex flex-col md:flex-row overflow-hidden">
       <Sidebar 
         activeView={activeView} 
         setActiveView={setActiveView}
         isOpen={sidebarOpen}
         setIsOpen={setSidebarOpen}
       />
-      <div className={`flex-1 flex flex-col transition-all duration-300 w-full ${
-        sidebarOpen && 'md:ml-64'
-      }`}>
+      <div 
+        className={`flex-1 flex flex-col w-full transition-all duration-300 ${
+          sidebarOpen ? 'md:ml-64' : 'md:ml-20'
+        }`}
+      >
         <Header 
           sidebarOpen={sidebarOpen}
           setSidebarOpen={setSidebarOpen}
@@ -47,8 +49,6 @@ const Dashboard = () => {
           {renderContent()}
         </main>
       </div>
-      {/* Theme Customizer */}
-      <ThemeCustomizer />
     </div>
   );
 };

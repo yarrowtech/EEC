@@ -10,7 +10,8 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
-  User
+  User,
+  File
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -23,6 +24,7 @@ const Sidebar = ({ activeView, setActiveView, isOpen, setIsOpen }) => {
     { id: 'courses', name: 'Courses', icon: BookOpen },
     { id: 'achievements', name: 'Achievements', icon: Award },
     { id: 'profile', name: 'Profile', icon: User, link: '/profile' },
+    { id: 'profile', name: 'Feedback', icon: File, link: '/feedback' }
   ];
 
   return (
@@ -45,7 +47,7 @@ const Sidebar = ({ activeView, setActiveView, isOpen, setIsOpen }) => {
             <div className="w-8 h-8 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full overflow-hidden flex items-center justify-center shadow-sm">
               <img src='/harrow-hall-school.png' className="text-white font-bold text-sm w-full"/>
             </div>
-            <span className="font-bold text-amber-800">Student Portal</span>
+            {isOpen && <span className="font-bold text-amber-800">Student Portal</span>}
           </div>
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -66,14 +68,14 @@ const Sidebar = ({ activeView, setActiveView, isOpen, setIsOpen }) => {
                   <li key={item.id}>
                     <Link
                       to={item.link}
-                      className={`w-full flex items-center space-x-3 px-3 py-3 rounded-lg transition-all duration-200 ${
+                      className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 ${
                         window.location.pathname === item.link
                           ? 'bg-gradient-to-r from-yellow-400 to-amber-500 text-white shadow-lg'
                           : 'text-amber-700 hover:bg-yellow-100 hover:text-amber-800'
                       }`}
                     >
                       <Icon size={20} className="flex-shrink-0" />
-                      <span className={`font-medium ${isOpen ? 'block' : 'hidden md:block'}`}>{item.name}</span>
+                      {isOpen && <span className={`font-medium ${isOpen ? 'block' : 'hidden md:block'}`}>{item.name}</span>}
                     </Link>
                   </li>
                 );
@@ -82,14 +84,14 @@ const Sidebar = ({ activeView, setActiveView, isOpen, setIsOpen }) => {
                 <li key={item.id}>
                   <button
                     onClick={() => setActiveView(item.id)}
-                    className={`w-full flex items-center space-x-3 px-3 py-3 rounded-lg transition-all duration-200 ${
+                    className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 ${
                       isActive 
                         ? 'bg-gradient-to-r from-yellow-400 to-amber-500 text-white shadow-lg' 
                         : 'text-amber-700 hover:bg-yellow-100 hover:text-amber-800'
                     }`}
                   >
                     <Icon size={20} className="flex-shrink-0" />
-                    <span className={`font-medium ${isOpen ? 'block' : 'hidden md:block'}`}>{item.name}</span>
+                    {isOpen && <span className={`font-medium ${isOpen ? 'block' : 'hidden md:block'}`}>{item.name}</span>}
                   </button>
                 </li>
               );
@@ -101,11 +103,11 @@ const Sidebar = ({ activeView, setActiveView, isOpen, setIsOpen }) => {
           <div className="space-y-2">
             <button className="w-full flex items-center space-x-3 px-3 py-3 rounded-lg text-amber-700 hover:bg-yellow-100 hover:text-amber-800 transition-colors">
               <Settings size={20} className="flex-shrink-0" />
-              <span className={`font-medium ${isOpen ? 'block' : 'hidden md:block'}`}>Settings</span>
+              {isOpen && <span className={`font-medium ${isOpen ? 'block' : 'hidden md:block'}`}>Settings</span>}
             </button>
             <button className="w-full flex items-center space-x-3 px-3 py-3 rounded-lg text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors">
               <LogOut size={20} className="flex-shrink-0" />
-              <span className={`font-medium ${isOpen ? 'block' : 'hidden md:block'}`}>Logout</span>
+              {isOpen && <span className={`font-medium ${isOpen ? 'block' : 'hidden md:block'}`}>Logout</span>}
             </button>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Star, MessageCircle, Users, Phone, School, User } from 'lucide-react';
+import {useNavigate} from 'react-router-dom';
 
 const FeedbackPage = () => {
   const [rating, setRating] = useState(0);
@@ -9,13 +10,32 @@ const FeedbackPage = () => {
   const [name, setName] = useState('');
   const [schoolName, setSchoolName] = useState('');
   const [phone, setPhone] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log('Feedback submitted:', { role, name, schoolName, phone, rating, feedback });
       // In a real app, you would send this to your backend
-      alert('Thank you for your feedback!');
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/feedback/add`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          role,
+          name,
+          schoolName,
+          phone,
+          rating,
+          feedback,
+        }),
+      })
+      if (!res.ok) {
+        throw new Error('Failed to submit feedback');
+      }
+      const data = await res.json();
+      console.log(data)
+      navigate('./thank-you');
     } catch (error) {
       console.error('Error submitting feedback:', error);
     }
@@ -32,7 +52,7 @@ const FeedbackPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-6 sm:py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-6 sm:py-3 px-4 sm:px-6 lg:px-8 flex items-center justify-center absolute top-0 left-1/2 -translate-x-1/2">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-20 sm:-top-40 -right-20 sm:-right-40 w-40 sm:w-80 h-40 sm:h-80 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-full opacity-20 blur-3xl"></div>
@@ -191,16 +211,9 @@ const FeedbackPage = () => {
               className="flex-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl hover:from-yellow-500 hover:to-orange-600 transform transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95 text-base sm:text-lg font-semibold flex items-center justify-center space-x-2"
             >
               <span>Submit Feedback</span>
-              <svg className="w-4 sm:w-5 h-4 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 sm:w-5 h-4 sm:h-5 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
               </svg>
-            </button>
-            <button
-              type="button"
-              onClick={() => alert('Going back...')}
-              className="flex-1 border-2 border-gray-200 text-gray-600 py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 hover:scale-105 active:scale-95 text-base sm:text-lg font-medium"
-            >
-              Skip for Now
             </button>
           </div>
         </div>

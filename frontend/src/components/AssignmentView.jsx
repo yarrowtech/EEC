@@ -358,6 +358,11 @@ function MCQ({array}) {
   const [eecAnswers, setEecAnswers] = useState({}); // { [idx]: userInput }
 
 
+  useEffect(() => {
+    setShowAnswers(false);
+    setEecFeedback(null);
+  }, [array])
+
   // Handler for answer input
   const handleEecInput = (idx, value) => {
     setEecAnswers((prev) => ({ ...prev, [idx]: value }));
@@ -448,6 +453,11 @@ function Blank({array}) {
   const [eecFeedback, setEecFeedback] = useState(null);
   const [showAnswers, setShowAnswers] = useState(false);
   const [eecAnswers, setEecAnswers] = useState({}); // { [idx]: userInput }
+
+  useEffect(() => {
+    setShowAnswers(false);
+    setEecFeedback(null);
+  }, [array])
 
   // Handler for answer input
   const handleEecInput = (idx, value) => {
