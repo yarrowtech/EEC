@@ -623,113 +623,224 @@ export const questionPaper = {
       ],
     },
   },
-  6: {
-    math: {
-      mcq: [
+  "6": {
+    "math": {
+      "mcq": [
         {
-          q: "What is the place value of 7 in the number 5,472?",
-          a: "700",
-          o: ["7", "70", "7,000", "700"]
+          "q": "What is the place value of 7 in the number 5,472?",
+          "a": "700",
+          "o": ["7", "70", "7,000", "700"]
         },
         {
-          q: "Which of the following is a prime number?",
-          a: "11",
-          o: ["4", "9", "15", "11"]
+          "q": "Which of the following is a prime number?",
+          "a": "11",
+          "o": ["4", "9", "15", "11"]
         },
         {
-          q: "What is the sum of 3/5 and 2/5?",
-          a: "5/5",
-          o: ["1/5", "6/5", "1/10", "5/5"]
+          "q": "What is the sum of 3/5 and 2/5?",
+          "a": "5/5",
+          "o": ["1/5", "6/5", "1/10", "5/5"]
         },
         {
-          q: "How many sides does a hexagon have?",
-          a: "6",
-          o: ["4", "5", "8", "6"]
+          "q": "How many sides does a hexagon have?",
+          "a": "6",
+          "o": ["4", "5", "8", "6"]
         },
         {
-          q: "What is the value of 15 × 4?",
-          a: "60",
-          o: ["50", "45", "75", "60"]
+          "q": "What is the value of 15 × 4?",
+          "a": "60",
+          "o": ["50", "45", "75", "60"]
         },
         {
-          q: "Which fraction is equivalent to 2/3?",
-          a: "6/9",
-          o: ["4/9", "3/6", "1/3", "6/9"]
+          "q": "Which fraction is equivalent to 2/3?",
+          "a": "6/9",
+          "o": ["4/9", "3/6", "1/3", "6/9"]
         },
         {
-          q: "What is the perimeter of a rectangle with length 8 cm and width 5 cm?",
-          a: "26 cm",
-          o: ["13 cm", "40 cm", "18 cm", "26 cm"]
+          "q": "What is the perimeter of a rectangle with length 8 cm and width 5 cm?",
+          "a": "26 cm",
+          "o": ["13 cm", "40 cm", "18 cm", "26 cm"]
         },
         {
-          q: "Which of the following is a proper fraction?",
-          a: "7/8",
-          o: ["5/4", "3/2", "9/5", "7/8"]
+          "q": "Which of the following is a proper fraction?",
+          "a": "7/8",
+          "o": ["5/4", "3/2", "9/5", "7/8"]
         },
         {
-          q: "What is 0.75 as a fraction in its simplest form?",
-          a: "¾",
-          o: ["75/100", "7/5", "½", "¾"]
+          "q": "What is 0.75 as a fraction in its simplest form?",
+          "a": "¾",
+          "o": ["75/100", "7/5", "½", "¾"]
         },
         {
-          q: "How many right angles are there in a square?",
-          a: "4",
-          o: ["2", "3", "1", "4"]
+          "q": "How many right angles are there in a square?",
+          "a": "4",
+          "o": ["2", "3", "1", "4"]
         }
       ],
-      blank: [
+      "blank": [
         {
-          q: "The place value of 4 in the number 7,428 is ______.",
-          a: "400",
-          e: "In 7,428, the digit 4 is in the hundreds place. Its place value is 4 × 100 = 400."
+          "q": "The place value of 4 in the number 7,428 is ______.",
+          "a": "400",
+          "e": "In 7,428, the digit 4 is in the hundreds place. Its place value is 4 × 100 = 400."
         },
         {
-          q: "The smallest prime number is ______.",
-          a: "2",
-          e: "A prime number has only two factors: 1 and itself. The smallest prime number is 2."
+          "q": "The smallest prime number is ______.",
+          "a": "2",
+          "e": "A prime number has only two factors: 1 and itself. The smallest prime number is 2."
         },
         {
-          q: "The sum of 2/3 and 1/3 is ______.",
-          a: "1",
-          e: "2/3 + 1/3 = (2 + 1)/3 = 3/3 = 1."
+          "q": "The sum of 2/3 and 1/3 is ______.",
+          "a": "1",
+          "e": "2/3 + 1/3 = (2 + 1)/3 = 3/3 = 1."
         },
         {
-          q: "A triangle with all sides equal is called an ______ triangle.",
-          a: "Equilateral",
-          e: "An equilateral triangle has all three sides of equal length."
+          "q": "A triangle with all sides equal is called an ______ triangle.",
+          "a": "Equilateral",
+          "e": "An equilateral triangle has all three sides of equal length."
         },
         {
-          q: "The product of 12 and 7 is ______.",
-          a: "84",
-          e: "12 × 7 = 84."
+          "q": "The product of 12 and 7 is ______.",
+          "a": "84",
+          "e": "12 × 7 = 84."
         },
         {
-          q: "The simplest form of the fraction 8/12 is ______.",
-          a: "2/3",
-          e: "8 ÷ 4 = 2, 12 ÷ 4 = 3. So, 8/12 = 2/3."
+          "q": "The simplest form of the fraction 8/12 is ______.",
+          "a": "2/3",
+          "e": "8 ÷ 4 = 2, 12 ÷ 4 = 3. So, 8/12 = 2/3."
         },
         {
-          q: "The perimeter of a square with a side length of 6 cm is ______ cm.",
-          a: "24",
-          e: "4 × 6 = 24 cm."
+          "q": "The perimeter of a square with a side length of 6 cm is ______ cm.",
+          "a": "24",
+          "e": "4 × 6 = 24 cm."
         },
         {
-          q: "The decimal form of the fraction ¾ is ______.",
-          a: "0.75",
-          e: "3 ÷ 4 = 0.75."
+          "q": "The decimal form of the fraction ¾ is ______.",
+          "a": "0.75",
+          "e": "3 ÷ 4 = 0.75."
         },
         {
-          q: "The number of vertices in a cube is ______.",
-          a: "8",
-          e: "A cube has 8 vertices."
+          "q": "The number of vertices in a cube is ______.",
+          "a": "8",
+          "e": "A cube has 8 vertices."
         },
         {
-          q: "The difference between 5.6 and 2.3 is ______.",
-          a: "3.3",
-          e: "5.6 – 2.3 = 3.3."
+          "q": "The difference between 5.6 and 2.3 is ______.",
+          "a": "3.3",
+          "e": "5.6 – 2.3 = 3.3."
+        }
+      ]
+    },
+    "science": {
+      "mcq": [
+        {
+          "q": "Which part of a plant absorbs water and nutrients from the soil?",
+          "a": "Root",
+          "o": ["Leaf", "Stem", "Flower", "Root"]
+        },
+        {
+          "q": "What is the main source of energy for Earth?",
+          "a": "Sun",
+          "o": ["Moon", "Stars", "Clouds", "Sun"]
+        },
+        {
+          "q": "Which of these is a renewable resource?",
+          "a": "Wind",
+          "o": ["Coal", "Oil", "Natural gas", "Wind"]
+        },
+        {
+          "q": "What is the process by which plants make their food?",
+          "a": "Photosynthesis",
+          "o": ["Respiration", "Digestion", "Evaporation", "Photosynthesis"]
+        },
+        {
+          "q": "Which state of matter has a definite shape and volume?",
+          "a": "Solid",
+          "o": ["Liquid", "Gas", "Plasma", "Solid"]
+        }
+      ],
+      "blank": [
+        {
+          "q": "The process by which plants make their food using sunlight is called ________.",
+          "a": "Photosynthesis",
+          "e": ""
+        },
+        {
+          "q": "The force that pulls objects toward the Earth is called ________.",
+          "a": "Gravity",
+          "e": ""
+        },
+        {
+          "q": "The part of a plant that holds it upright and transports water is the ________.",
+          "a": "Stem",
+          "e": ""
+        },
+        {
+          "q": "A material that allows electricity to pass through it is called a ________.",
+          "a": "Conductor",
+          "e": ""
+        },
+        {
+          "q": "The planet we live on is called ________.",
+          "a": "Earth",
+          "e": ""
+        }
+      ]
+    },
+    "eng": {
+      "mcq": [
+        {
+          "q": "What is the plural form of “child”?",
+          "a": "Children",
+          "o": ["Childs", "Childes", "Childrens", "Children"]
+        },
+        {
+          "q": "Which word is a synonym for “happy”?",
+          "a": "Joyful",
+          "o": ["Sad", "Angry", "Tired", "Joyful"]
+        },
+        {
+          "q": "Choose the correct verb to complete the sentence: She _____ to school every day.",
+          "a": "Walks",
+          "o": ["Walk", "Walking", "Walked", "Walks"]
+        },
+        {
+          "q": "What is the opposite of “big”?",
+          "a": "Small",
+          "o": ["Large", "Huge", "Tall", "Small"]
+        },
+        {
+          "q": "Which sentence is in the past tense?",
+          "a": "I read a book yesterday.",
+          "o": ["I am reading a book.", "I will read a book.", "I am going to read a book.", "I read a book yesterday."]
+        }
+      ],
+      "blank": [
+        {
+          "q": "The cat is sitting _____ the table.",
+          "a": "on",
+          "e": "Preposition"
+        },
+        {
+          "q": "She _____ a beautiful song yesterday.",
+          "a": "sang",
+          "e": "Verb in past tense"
+        },
+        {
+          "q": "My brother and I _____ going to the park.",
+          "a": "are",
+          "e": "Correct helping verb"
+        },
+        {
+          "q": "The opposite of \"fast\" is _____.",
+          "a": "slow",
+          "e": "Antonym"
+        },
+        {
+          "q": "I have two _____.",
+          "a": "feet",
+          "e": "Plural of foot"
         }
       ]
     }
   }
-
 };

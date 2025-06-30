@@ -108,16 +108,15 @@ const CoursesView = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6 p-2 sm:p-0">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Courses</h1>
-          <p className="text-gray-600">Manage your enrolled courses and track progress</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Courses</h1>
+          <p className="text-gray-600 text-sm sm:text-base">Manage your enrolled courses and track progress</p>
         </div>
-        
         {/* Filter Buttons */}
-        <div className="flex space-x-2">
+        <div className="flex flex-wrap gap-2">
           {['all', 'enrolled', 'in-progress', 'completed'].map((filterType) => (
             <button
               key={filterType}
@@ -135,7 +134,7 @@ const CoursesView = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
@@ -184,19 +183,23 @@ const CoursesView = () => {
       </div>
 
       {/* Courses Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 w-full">
         {filteredCourses.map((course) => (
-          <div key={course.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-            <div className="h-48 bg-gradient-to-r from-blue-500 to-purple-600 relative">
-              <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-              <div className="absolute top-4 right-4">
+          <div key={course.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden w-full">
+            <div className="h-48 bg-blue-100 relative flex items-end justify-start">
+              {/* Show course image if available, else fallback to light bg */}
+              {course.image && (
+                <img src={course.image} alt={course.title} className="absolute inset-0 w-full h-full object-cover object-center" style={{zIndex:0}} />
+              )}
+              <div className="absolute inset-0 bg-white bg-opacity-60" style={{zIndex:1}}></div>
+              <div className="absolute top-4 right-4 z-10">
                 <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(course.status)}`}>
                   {course.status.replace('-', ' ')}
                 </span>
               </div>
-              <div className="absolute bottom-4 left-4 text-white">
-                <h3 className="text-xl font-bold mb-1">{course.title}</h3>
-                <p className="text-blue-100">{course.code} • {course.credits} Credits</p>
+              <div className="relative z-10 p-4">
+                <h3 className="text-xl font-bold mb-1 text-gray-900">{course.title}</h3>
+                <p className="text-blue-800">{course.code} • {course.credits} Credits</p>
               </div>
             </div>
             

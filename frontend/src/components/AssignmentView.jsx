@@ -125,12 +125,12 @@ const AssignmentView = () => {
   }, [selectedClass])
 
   return (
-    <div className="space-y-6">
+    <div className="w-full min-h-screen bg-white px-1 sm:px-4 md:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6">
       {/* Assignment Type Dropdown */}
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2 sm:gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Assignments</h1>
-          <p className="text-gray-600">Manage your assignments and submissions</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Assignments</h1>
+          <p className="text-gray-600 text-sm sm:text-base">Manage your assignments and submissions</p>
         </div>
         <div className="flex items-center space-x-2">
           <label htmlFor="assignmentType" className="font-medium text-gray-700">Type:</label>
@@ -150,7 +150,7 @@ const AssignmentView = () => {
       {assignmentType === 'school' && (
         <>
           {/* Filter Buttons */}
-          <div className="flex space-x-2">
+          <div className="flex flex-wrap gap-2 mb-2">
             {['all', 'pending', 'completed', 'overdue'].map((filterType) => (
               <button
                 key={filterType}
@@ -167,7 +167,7 @@ const AssignmentView = () => {
           </div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
               <div className="flex items-center justify-between">
                 <div>

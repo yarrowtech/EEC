@@ -188,23 +188,22 @@ const AttendanceView = () => {
   const recentRecords = getRecentRecords();
 
   return (
-    <div className="space-y-6 p-6 bg-gray-50 min-h-screen">
+    <div className="space-y-4 sm:space-y-6 p-2 sm:p-6 bg-gray-50 min-h-screen">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
         <div className="flex items-center space-x-3">
           <div className="p-3 bg-blue-100 rounded-lg">
             <Users className="text-blue-600" size={24} />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Attendance Tracker</h1>
-            <p className="text-gray-600">Track your class attendance and patterns</p>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Attendance Tracker</h1>
+            <p className="text-gray-600 text-sm sm:text-base">Track your class attendance and patterns</p>
           </div>
         </div>
-        
         <select
           value={selectedPeriod}
           onChange={(e) => setSelectedPeriod(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+          className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent mt-2 sm:mt-0"
         >
           <option value="thisWeek">This Week</option>
           <option value="thisMonth">This Month</option>
@@ -213,7 +212,7 @@ const AttendanceView = () => {
       </div>
       
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>

@@ -11,7 +11,7 @@ import ThemeCustomizer from './ThemeCustomizer';
 
 const Dashboard = () => {
   const [activeView, setActiveView] = useState('dashboard');
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false); // default to closed on mobile
 
   // Define view components in an object for cleaner code
   const viewComponents = {
@@ -29,27 +29,24 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex w-screen">
+    <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row w-full">
       <Sidebar 
         activeView={activeView} 
         setActiveView={setActiveView}
         isOpen={sidebarOpen}
         setIsOpen={setSidebarOpen}
       />
-      
-      <div className={`flex-1 flex flex-col transition-all duration-300 ${
-        sidebarOpen ? 'ml-64' : 'ml-20'
+      <div className={`flex-1 flex flex-col transition-all duration-300 w-full ${
+        sidebarOpen && 'md:ml-64'
       }`}>
         <Header 
           sidebarOpen={sidebarOpen}
           setSidebarOpen={setSidebarOpen}
         />
-        
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-2 sm:p-4 md:p-6 w-full">
           {renderContent()}
         </main>
       </div>
-
       {/* Theme Customizer */}
       <ThemeCustomizer />
     </div>
