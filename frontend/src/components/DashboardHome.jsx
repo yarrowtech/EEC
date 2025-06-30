@@ -7,16 +7,16 @@ import QuickStats from './QuickStats';
 
 const DashboardHome = () => {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6 p-2 sm:p-0">
       {/* Welcome Section */}
       <WelcomeCard />
       
       {/* Quick Stats */}
       <QuickStats />
       
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Main Content - Left 2 columns */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-4 sm:space-y-6">
           {/* Course Progress */}
           <CourseProgress />
           
@@ -25,7 +25,7 @@ const DashboardHome = () => {
         </div>
         
         {/* Sidebar - Right 1 column */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {/* Calendar */}
           <CalendarWidget />
         </div>

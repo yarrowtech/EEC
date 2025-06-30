@@ -119,23 +119,23 @@ const RoutineView = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6 p-2 sm:p-0">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
         <div className="flex items-center space-x-3">
           <div className="p-3 bg-indigo-100 rounded-lg">
             <Calendar className="text-indigo-600" size={24} />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Class Routine</h1>
-            <p className="text-gray-600">Your weekly class schedule</p>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Class Routine</h1>
+            <p className="text-gray-600 text-sm sm:text-base">Your weekly class schedule</p>
           </div>
         </div>
       </div>
       
       {/* Day Selector */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-        <div className="grid grid-cols-7 gap-2">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-2 sm:p-6">
+        <div className="grid grid-cols-7 gap-1 sm:gap-2">
           {daysOfWeek.map((day) => (
             <button
               key={day.id}
@@ -157,13 +157,13 @@ const RoutineView = () => {
       
       {/* Selected Day Schedule */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-100">
-        <div className="p-6 border-b border-gray-100">
-          <h2 className="text-xl font-semibold text-gray-900">
+        <div className="p-2 sm:p-6 border-b border-gray-100">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-900">
             {daysOfWeek.find(d => d.id === selectedDay)?.name} Schedule
           </h2>
         </div>
         
-        <div className="p-6">
+        <div className="p-2 sm:p-6">
           {todaySchedule.length > 0 ? (
             <div className="space-y-4">
               {todaySchedule.map((classItem) => (
@@ -221,12 +221,12 @@ const RoutineView = () => {
       
       {/* Weekly Overview */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-100">
-        <div className="p-6 border-b border-gray-100">
-          <h2 className="text-xl font-semibold text-gray-900">Weekly Overview</h2>
+        <div className="p-2 sm:p-6 border-b border-gray-100">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-900">Weekly Overview</h2>
         </div>
         
-        <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="p-2 sm:p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
             <div className="text-center p-4 bg-blue-50 rounded-lg">
               <div className="text-2xl font-bold text-blue-600">
                 {Object.values(weeklySchedule).flat().length}

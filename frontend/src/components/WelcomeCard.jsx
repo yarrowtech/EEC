@@ -13,7 +13,7 @@ const WelcomeCard = () => {
   const GreetingIcon = greeting.icon;
 
   const studentData = {
-    name: "Koushik Bala",
+    name: "Student",
     id: "STU001",
     semester: "Fall 2024",
     avatar: "src/koushik-bala-pp.jpg"
