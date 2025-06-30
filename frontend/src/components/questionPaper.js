@@ -1295,5 +1295,587 @@ export const questionPaper = {
         }
       ]
     }
+  },
+  "8": {
+  "math": {
+    "mcq": [
+      {
+        "q": "What is the square of 7?",
+        "a": "49",
+        "o": ["36", "49", "64", "81"],
+        "e": "The square of a number means multiplying the number by itself. So, 7 × 7 = 49."
+      },
+      {
+        "q": "Which of the following is a rational number?",
+        "a": "3/4",
+        "o": ["√2", "π", "3/4", "0.101001000..."],
+        "e": "A rational number is any number that can be expressed as a fraction of two integers (like 3/4). √2 and π are irrational numbers (cannot be expressed as exact fractions), and 0.101001000... is a non-repeating, non-terminating decimal, so it's also irrational."
+      },
+      {
+        "q": "What is the value of x in the equation 2x + 5 = 15?",
+        "a": "5",
+        "o": ["5", "10", "15", "20"],
+        "e": "Solve for x: 2x + 5 = 15. Subtract 5 from both sides: 2x = 10. Divide both sides by 2: x = 5."
+      },
+      {
+        "q": "The area of a square with side 9 cm is:",
+        "a": "81 cm²",
+        "o": ["18 cm²", "72 cm²", "81 cm²", "90 cm²"],
+        "e": "Area of square = side × side = 9 × 9 = 81 cm²."
+      },
+      {
+        "q": "What is the cube root of 27?",
+        "a": "3",
+        "o": ["3", "9", "27", "81"],
+        "e": "Cube root means the number that when multiplied by itself three times gives the original number. 3 × 3 × 3 = 27, so cube root of 27 is 3."
+      },
+      {
+        "q": "If two angles of a triangle are 45° and 65°, what is the measure of the third angle?",
+        "a": "70°",
+        "o": ["70°", "80°", "90°", "100°"],
+        "e": "The sum of angles in a triangle is always 180°. Third angle = 180° - (45° + 65°) = 180° - 110° = 70°."
+      },
+      {
+        "q": "What is 15% of 200?",
+        "a": "30",
+        "o": ["15", "30", "45", "60"],
+        "e": "15% means 15 per 100, so: (15/100) × 200 = 0.15 × 200 = 30."
+      },
+      {
+        "q": "Which of the following is an algebraic expression?",
+        "a": "2x + 7",
+        "o": ["2 + 3 = 5", "2x + 7", "5 × 4", "x = 10"],
+        "e": "An algebraic expression contains variables and numbers combined using operations. 2x + 7 has a variable x, so it's an algebraic expression. The others are either equations or arithmetic operations without variables."
+      },
+      {
+        "q": "The value of (–3) × (–4) is:",
+        "a": "12",
+        "o": ["-12", "12", "9", "-9"],
+        "e": "Multiplying two negative numbers results in a positive number. So, (–3) × (–4) = +12."
+      },
+      {
+        "q": "What is the HCF of 12 and 18?",
+        "a": "6",
+        "o": ["3", "6", "12", "18"],
+        "e": "HCF (Highest Common Factor) is the greatest number that divides both 12 and 18 exactly. Factors of 12: 1, 2, 3, 4, 6, 12. Factors of 18: 1, 2, 3, 6, 9, 18. Greatest common factor = 6."
+      }
+    ],
+    "blank": [
+      {
+        "q": "The value of 5² + 3² is ________.",
+        "a": "34",
+        "e": "5² means 5 × 5 = 25. 3² means 3 × 3 = 9. So, 25 + 9 = 34."
+      },
+      {
+        "q": "The sum of the angles in a quadrilateral is ________ degrees.",
+        "a": "360",
+        "e": "A quadrilateral has 4 sides. The sum of interior angles of any quadrilateral is always 360 degrees."
+      },
+      {
+        "q": "The product of (–6) and 8 is ________.",
+        "a": "-48",
+        "e": "Multiplying a negative number by a positive number gives a negative result: (–6) × 8 = –48."
+      },
+      {
+        "q": "The area of a rectangle with length 10 cm and width 5 cm is ________ cm².",
+        "a": "50",
+        "e": "Area of rectangle = length × width = 10 × 5 = 50 cm²."
+      },
+      {
+        "q": "A number that has only two factors, 1 and itself, is called a ________ number.",
+        "a": "prime",
+        "e": "A prime number is a number greater than 1 that has no divisors other than 1 and itself."
+      },
+      {
+        "q": "The value of x in the equation 3x – 9 = 6 is ________.",
+        "a": "5",
+        "e": "3x – 9 = 6. Add 9 to both sides: 3x = 15. Divide both sides by 3: x = 15 ÷ 3 = 5."
+      },
+      {
+        "q": "The decimal form of 7/10 is ________.",
+        "a": "0.7",
+        "e": "Dividing 7 by 10 shifts the decimal point one place to the left: 7/10 = 0.7."
+      },
+      {
+        "q": "The perimeter of a square with side 12 cm is ________ cm.",
+        "a": "48",
+        "e": "Perimeter of square = 4 × side = 4 × 12 = 48 cm."
+      },
+      {
+        "q": "The square root of 64 is ________.",
+        "a": "8",
+        "e": "8 × 8 = 64, so √64 = 8."
+      },
+      {
+        "q": "The LCM of 8 and 12 is ________.",
+        "a": "24",
+        "e": "Multiples of 8: 8, 16, 24, 32... Multiples of 12: 12, 24, 36... The smallest common multiple is 24."
+      }
+    ]
+  },
+  "eng": {
+    "mcq": [
+      {
+        "q": "Which part of speech describes a noun?",
+        "a": "Adjective",
+        "o": ["Verb", "Adjective", "Adverb", "Preposition"],
+        "e": "An adjective describes or gives more information about a noun (e.g., blue sky, tall building)."
+      },
+      {
+        "q": "What is the past participle of the verb 'write'?",
+        "a": "Written",
+        "o": ["Wrote", "Writing", "Written", "Write"],
+        "e": "The past participle form of 'write' is 'written' (used with have/has/had). 'Wrote' is the simple past tense."
+      },
+      {
+        "q": "Which sentence is in the future tense?",
+        "a": "She will read a book.",
+        "o": ["She reads a book.", "She read a book.", "She will read a book.", "She is reading a book."],
+        "e": "The future tense often uses 'will' + base verb to show an action that will happen later."
+      },
+      {
+        "q": "What is the plural form of 'mouse' (animal)?",
+        "a": "Mice",
+        "o": ["Mouses", "Mice", "Mouse", "Mices"],
+        "e": "The irregular plural of 'mouse' is 'mice,' not 'mouses.'"
+      },
+      {
+        "q": "Which word is an adverb?",
+        "a": "Slowly",
+        "o": ["Quick", "Slowly", "Table", "Big"],
+        "e": "Adverbs describe verbs, adjectives, or other adverbs, often ending in '-ly' and describe how something is done."
+      },
+      {
+        "q": "What is the antonym of 'strong'?",
+        "a": "Weak",
+        "o": ["Weak", "Big", "Fast", "Tall"],
+        "e": "Antonyms are words with opposite meanings. 'Weak' is the opposite of 'strong.'"
+      },
+      {
+        "q": "Which punctuation mark is used to show possession?",
+        "a": "Apostrophe",
+        "o": ["Comma", "Apostrophe", "Full stop", "Question mark"],
+        "e": "Apostrophes indicate possession (e.g., Sarah’s book means the book belongs to Sarah)."
+      },
+      {
+        "q": "What is the synonym of 'brave'?",
+        "a": "Courageous",
+        "o": ["Fearful", "Courageous", "Weak", "Sad"],
+        "e": "Synonyms have similar meanings. 'Courageous' means brave."
+      },
+      {
+        "q": "Which of these is a conjunction?",
+        "a": "And",
+        "o": ["Big", "And", "Fast", "Table"],
+        "e": "Conjunctions join words, phrases, or clauses (e.g., and, but, or)."
+      },
+      {
+        "q": "What is the correct form of the verb in this sentence: 'He ___ to school every day'?",
+        "a": "Goes",
+        "o": ["Go", "Goes", "Going", "Went"],
+        "e": "With singular third-person subjects (he, she, it), the verb usually adds an '-s' in the present tense."
+      }
+    ],
+    "blank": [
+      {
+        "q": "The plural of 'knife' is ________.",
+        "a": "knives",
+        "e": "The word 'knife' ends with an 'f.' In many English words ending with 'f' or 'fe,' the plural is formed by changing 'f' to 'ves.' So, 'knife' becomes 'knives.'"
+      },
+      {
+        "q": "The opposite of 'beautiful' is ________.",
+        "a": "ugly",
+        "e": "'Ugly' is the antonym (opposite) of 'beautiful.' While 'beautiful' means pleasing to the eye, 'ugly' means unpleasant to look at."
+      },
+      {
+        "q": "She ________ her grandparents last weekend.",
+        "a": "visited",
+        "e": "The sentence is in the past tense, describing an action that happened previously. The correct past tense form of the verb 'visit' is 'visited.'"
+      },
+      {
+        "q": "A word that connects two sentences or clauses is called a ________.",
+        "a": "conjunction",
+        "e": "Conjunctions are words like 'and,' 'but,' and 'or' used to join words, phrases, or clauses."
+      },
+      {
+        "q": "The ________ is the main verb or action in a sentence.",
+        "a": "predicate",
+        "e": "The predicate of a sentence tells what the subject does or is. It usually contains the main verb and any objects or complements."
+      },
+      {
+        "q": "'Quick' is an example of a/an ________.",
+        "a": "adjective",
+        "e": "An adjective describes or modifies a noun by giving more information about it, such as quality, size, or color. 'Quick' describes how fast something is."
+      },
+      {
+        "q": "The past tense of 'run' is ________.",
+        "a": "ran",
+        "e": "'I run' (present), 'I ran' (past). 'Ran' is the simple past form of the irregular verb 'run.'"
+      },
+      {
+        "q": "A word that replaces a noun is called a ________.",
+        "a": "pronoun",
+        "e": "Pronouns (he, she, it, they) stand in place of nouns to avoid repetition and make sentences smoother."
+      },
+      {
+        "q": "The synonym of 'big' is ________.",
+        "a": "large",
+        "e": "Synonyms are words with similar meanings. 'Large' means the same as 'big,' so it’s a synonym."
+      },
+      {
+        "q": "A sentence that asks something ends with a ________.",
+        "a": "question mark",
+        "e": "Questions are punctuated with a question mark (?) at the end to indicate inquiry."
+      }
+    ]
+  },
+  "biology": {
+    "mcq": [
+      {
+        "q": "Which part of a plant conducts water and minerals from the roots to the leaves?",
+        "a": "Stem",
+        "o": ["Root", "Stem", "Leaf", "Flower"],
+        "e": "The stem contains vascular tissues called xylem that transport water and minerals absorbed by the roots up to the leaves and other parts of the plant."
+      },
+      {
+        "q": "What is the main function of chlorophyll in plants?",
+        "a": "Absorb sunlight",
+        "o": ["Produce oxygen", "Absorb sunlight", "Store water", "Transport nutrients"],
+        "e": "Chlorophyll is the green pigment in plants that captures sunlight energy needed for photosynthesis, the process by which plants make their food."
+      },
+      {
+        "q": "Which organ in the human body is responsible for digestion?",
+        "a": "Stomach",
+        "o": ["Heart", "Lungs", "Stomach", "Brain"],
+        "e": "The stomach is where food is mixed with digestive juices and enzymes that break down food into nutrients that the body can absorb."
+      },
+      {
+        "q": "Which of these animals is a carnivore?",
+        "a": "Tiger",
+        "o": ["Cow", "Tiger", "Deer", "Elephant"],
+        "e": "Tigers are carnivores, meaning they eat meat. The other animals listed are herbivores, feeding mainly on plants."
+      },
+      {
+        "q": "What is the process by which animals take in oxygen and release carbon dioxide?",
+        "a": "Respiration",
+        "o": ["Photosynthesis", "Respiration", "Digestion", "Circulation"],
+        "e": "Respiration is the biological process where oxygen is taken in to break down food for energy, and carbon dioxide is released as a waste product."
+      },
+      {
+        "q": "Which part of a cell contains the genetic material?",
+        "a": "Nucleus",
+        "o": ["Cytoplasm", "Nucleus", "Mitochondria", "Cell membrane"],
+        "e": "The nucleus contains DNA, which carries the genetic instructions for the growth, functioning, and reproduction of the cell."
+      },
+      {
+        "q": "Which of these is a unicellular organism?",
+        "a": "Amoeba",
+        "o": ["Human", "Amoeba", "Tree", "Dog"],
+        "e": "Amoeba is a single-celled organism. Humans, trees, and dogs are multicellular organisms made up of many cells."
+      },
+      {
+        "q": "What is the main function of the roots in a plant?",
+        "a": "Anchorage and absorption",
+        "o": ["Photosynthesis", "Anchorage and absorption", "Reproduction", "Transport"],
+        "e": "Roots anchor the plant firmly in the soil and absorb water and minerals necessary for growth."
+      },
+      {
+        "q": "Which nutrient is essential for building muscles?",
+        "a": "Proteins",
+        "o": ["Carbohydrates", "Proteins", "Fats", "Vitamins"],
+        "e": "Proteins are the building blocks of muscles and tissues. They help repair and build muscle cells."
+      },
+      {
+        "q": "What is the process of shedding old skin in reptiles called?",
+        "a": "Molting",
+        "o": ["Molting", "Hibernation", "Migration", "Camouflage"],
+        "e": "Molting is the process by which reptiles shed their old skin to allow for new growth."
+      }
+    ],
+    "blank": [
+      {
+        "q": "The process by which plants make food using sunlight is called ________.",
+        "a": "photosynthesis",
+        "e": "Photosynthesis is the process by which green plants use sunlight, carbon dioxide, and water to produce glucose (food) and oxygen. It occurs in the chloroplasts of plant cells, where chlorophyll captures sunlight."
+      },
+      {
+        "q": "The ________ system circulates blood in the human body.",
+        "a": "circulatory",
+        "e": "The circulatory system is responsible for transporting blood, nutrients, oxygen, carbon dioxide, and hormones throughout the body. It includes the heart, blood vessels, and blood."
+      },
+      {
+        "q": "The tiny structures in a cell that produce energy are called ________.",
+        "a": "mitochondria",
+        "e": "Mitochondria are known as the 'powerhouses' of the cell. They generate energy by converting glucose and oxygen into ATP (adenosine triphosphate), the energy currency of the cell."
+      },
+      {
+        "q": "Animals that give birth to live young are called ________.",
+        "a": "viviparous",
+        "e": "Viviparous animals develop their young inside the mother’s body and give birth to live offspring, unlike oviparous animals that lay eggs."
+      },
+      {
+        "q": "The ________ is the outermost layer of a plant cell.",
+        "a": "cell wall",
+        "e": "The cell wall is a rigid outer layer that surrounds the plant cell membrane, providing structure, protection, and support. It is mainly made of cellulose."
+      },
+      {
+        "q": "The gas released by humans during exhalation is ________.",
+        "a": "carbon dioxide",
+        "e": "Humans inhale oxygen and exhale carbon dioxide, which is a waste product produced during cellular respiration when cells use oxygen to generate energy."
+      },
+      {
+        "q": "The process of changing from a larva to an adult in insects is called ________.",
+        "a": "metamorphosis",
+        "e": "Metamorphosis is a biological process where insects undergo a complete transformation from larva (like a caterpillar) to adult (like a butterfly), involving stages such as pupation."
+      },
+      {
+        "q": "The ________ system helps in the movement of the human body.",
+        "a": "skeletal",
+        "e": "The skeletal system provides the framework for the body, while the muscular system is responsible for movement by contracting muscles attached to bones. Both work together to enable movement."
+      },
+      {
+        "q": "The part of the plant that produces seeds is the ________.",
+        "a": "flower",
+        "e": "Flowers are the reproductive organs of flowering plants. They produce seeds after fertilization, allowing the plant to reproduce."
+      },
+      {
+        "q": "The smallest unit of life is the ________.",
+        "a": "cell",
+        "e": "The cell is the basic structural and functional unit of all living organisms. It can perform all life processes independently."
+      }
+    ]
+  },
+  "chemistry": {
+    "mcq": [
+      {
+        "q": "What is the chemical symbol for gold?",
+        "a": "Au",
+        "o": ["Au", "Ag", "Fe", "Cu"],
+        "e": "The chemical symbol for gold is Au, derived from its Latin name Aurum. Other options like Ag (silver), Fe (iron), and Cu (copper) represent different elements."
+      },
+      {
+        "q": "Which state of matter has particles that are far apart and move freely?",
+        "a": "Gas",
+        "o": ["Solid", "Liquid", "Gas", "Plasma"],
+        "e": "In a gas, particles are widely spaced and move independently and freely, unlike solids (tightly packed) or liquids (closer but flowing)."
+      },
+      {
+        "q": "What is formed when a metal reacts with oxygen?",
+        "a": "Metal oxide",
+        "o": ["Metal chloride", "Metal sulfide", "Metal oxide", "Metal hydroxide"],
+        "e": "When metals react with oxygen, they form metal oxides (e.g., rust is iron oxide). This is a chemical compound formed by metal and oxygen atoms combined."
+      },
+      {
+        "q": "Which of these is a chemical change?",
+        "a": "Burning wood",
+        "o": ["Melting ice", "Burning wood", "Cutting paper", "Boiling water"],
+        "e": "Burning wood causes a chemical change, producing new substances like ash, carbon dioxide, and gases. Melting ice or boiling water are physical changes, and cutting paper changes shape but not chemical composition."
+      },
+      {
+        "q": "What is the pH value of a neutral substance?",
+        "a": "7",
+        "o": ["0", "7", "14", "10"],
+        "e": "A pH of 7 is neutral (pure water). Below 7 is acidic, and above 7 is basic (alkaline)."
+      },
+      {
+        "q": "Which gas is essential for combustion?",
+        "a": "Oxygen",
+        "o": ["Nitrogen", "Oxygen", "Carbon dioxide", "Hydrogen"],
+        "e": "Oxygen supports combustion by reacting with fuel. Nitrogen, carbon dioxide, and hydrogen do not support burning."
+      },
+      {
+        "q": "What is the chemical formula for table salt?",
+        "a": "NaCl",
+        "o": ["NaCl", "HCl", "NaOH", "KCl"],
+        "e": "Table salt is sodium chloride (NaCl), a compound of sodium (Na) and chlorine (Cl)."
+      },
+      {
+        "q": "Which of these is a non-metal?",
+        "a": "Sulfur",
+        "o": ["Iron", "Sulfur", "Copper", "Aluminum"],
+        "e": "Sulfur is a non-metal. Iron, copper, and aluminum are metals."
+      },
+      {
+        "q": "What is the process of a gas turning into a liquid called?",
+        "a": "Condensation",
+        "o": ["Evaporation", "Condensation", "Sublimation", "Freezing"],
+        "e": "Condensation is when gas cools and turns into liquid (e.g., water vapor to dew). Evaporation is the reverse."
+      },
+      {
+        "q": "Which of these is a mixture?",
+        "a": "Air",
+        "o": ["Water", "Air", "Sugar", "Salt"],
+        "e": "Air is a mixture of gases (oxygen, nitrogen, etc.). Water, sugar, and salt are pure substances or compounds."
+      }
+    ],
+    "blank": [
+      {
+        "q": "The chemical symbol for iron is ________.",
+        "a": "Fe",
+        "e": "The chemical symbol for iron is Fe, derived from its Latin name Ferrum. Chemical symbols are usually one or two letters, often based on the element’s Latin or English name."
+      },
+      {
+        "q": "A substance that cannot be broken down into simpler substances is called a/an ________.",
+        "a": "element",
+        "e": "An element is a pure substance made of only one type of atom and cannot be broken down into simpler substances by chemical means. Examples include oxygen (O), hydrogen (H), and iron (Fe)."
+      },
+      {
+        "q": "The process of a solid turning directly into a gas is called ________.",
+        "a": "sublimation",
+        "e": "Sublimation is when a solid changes directly into a gas without passing through the liquid state. For example, dry ice (solid CO₂) sublimates into carbon dioxide gas."
+      },
+      {
+        "q": "A substance with a pH less than 7 is called a/an ________.",
+        "a": "acid",
+        "e": "The pH scale measures how acidic or basic a substance is. A pH less than 7 indicates an acidic substance (like lemon juice or vinegar), while a pH greater than 7 indicates a base (alkaline)."
+      },
+      {
+        "q": "The smallest unit of a compound is called a ________.",
+        "a": "molecule",
+        "e": "A molecule is the smallest unit of a chemical compound that retains the chemical properties of that compound. It consists of two or more atoms bonded together. For example, H₂O (water) is a molecule made of hydrogen and oxygen atoms."
+      },
+      {
+        "q": "The chemical formula for water is ________.",
+        "a": "H₂O",
+        "e": "Water’s chemical formula is H₂O, meaning each molecule contains two hydrogen atoms and one oxygen atom bonded together."
+      },
+      {
+        "q": "A change that produces a new substance is called a ________ change.",
+        "a": "chemical",
+        "e": "A chemical change results in the formation of one or more new substances with different properties. Examples include burning wood or rusting iron. This differs from a physical change, which does not create new substances."
+      },
+      {
+        "q": "The ________ is a chart that organizes elements based on their properties.",
+        "a": "periodic table",
+        "e": "The periodic table arranges all known chemical elements in an ordered table according to their atomic number, electron configurations, and recurring chemical properties."
+      },
+      {
+        "q": "The freezing point of water is ________ °C.",
+        "a": "0",
+        "e": "Water freezes at 0 degrees Celsius under standard atmospheric pressure. Below this temperature, water turns from liquid to solid (ice)."
+      },
+      {
+        "q": "A mixture where one substance dissolves in another is called a ________.",
+        "a": "solution",
+        "e": "A solution is a homogeneous mixture where one substance (the solute) dissolves evenly in another substance (the solvent). For example, salt dissolved in water forms a salt solution."
+      }
+    ]
+  },
+  "physics": {
+    "mcq": [
+      {
+        "q": "What is the SI unit of force?",
+        "a": "Newton",
+        "o": ["Meter", "Newton", "Joule", "Watt"],
+        "e": "Force is measured in Newtons (N) in the International System of Units (SI). One Newton is the force required to accelerate a 1 kg mass by 1 meter per second squared."
+      },
+      {
+        "q": "Which type of energy is associated with the motion of an object?",
+        "a": "Kinetic energy",
+        "o": ["Potential energy", "Kinetic energy", "Chemical energy", "Thermal energy"],
+        "e": "Kinetic energy is the energy possessed by a body due to its motion. The faster it moves, the greater its kinetic energy."
+      },
+      {
+        "q": "What is the effect of friction on a moving object?",
+        "a": "Decreases speed",
+        "o": ["Increases speed", "Decreases speed", "No effect", "Changes direction"],
+        "e": "Friction is a force that opposes motion between two surfaces in contact, causing moving objects to slow down."
+      },
+      {
+        "q": "Which of these is a contact force?",
+        "a": "Friction",
+        "o": ["Gravity", "Magnetism", "Friction", "Electrostatic force"],
+        "e": "Contact forces require physical contact between objects. Friction acts when two surfaces rub against each other. Gravity, magnetism, and electrostatic forces act at a distance."
+      },
+      {
+        "q": "What is the speed of an object that travels 100 meters in 20 seconds?",
+        "a": "5 m/s",
+        "o": ["5 m/s", "10 m/s", "2 m/s", "20 m/s"],
+        "e": "Speed = Distance / Time = 100 m / 20 s = 5 m/s."
+      },
+      {
+        "q": "Which lens is used to correct nearsightedness?",
+        "a": "Concave lens",
+        "o": ["Convex lens", "Concave lens", "Plane lens", "Biconvex lens"],
+        "e": "Nearsightedness (myopia) causes distant objects to appear blurry. A concave lens diverges light rays before they enter the eye, helping focus images correctly on the retina."
+      },
+      {
+        "q": "What is the unit of power?",
+        "a": "Watt",
+        "o": ["Joule", "Watt", "Newton", "Meter"],
+        "e": "Power is the rate at which work is done or energy is transferred, measured in Watts (W). One Watt equals one Joule per second."
+      },
+      {
+        "q": "Which of these is a good conductor of electricity?",
+        "a": "Copper",
+        "o": ["Rubber", "Wood", "Copper", "Plastic"],
+        "e": "Copper is a metal with excellent electrical conductivity, widely used in electrical wiring. Rubber, wood, and plastic are insulators."
+      },
+      {
+        "q": "What is the bending of light as it passes from one medium to another called?",
+        "a": "Refraction",
+        "o": ["Reflection", "Refraction", "Diffraction", "Dispersion"],
+        "e": "Refraction is the change in direction of light when it passes from one medium to another, caused by a change in its speed."
+      },
+      {
+        "q": "Which of these is a source of sound?",
+        "a": "Bell",
+        "o": ["Sun", "Bell", "Mirror", "Table"],
+        "e": "A bell produces sound by vibrating when struck. The sun, mirror, and table do not produce sound by themselves."
+      }
+    ],
+    "blank": [
+      {
+        "q": "The SI unit of energy is ________.",
+        "a": "Joule",
+        "e": "Energy is measured in joules (J) in the International System of Units (SI). One joule is the energy transferred when one newton of force moves an object one meter."
+      },
+      {
+        "q": "The force that pulls objects toward the Earth is called ________.",
+        "a": "gravity",
+        "e": "Gravity is the natural force that attracts objects toward the center of the Earth (or any other mass). It gives weight to physical objects."
+      },
+      {
+        "q": "The energy stored in an object due to its position is called ________ energy.",
+        "a": "potential",
+        "e": "Potential energy is stored energy based on an object's position or configuration. For example, a book held at a height has gravitational potential energy."
+      },
+      {
+        "q": "A ________ mirror forms a virtual and diminished image.",
+        "a": "convex",
+        "e": "A convex mirror curves outward and reflects light outwards. It forms virtual (cannot be projected on a screen), diminished (smaller than the object) images."
+      },
+      {
+        "q": "The rate of change of velocity is called ________.",
+        "a": "acceleration",
+        "e": "Acceleration is how quickly an object's velocity changes over time, including speeding up, slowing down, or changing direction."
+      },
+      {
+        "q": "The process of splitting white light into colors is called ________.",
+        "a": "dispersion",
+        "e": "Dispersion occurs when white light passes through a prism and splits into its component colors (spectrum) due to different refractive indices for different wavelengths."
+      },
+      {
+        "q": "The unit of electric current is ________.",
+        "a": "ampere",
+        "e": "Electric current is measured in amperes (A), which quantify the flow of electric charge per second."
+      },
+      {
+        "q": "The tendency of an object to resist a change in its motion is called ________.",
+        "a": "inertia",
+        "e": "Inertia is the property of matter that causes it to resist any change in its state of motion, whether at rest or moving at a constant velocity."
+      },
+      {
+        "q": "Sound travels fastest through a ________ medium.",
+        "a": "solid",
+        "e": "Sound waves travel fastest in solids because particles are tightly packed, allowing vibrations to transfer quickly compared to liquids or gases."
+      },
+      {
+        "q": "The work done is calculated as force multiplied by ________.",
+        "a": "distance",
+        "e": "Work is defined as the product of the force applied to an object and the distance over which it is moved in the direction of the force (Work = Force × Distance)."
+      }
+    ]
   }
+}
 };
