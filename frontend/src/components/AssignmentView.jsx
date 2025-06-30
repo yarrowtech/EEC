@@ -24,10 +24,9 @@ const AssignmentView = () => {
       dueDate: "2025-06-20",
       status: "pending",
       priority: "high",
-      description:
-        "Design and implement a relational database for a library management system",
+      description: "Design and implement a relational database for a library management system",
       submissionType: "file",
-      maxMarks: 100,
+      maxMarks: 100
     },
     {
       id: 2,
@@ -36,11 +35,10 @@ const AssignmentView = () => {
       dueDate: "2025-06-18",
       status: "completed",
       priority: "medium",
-      description:
-        "Create reusable React components with proper state management",
+      description: "Create reusable React components with proper state management",
       submissionType: "link",
       maxMarks: 75,
-      submittedAt: "2025-06-15",
+      submittedAt: "2025-06-15"
     },
     {
       id: 3,
@@ -51,7 +49,7 @@ const AssignmentView = () => {
       priority: "high",
       description: "Analyze time and space complexity of sorting algorithms",
       submissionType: "file",
-      maxMarks: 50,
+      maxMarks: 50
     },
     {
       id: 4,
@@ -62,58 +60,47 @@ const AssignmentView = () => {
       priority: "medium",
       description: "Analyze a real-world security breach and propose solutions",
       submissionType: "presentation",
-      maxMarks: 80,
-    },
+      maxMarks: 80
+    }
   ];
 
 
   const getStatusColor = (status) => {
     switch (status) {
-      case "completed":
-        return "text-green-600 bg-green-100";
-      case "pending":
-        return "text-yellow-600 bg-yellow-100";
-      case "overdue":
-        return "text-red-600 bg-red-100";
-      default:
-        return "text-gray-600 bg-gray-100";
+      case 'completed': return 'text-green-600 bg-green-100';
+      case 'pending': return 'text-yellow-600 bg-yellow-100';
+      case 'overdue': return 'text-red-600 bg-red-100';
+      default: return 'text-gray-600 bg-gray-100';
     }
   };
 
   const getPriorityColor = (priority) => {
     switch (priority) {
-      case "high":
-        return "border-l-red-500";
-      case "medium":
-        return "border-l-yellow-500";
-      case "low":
-        return "border-l-green-500";
-      default:
-        return "border-l-gray-500";
+      case 'high': return 'border-l-red-500';
+      case 'medium': return 'border-l-yellow-500';
+      case 'low': return 'border-l-green-500';
+      default: return 'border-l-gray-500';
     }
   };
 
-  const filteredAssignments = assignments.filter((assignment) => {
-    if (filter === "all") return true;
+  const filteredAssignments = assignments.filter(assignment => {
+    if (filter === 'all') return true;
     return assignment.status === filter;
   });
 
   const getStatusIcon = (status) => {
     switch (status) {
-      case "completed":
-        return <CheckCircle className="w-5 h-5 text-green-600" />;
-      case "overdue":
-        return <AlertCircle className="w-5 h-5 text-red-600" />;
-      default:
-        return <Clock className="w-5 h-5 text-yellow-600" />;
+      case 'completed': return <CheckCircle className="w-5 h-5 text-green-600" />;
+      case 'overdue': return <AlertCircle className="w-5 h-5 text-red-600" />;
+      default: return <Clock className="w-5 h-5 text-yellow-600" />;
     }
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
     });
   };
 
@@ -131,36 +118,11 @@ const AssignmentView = () => {
   const [selectedClass, setSelectedClass] = useState("5");
   const [eecSubject, setEecSubject] = useState("science"); // 'science', 'math', 'game'
   const [questionData, setQuestionData] = useState(questionPaper);
-  const eecScience = {};
-  const eecMath = {
-    4: {
-      mcq: [
-        {
-          q: "What is the sum of 245 and 137?",
-          a: "382",
-          o: ["372", "382", "362", "392"],
-        },
-        {
-          q: "If a book costs ₹25 and a pen costs ₹10, how much will 3 books and 2 pens cost?",
-          a: "95",
-          o: ["85", "95", "75", "90"],
-        },
-      ],
-      blank: [
-        {
-          q: "The sum of 356 and 129 is __________.",
-          a: "485",
-          e: "356 + 129 = 485"
-        },
-        {
-          q: "If you subtract 247 from 500, the result is __________",
-          a: "253",
-          e: "500 - 247 = 253"
-        }
-      ],
-    },
-  };
-  const eecGames = {};
+
+  useEffect(() => {
+    if(!selectedClass || !questionData[selectedClass]) return;
+    setEecSubject(Object.keys(questionData[selectedClass])[0])
+  }, [selectedClass])
 
   return (
     <div className="space-y-6">
@@ -168,39 +130,35 @@ const AssignmentView = () => {
       <div className="flex justify-between items-center mb-4">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Assignments</h1>
-          <p className="text-gray-600">
-            Manage your assignments and submissions
-          </p>
+          <p className="text-gray-600">Manage your assignments and submissions</p>
         </div>
         <div className="flex items-center space-x-2">
-          <label htmlFor="assignmentType" className="font-medium text-gray-700">
-            Type:
-          </label>
+          <label htmlFor="assignmentType" className="font-medium text-gray-700">Type:</label>
           <select
             id="assignmentType"
             value={assignmentType}
-            onChange={(e) => setAssignmentType(e.target.value)}
+            onChange={e => setAssignmentType(e.target.value)}
             className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
             <option value="school">School Assignment</option>
-            <option value="eec">EEC Tryout</option>
+            <option value="eec">Practice Paper</option>
           </select>
         </div>
       </div>
 
       {/* School Assignment Section */}
-      {assignmentType === "school" && (
+      {assignmentType === 'school' && (
         <>
           {/* Filter Buttons */}
           <div className="flex space-x-2">
-            {["all", "pending", "completed", "overdue"].map((filterType) => (
+            {['all', 'pending', 'completed', 'overdue'].map((filterType) => (
               <button
                 key={filterType}
                 onClick={() => setFilter(filterType)}
                 className={`px-4 py-2 rounded-lg font-medium capitalize transition-colors ${
                   filter === filterType
-                    ? "bg-blue-600 text-white"
-                    : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-300"
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300'
                 }`}
               >
                 {filterType}
@@ -214,44 +172,42 @@ const AssignmentView = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Total</p>
-                  <p className="text-2xl font-bold text-gray-900">
-                    {assignments.length}
-                  </p>
+                  <p className="text-2xl font-bold text-gray-900">{assignments.length}</p>
                 </div>
                 <FileText className="w-8 h-8 text-blue-600" />
               </div>
             </div>
-
+            
             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Pending</p>
                   <p className="text-2xl font-bold text-yellow-600">
-                    {assignments.filter((a) => a.status === "pending").length}
+                    {assignments.filter(a => a.status === 'pending').length}
                   </p>
                 </div>
                 <Clock className="w-8 h-8 text-yellow-600" />
               </div>
             </div>
-
+            
             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Completed</p>
                   <p className="text-2xl font-bold text-green-600">
-                    {assignments.filter((a) => a.status === "completed").length}
+                    {assignments.filter(a => a.status === 'completed').length}
                   </p>
                 </div>
                 <CheckCircle className="w-8 h-8 text-green-600" />
               </div>
             </div>
-
+            
             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Overdue</p>
                   <p className="text-2xl font-bold text-red-600">
-                    {assignments.filter((a) => a.status === "overdue").length}
+                    {assignments.filter(a => a.status === 'overdue').length}
                   </p>
                 </div>
                 <AlertCircle className="w-8 h-8 text-red-600" />
@@ -264,26 +220,18 @@ const AssignmentView = () => {
             {filteredAssignments.map((assignment) => (
               <div
                 key={assignment.id}
-                className={`bg-white rounded-xl shadow-sm border border-gray-200 p-6 border-l-4 ${getPriorityColor(
-                  assignment.priority
-                )}`}
+                className={`bg-white rounded-xl shadow-sm border border-gray-200 p-6 border-l-4 ${getPriorityColor(assignment.priority)}`}
               >
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-2">
                       {getStatusIcon(assignment.status)}
-                      <h3 className="text-lg font-semibold text-gray-900">
-                        {assignment.title}
-                      </h3>
-                      <span
-                        className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(
-                          assignment.status
-                        )}`}
-                      >
+                      <h3 className="text-lg font-semibold text-gray-900">{assignment.title}</h3>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(assignment.status)}`}>
                         {assignment.status}
                       </span>
                     </div>
-
+                    
                     <div className="flex items-center space-x-4 text-sm text-gray-600 mb-3">
                       <div className="flex items-center space-x-1">
                         <Book className="w-4 h-4" />
@@ -293,37 +241,28 @@ const AssignmentView = () => {
                         <Calendar className="w-4 h-4" />
                         <span>Due: {formatDate(assignment.dueDate)}</span>
                       </div>
-                      <span className="text-gray-500">
-                        Max Marks: {assignment.maxMarks}
-                      </span>
+                      <span className="text-gray-500">Max Marks: {assignment.maxMarks}</span>
                     </div>
-
-                    <p className="text-gray-700 mb-4">
-                      {assignment.description}
-                    </p>
-
+                    
+                    <p className="text-gray-700 mb-4">{assignment.description}</p>
+                    
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4">
                         <span className="text-sm text-gray-600">
                           Submission: {assignment.submissionType}
                         </span>
-                        {assignment.status === "pending" && (
-                          <span
-                            className={`text-sm font-medium ${
-                              getDaysRemaining(assignment.dueDate) < 0
-                                ? "text-red-600"
-                                : getDaysRemaining(assignment.dueDate) <= 3
-                                ? "text-yellow-600"
-                                : "text-green-600"
-                            }`}
-                          >
-                            {getDaysRemaining(assignment.dueDate) < 0
-                              ? `${Math.abs(
-                                  getDaysRemaining(assignment.dueDate)
-                                )} days overdue`
-                              : `${getDaysRemaining(
-                                  assignment.dueDate
-                                )} days remaining`}
+                        {assignment.status === 'pending' && (
+                          <span className={`text-sm font-medium ${
+                            getDaysRemaining(assignment.dueDate) < 0 
+                              ? 'text-red-600' 
+                              : getDaysRemaining(assignment.dueDate) <= 3 
+                                ? 'text-yellow-600' 
+                                : 'text-green-600'
+                          }`}>
+                            {getDaysRemaining(assignment.dueDate) < 0 
+                              ? `${Math.abs(getDaysRemaining(assignment.dueDate))} days overdue`
+                              : `${getDaysRemaining(assignment.dueDate)} days remaining`
+                            }
                           </span>
                         )}
                         {assignment.submittedAt && (
@@ -332,9 +271,9 @@ const AssignmentView = () => {
                           </span>
                         )}
                       </div>
-
+                      
                       <div className="flex space-x-2">
-                        {assignment.status === "pending" && (
+                        {assignment.status === 'pending' && (
                           <button className="px-4 py-2 bg-blue-600 text-black rounded-lg hover:bg-blue-700 transition-colors">
                             Submit
                           </button>
@@ -354,49 +293,39 @@ const AssignmentView = () => {
           {filteredAssignments.length === 0 && (
             <div className="text-center py-12">
               <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
-                No assignments found
-              </h3>
-              <p className="text-gray-600">
-                No assignments match your current filter.
-              </p>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No assignments found</h3>
+              <p className="text-gray-600">No assignments match your current filter.</p>
             </div>
           )}
         </>
       )}
 
       {/* EEC Tryout Section */}
-      {assignmentType === "eec" && (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col gap-5">
+      {assignmentType === 'eec' && (
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <div className="mb-4 flex flex-wrap items-center gap-3">
-            <label htmlFor="classSelect" className="font-medium text-gray-700">
-              Select Class:
-            </label>
+            <label htmlFor="classSelect" className="font-medium text-gray-700">Select Class:</label>
             <select
               id="classSelect"
               value={selectedClass}
-              onChange={(e) => setSelectedClass(e.target.value)}
+              onChange={e => setSelectedClass(e.target.value)}
               className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               {Object.keys(questionData).map((cls) => (
                 <option key={cls} value={cls}>{`Class ${cls}`}</option>
               ))}
             </select>
-            <label
-              htmlFor="eecSubject"
-              className="font-medium text-gray-700 ml-4"
-            >
-              Subject:
-            </label>
+            <label htmlFor="eecSubject" className="font-medium text-gray-700 ml-4">Subject:</label>
             <select
               id="eecSubject"
               value={eecSubject}
-              onChange={(e) => setEecSubject(e.target.value)}
+              onChange={e => setEecSubject(e.target.value)}
               className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               {Object.keys(questionData[selectedClass]).map((subject) => (
                 <option key={subject} value={subject}>{subject.charAt(0).toUpperCase() + subject.slice(1)}</option>
-              ))}
+              ))
+              }
             </select>
           </div>
           <div>
