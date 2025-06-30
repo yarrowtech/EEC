@@ -425,7 +425,7 @@ const AssignmentView = () => {
 
 function MCQ({array}) {
   const [eecFeedback, setEecFeedback] = useState(null);
-  const [showAnwers, setShowAnswers] = useState(false);
+  const [showAnswers, setShowAnswers] = useState(false);
   const [eecAnswers, setEecAnswers] = useState({}); // { [idx]: userInput }
 
 
@@ -443,6 +443,7 @@ function MCQ({array}) {
       correction.push(userAns === correct)
     });
     setEecFeedback(correction);
+    setShowAnswers(true);
   };
 
   return (
@@ -472,8 +473,11 @@ function MCQ({array}) {
               ))}
           </div>
         </div>
-        {showAnwers && (
+        {showAnswers && (
+          <>
           <div className="text-sm text-gray-400 italic mt-1">Answer: {q.a}</div>
+          <div className="text-sm text-gray-400 italic mt-1">Explanation: {q.e}</div>
+          </>
         )}
       {eecFeedback !== null && (
         <p
@@ -494,16 +498,16 @@ function MCQ({array}) {
         </button>
         <button
           className={`px-3 py-1 ${
-            showAnwers ? "bg-green-600" : "bg-red-600"
+            showAnswers ? "bg-green-600" : "bg-red-600"
           } text-white rounded ${
-            showAnwers ? "hover:bg-green-700" : "hover:bg-red-700"
+            showAnswers ? "hover:bg-green-700" : "hover:bg-red-700"
           } transition-colors`}
           onClick={() => {
             setEecFeedback(null);
-            setShowAnswers(!showAnwers);
+            setShowAnswers(!showAnswers);
           }}
         >
-          {showAnwers ? "Hide Answers" : "Show Answers"}
+          {showAnswers ? "Hide Answers" : "Show Answers"}
         </button>
       </div>
     </>
@@ -513,9 +517,8 @@ function MCQ({array}) {
 function Blank({array}) {
 
   const [eecFeedback, setEecFeedback] = useState(null);
-  const [showAnwers, setShowAnswers] = useState(false);
+  const [showAnswers, setShowAnswers] = useState(false);
   const [eecAnswers, setEecAnswers] = useState({}); // { [idx]: userInput }
-
 
   // Handler for answer input
   const handleEecInput = (idx, value) => {
@@ -531,6 +534,7 @@ function Blank({array}) {
       correction.push(userAns === correct)
     });
     setEecFeedback(correction);
+    setShowAnswers(true);
   };
 
   return (
@@ -551,8 +555,11 @@ function Blank({array}) {
           onChange={e => handleEecInput(idx, e.target.value)}
         />
         </div>
-        {showAnwers && (
+        {showAnswers && (
+          <>
           <div className="text-sm text-gray-400 italic mt-1">Answer: {q.a}</div>
+          <div className="text-sm text-gray-400 italic mt-1">Explanation: {q.e}</div>
+          </>
         )}
         {eecFeedback !== null && (
         <p
@@ -573,16 +580,16 @@ function Blank({array}) {
         </button>
         <button
           className={`px-3 py-1 ${
-            showAnwers ? "bg-green-600" : "bg-red-600"
+            showAnswers ? "bg-green-600" : "bg-red-600"
           } text-white rounded ${
-            showAnwers ? "hover:bg-green-700" : "hover:bg-red-700"
+            showAnswers ? "hover:bg-green-700" : "hover:bg-red-700"
           } transition-colors`}
           onClick={() => {
             setEecFeedback(null);
-            setShowAnswers(!showAnwers);
+            setShowAnswers(!showAnswers);
           }}
         >
-          {showAnwers ? "Hide Answers" : "Show Answers"}
+          {showAnswers ? "Hide Answers" : "Show Answers"}
         </button>
       </div>
     </>
