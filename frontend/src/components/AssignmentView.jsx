@@ -118,36 +118,11 @@ const AssignmentView = () => {
   const [selectedClass, setSelectedClass] = useState("5");
   const [eecSubject, setEecSubject] = useState("science"); // 'science', 'math', 'game'
   const [questionData, setQuestionData] = useState(questionPaper);
-  const eecScience = {};
-  const eecMath = {
-    4: {
-      mcq: [
-        {
-          q: "What is the sum of 245 and 137?",
-          a: "382",
-          o: ["372", "382", "362", "392"],
-        },
-        {
-          q: "If a book costs ₹25 and a pen costs ₹10, how much will 3 books and 2 pens cost?",
-          a: "95",
-          o: ["85", "95", "75", "90"],
-        },
-      ],
-      blank: [
-        {
-          q: "The sum of 356 and 129 is __________.",
-          a: "485",
-          e: "356 + 129 = 485"
-        },
-        {
-          q: "If you subtract 247 from 500, the result is __________",
-          a: "253",
-          e: "500 - 247 = 253"
-        }
-      ],
-    },
-  };
-  const eecGames = {};
+
+  useEffect(() => {
+    if(!selectedClass || !questionData[selectedClass]) return;
+    setEecSubject(Object.keys(questionData[selectedClass])[0])
+  }, [selectedClass])
 
   return (
     <div className="space-y-6">
@@ -166,7 +141,7 @@ const AssignmentView = () => {
             className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
             <option value="school">School Assignment</option>
-            <option value="eec">EEC Tryout</option>
+            <option value="eec">Practice Paper</option>
           </select>
         </div>
       </div>
@@ -349,7 +324,8 @@ const AssignmentView = () => {
             >
               {Object.keys(questionData[selectedClass]).map((subject) => (
                 <option key={subject} value={subject}>{subject.charAt(0).toUpperCase() + subject.slice(1)}</option>
-              ))}
+              ))
+              }
             </select>
           </div>
           <div>
