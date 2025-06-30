@@ -9,47 +9,7 @@ const ExaminationManagement = ({setShowAdminHeader}) => {
     }, [])
 
 
-  const [examinations, setExaminations] = useState([
-    {
-      id: 1,
-      title: 'Mathematics Final Exam',
-      subject: 'Mathematics',
-      date: '2025-07-15',
-      time: '10:00',
-      duration: 180,
-      totalMarks: 100,
-      venue: 'Room A-101',
-      instructor: 'Dr. Smith',
-      students: 45,
-      status: 'scheduled'
-    },
-    {
-      id: 2,
-      title: 'Physics Midterm',
-      subject: 'Physics',
-      date: '2025-07-20',
-      time: '14:00',
-      duration: 120,
-      totalMarks: 80,
-      venue: 'Lab B-203',
-      instructor: 'Prof. Johnson',
-      students: 38,
-      status: 'scheduled'
-    },
-    {
-      id: 3,
-      title: 'Chemistry Lab Test',
-      subject: 'Chemistry',
-      date: '2025-06-10',
-      time: '09:00',
-      duration: 90,
-      totalMarks: 50,
-      venue: 'Lab C-105',
-      instructor: 'Dr. Wilson',
-      students: 30,
-      status: 'completed'
-    }
-  ]);
+  const [examinations, setExaminations] = useState([]);
 
   const [showModal, setShowModal] = useState(false);
   const [editingExam, setEditingExam] = useState(null);
@@ -61,21 +21,58 @@ const ExaminationManagement = ({setShowAdminHeader}) => {
     date: '',
     time: '',
     duration: '',
-    totalMarks: '',
+    marks: '',
     venue: '',
     instructor: '',
-    students: '',
+    noOfStudents: '',
     status: 'scheduled'
   });
 
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/exam/fetch`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    }).then(res => {
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return res.json();
+    }).then(data => {
+      setExaminations(data || []);
+    }).catch(error => {
+      console.error('Error fetching examinations:', error);
+    });
+  }, [])
+
+
+
   // Filter examinations based on search and status
-  const filteredExaminations = examinations.filter(exam => {
-    const matchesSearch = exam.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         exam.subject.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         exam.instructor.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = filterStatus === 'all' || exam.status === filterStatus;
-    return matchesSearch && matchesStatus;
-  });
+  // const filteredExaminations = examinations.filter(exam => {
+  //   const matchesSearch = exam.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  //                        exam.subject.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  //                        exam.instructor.toLowerCase().includes(searchTerm.toLowerCase());
+  //   const matchesStatus = filterStatus === 'all' || exam.status === filterStatus;
+  //   return matchesSearch && matchesStatus;
+  // });
+
+  const [filteredExaminations, setFilteredExaminations] = useState(examinations);
+
+  useEffect(() => {
+    setFilteredExaminations(examinations)
+  }, [examinations])
+
+  useEffect(() => {
+    setFilteredExaminations(examinations.filter(exam => {
+      const matchesSearch = exam.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                            exam.subject.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                            exam.instructor.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesStatus = filterStatus === 'all' || exam.status === filterStatus;
+      return matchesSearch && matchesStatus;
+    }))
+  }, [searchTerm, filterStatus]);
 
   const resetForm = () => {
     setFormData({
@@ -84,60 +81,61 @@ const ExaminationManagement = ({setShowAdminHeader}) => {
       date: '',
       time: '',
       duration: '',
-      totalMarks: '',
+      marks: '',
       venue: '',
       instructor: '',
-      students: '',
+      noOfStudents: '',
       status: 'scheduled'
     });
   };
 
-  const handleSubmit = () => {
-    
-    if (editingExam) {
-      // Update existing examination
-      setExaminations(prev => prev.map(exam => 
-        exam.id === editingExam.id 
-          ? { ...formData, id: editingExam.id, students: parseInt(formData.students) }
-          : exam
-      ));
-    } else {
-      // Add new examination
-      const newExam = {
-        ...formData,
-        id: Date.now(),
-        students: parseInt(formData.students)
-      };
-      setExaminations(prev => [...prev, newExam]);
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/exam/add`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(formData)
+      })
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await res.json();
+      console.log(data)
+      setShowModal(false);
+      setEditingExam(null);
+      resetForm();
+    } catch(err) {
+      console.log('Error submitting form:', err);
     }
     
-    setShowModal(false);
-    setEditingExam(null);
-    resetForm();
   };
 
-  const handleEdit = (exam) => {
-    setEditingExam(exam);
-    setFormData({
-      title: exam.title,
-      subject: exam.subject,
-      date: exam.date,
-      time: exam.time,
-      duration: exam.duration.toString(),
-      totalMarks: exam.totalMarks.toString(),
-      venue: exam.venue,
-      instructor: exam.instructor,
-      students: exam.students.toString(),
-      status: exam.status
-    });
-    setShowModal(true);
-  };
+  // const handleEdit = (exam) => {
+  //   setEditingExam(exam);
+  //   setFormData({
+  //     title: exam.title,
+  //     subject: exam.subject,
+  //     date: exam.date,
+  //     time: exam.time,
+  //     duration: exam.duration.toString(),
+  //     totalMarks: exam.totalMarks.toString(),
+  //     venue: exam.venue,
+  //     instructor: exam.instructor,
+  //     students: exam.students.toString(),
+  //     status: exam.status
+  //   });
+  //   setShowModal(true);
+  // };
 
-  const handleDelete = (id) => {
-    if (window.confirm('Are you sure you want to delete this examination?')) {
-      setExaminations(prev => prev.filter(exam => exam.id !== id));
-    }
-  };
+  // const handleDelete = (id) => {
+  //   if (window.confirm('Are you sure you want to delete this examination?')) {
+  //     setExaminations(prev => prev.filter(exam => exam.id !== id));
+  //   }
+  // };
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -247,7 +245,7 @@ const ExaminationManagement = ({setShowAdminHeader}) => {
               <div>
                 <p className="text-sm font-medium text-gray-600">Total Students</p>
                 <p className="text-2xl font-bold text-gray-900">
-                  {examinations.reduce((sum, exam) => sum + exam.students, 0)}
+                  {examinations.reduce((sum, exam) => sum + exam.noOfStudents, 0)}
                 </p>
               </div>
               <Users className="w-8 h-8 text-purple-600" />
@@ -295,8 +293,8 @@ const ExaminationManagement = ({setShowAdminHeader}) => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">Venue: {exam.venue}</div>
-                      <div className="text-sm text-gray-500">Students: {exam.students}</div>
-                      <div className="text-sm text-gray-500">Marks: {exam.totalMarks}</div>
+                      <div className="text-sm text-gray-500">Students: {exam.noOfStudents}</div>
+                      <div className="text-sm text-gray-500">Marks: {exam.marks}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(exam.status)}`}>
@@ -332,7 +330,7 @@ const ExaminationManagement = ({setShowAdminHeader}) => {
             <div className="bg-white rounded-2xl shadow-2xl p-10 w-full max-w-xl relative border border-yellow-300 animate-fadeIn">
               <button className="absolute top-4 right-4 text-gray-400 hover:text-yellow-600 text-3xl font-bold focus:outline-none" onClick={() => { setShowModal(false); setEditingExam(null); resetForm(); }}>&times;</button>
               <h2 className="text-3xl font-extrabold mb-6 text-yellow-700 text-center tracking-tight">{editingExam ? 'Edit Examination' : 'Add Examination'}</h2>
-              <form onSubmit={e => { e.preventDefault(); handleSubmit(); }} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="flex gap-4">
                   <input name="title" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} required placeholder="Exam Title" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
                   <input name="subject" value={formData.subject} onChange={e => setFormData({...formData, subject: e.target.value})} required placeholder="Subject" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" />
@@ -347,10 +345,10 @@ const ExaminationManagement = ({setShowAdminHeader}) => {
                 </div>
                 <div className="flex gap-4">
                   <input name="duration" value={formData.duration} onChange={e => setFormData({...formData, duration: e.target.value})} required placeholder="Duration (min)" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="number" min="0" />
-                  <input name="totalMarks" value={formData.totalMarks} onChange={e => setFormData({...formData, totalMarks: e.target.value})} required placeholder="Total Marks" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="number" min="0" />
+                  <input name="marks" value={formData.marks} onChange={e => setFormData({...formData, marks: e.target.value})} required placeholder="Total Marks" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="number" min="0" />
                 </div>
                 <div className="flex gap-4">
-                  <input name="students" value={formData.students} onChange={e => setFormData({...formData, students: e.target.value})} required placeholder="No. of Students" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="number" min="0" />
+                  <input name="noOfStudents" value={formData.noOfStudents} onChange={e => setFormData({...formData, noOfStudents: e.target.value})} required placeholder="No. of Students" className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 placeholder-gray-400 text-gray-800 text-base shadow-sm" type="number" min="0" />
                   <select name="status" value={formData.status} onChange={e => setFormData({...formData, status: e.target.value})} className="flex-1 border border-yellow-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none bg-yellow-50 text-gray-800 text-base shadow-sm">
                     <option value="scheduled">Scheduled</option>
                     <option value="ongoing">Ongoing</option>
