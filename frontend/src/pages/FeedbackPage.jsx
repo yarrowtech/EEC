@@ -1,104 +1,219 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Star } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Star, MessageCircle, Users, Phone, School, User } from 'lucide-react';
 
 const FeedbackPage = () => {
-  const navigate = useNavigate();
   const [rating, setRating] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(0);
   const [feedback, setFeedback] = useState('');
+  const [role, setRole] = useState('Student');
+  const [name, setName] = useState('');
+  const [schoolName, setSchoolName] = useState('');
+  const [phone, setPhone] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Here you would typically send the feedback to your backend
-      console.log('Feedback submitted:', { rating, feedback });
-      
-      // Mark feedback as submitted
-      localStorage.setItem('feedbackSubmitted', 'true');
-      
-      // Navigate back or to a thank you page
-      navigate('/feedback/thank-you');
+      console.log('Feedback submitted:', { role, name, schoolName, phone, rating, feedback });
+      // In a real app, you would send this to your backend
+      alert('Thank you for your feedback!');
     } catch (error) {
       console.error('Error submitting feedback:', error);
     }
   };
 
+  const getRoleIcon = (roleValue) => {
+    switch(roleValue) {
+      case 'Student': return <User className="w-4 h-4" />;
+      case 'Parent': return <Users className="w-4 h-4" />;
+      case 'Teacher': return <School className="w-4 h-4" />;
+      case 'Admin': return <School className="w-4 h-4" />;
+      default: return <User className="w-4 h-4" />;
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-      <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-8">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">We'd Love Your Feedback!</h2>
-          <p className="text-gray-600">
-            Your feedback helps us improve our services and provide a better experience.
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-6 sm:py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-20 sm:-top-40 -right-20 sm:-right-40 w-40 sm:w-80 h-40 sm:h-80 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-full opacity-20 blur-3xl"></div>
+        <div className="absolute -bottom-20 sm:-bottom-40 -left-20 sm:-left-40 w-40 sm:w-80 h-40 sm:h-80 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full opacity-20 blur-3xl"></div>
+      </div>
+
+      <div className="relative w-full max-w-md mx-auto bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-4 sm:p-8 transform transition-all duration-300 hover:shadow-3xl">
+        {/* Header with icon */}
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="inline-flex items-center justify-center w-12 sm:w-16 h-12 sm:h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full mb-3 sm:mb-4 shadow-lg">
+            <MessageCircle className="w-6 sm:w-8 h-6 sm:h-8 text-white" />
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent mb-3 sm:mb-4">
+            We'd Love Your Feedback!
+          </h2>
+          <p className="text-sm sm:text-base text-gray-600 leading-relaxed px-2">
+            Your feedback helps us improve our services and provide a better experience for everyone.
           </p>
         </div>
-        
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Star Rating */}
-          <div className="flex flex-col items-center space-y-4">
-            <label className="text-lg font-medium text-gray-700">
-              How would you rate your experience?
+
+        <div onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+          {/* Role Dropdown */}
+          <div className="group">
+            <label htmlFor="role" className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+              {getRoleIcon(role)}
+              <span className="ml-2">I am a</span>
             </label>
-            <div className="flex space-x-2">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <button
-                  key={star}
-                  type="button"
-                  className="focus:outline-none transform transition hover:scale-110"
-                  onMouseEnter={() => setHoveredRating(star)}
-                  onMouseLeave={() => setHoveredRating(0)}
-                  onClick={() => setRating(star)}
-                >
-                  <Star
-                    size={40}
-                    className={`transition-colors ${
-                      star <= (hoveredRating || rating)
-                        ? 'fill-yellow-400 text-yellow-400'
-                        : 'text-gray-300'
-                    }`}
-                  />
-                </button>
-              ))}
+            <div className="relative">
+              <select
+                id="role"
+                value={role}
+                onChange={e => setRole(e.target.value)}
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-xl focus:outline-none focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 transition-all duration-200 bg-white/50 backdrop-blur-sm appearance-none cursor-pointer"
+                required
+              >
+                <option value="Student">Student</option>
+                <option value="Parent">Parent</option>
+                <option value="Teacher">Teacher</option>
+                <option value="Admin">Admin</option>
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:pr-3 pointer-events-none">
+                <svg className="w-4 sm:w-5 h-4 sm:h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* Name */}
+          <div className="group">
+            <label htmlFor="name" className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+              <User className="w-3 sm:w-4 h-3 sm:h-4" />
+              <span className="ml-2">Name</span>
+            </label>
+            <input
+              id="name"
+              type="text"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-xl focus:outline-none focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 transition-all duration-200 bg-white/50 backdrop-blur-sm placeholder-gray-400"
+              placeholder="Enter your full name"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* School Name */}
+          <div className="group">
+            <label htmlFor="schoolName" className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+              <School className="w-3 sm:w-4 h-3 sm:h-4" />
+              <span className="ml-2">School Name</span>
+            </label>
+            <input
+              id="schoolName"
+              type="text"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-xl focus:outline-none focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 transition-all duration-200 bg-white/50 backdrop-blur-sm placeholder-gray-400"
+              placeholder="Enter your school name"
+              value={schoolName}
+              onChange={e => setSchoolName(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* Phone Number */}
+          <div className="group">
+            <label htmlFor="phone" className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+              <Phone className="w-3 sm:w-4 h-3 sm:h-4" />
+              <span className="ml-2">Phone Number</span>
+            </label>
+            <input
+              id="phone"
+              type="tel"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-xl focus:outline-none focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 transition-all duration-200 bg-white/50 backdrop-blur-sm placeholder-gray-400"
+              placeholder="Enter your phone number"
+              value={phone}
+              onChange={e => setPhone(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* Star Rating */}
+          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-4 sm:p-6 border border-yellow-100">
+            <div className="flex flex-col items-center space-y-3 sm:space-y-4">
+              <label className="text-base sm:text-lg font-semibold text-gray-700 text-center">
+                How would you rate your experience?
+              </label>
+              <div className="flex space-x-1 sm:space-x-2">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <button
+                    key={star}
+                    type="button"
+                    className="focus:outline-none transform transition-all duration-200 hover:scale-110 sm:hover:scale-125 focus:scale-110 sm:focus:scale-125 p-1"
+                    onMouseEnter={() => setHoveredRating(star)}
+                    onMouseLeave={() => setHoveredRating(0)}
+                    onClick={() => setRating(star)}
+                  >
+                    <Star
+                      className={`w-8 h-8 sm:w-10 sm:h-10 transition-all duration-200 ${
+                        star <= (hoveredRating || rating)
+                          ? 'fill-yellow-400 text-yellow-500 drop-shadow-sm'
+                          : 'text-gray-300 hover:text-gray-400'
+                      }`}
+                    />
+                  </button>
+                ))}
+              </div>
+              {rating > 0 && (
+                <div className="text-xs sm:text-sm text-gray-600 font-medium animate-fade-in">
+                  {rating === 5 ? '🌟 Excellent!' : rating === 4 ? '😊 Great!' : rating === 3 ? '👍 Good!' : rating === 2 ? '😐 Fair' : '😞 Poor'}
+                </div>
+              )}
             </div>
           </div>
 
           {/* Feedback Text Area */}
-          <div>
-            <label htmlFor="feedback" className="block text-sm font-medium text-gray-700 mb-2">
-              Additional Comments (Optional)
+          <div className="group">
+            <label htmlFor="feedback" className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+              <MessageCircle className="w-3 sm:w-4 h-3 sm:h-4" />
+              <span className="ml-2">Additional Comments</span>
+              <span className="ml-1 text-gray-400 text-xs">(Optional)</span>
             </label>
             <textarea
               id="feedback"
-              rows="4"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              placeholder="Tell us about your experience..."
+              rows="3"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-xl focus:outline-none focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 transition-all duration-200 bg-white/50 backdrop-blur-sm placeholder-gray-400 resize-none"
+              placeholder="Tell us about your experience... What did you like? What could we improve?"
               value={feedback}
               onChange={(e) => setFeedback(e.target.value)}
             />
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3">
+          <div className="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3 pt-2 sm:pt-4">
             <button
-              type="submit"
-              className="flex-1 bg-yellow-500 text-black py-3 px-4 rounded-md hover:bg-yellow-600 transition-colors text-lg font-medium"
+              type="button"
+              onClick={handleSubmit}
+              className="flex-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl hover:from-yellow-500 hover:to-orange-600 transform transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95 text-base sm:text-lg font-semibold flex items-center justify-center space-x-2"
             >
-              Submit Feedback
+              <span>Submit Feedback</span>
+              <svg className="w-4 sm:w-5 h-4 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
             </button>
             <button
               type="button"
-              onClick={() => navigate(-1)}
-              className="flex-1 border border-gray-300 text-gray-700 py-3 px-4 rounded-md hover:bg-gray-50 transition-colors text-lg font-medium"
+              onClick={() => alert('Going back...')}
+              className="flex-1 border-2 border-gray-200 text-gray-600 py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 hover:scale-105 active:scale-95 text-base sm:text-lg font-medium"
             >
-              Skip
+              Skip for Now
             </button>
           </div>
-        </form>
+        </div>
+
+        {/* Footer note */}
+        <div className="mt-4 sm:mt-6 text-center">
+          <p className="text-xs text-gray-500">
+            Your feedback is valuable to us and helps improve our services
+          </p>
+        </div>
       </div>
     </div>
   );
 };
 
-export default FeedbackPage; 
+export default FeedbackPage;
