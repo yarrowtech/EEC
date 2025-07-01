@@ -10,12 +10,14 @@ const FeedbackPage = () => {
   const [name, setName] = useState('');
   const [schoolName, setSchoolName] = useState('');
   const [phone, setPhone] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // In a real app, you would send this to your backend
+      setIsLoading(true);
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/feedback/add`, {
         method: 'POST',
         headers: {
@@ -38,6 +40,9 @@ const FeedbackPage = () => {
       navigate('./thank-you');
     } catch (error) {
       console.error('Error submitting feedback:', error);
+    }
+    finally {
+      setIsLoading(false);
     }
   };
 
@@ -209,8 +214,9 @@ const FeedbackPage = () => {
               type="button"
               onClick={handleSubmit}
               className="flex-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl hover:from-yellow-500 hover:to-orange-600 transform transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95 text-base sm:text-lg font-semibold flex items-center justify-center space-x-2"
+              disabled={isLoading}
             >
-              <span>Submit Feedback</span>
+              <span>{!isLoading ? "Submit Feedback" : "Sending..."}</span>
               <svg className="w-4 sm:w-5 h-4 sm:h-5 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
               </svg>
