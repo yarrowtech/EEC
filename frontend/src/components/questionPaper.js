@@ -1296,6 +1296,588 @@ export const questionPaper = {
       ]
     }
   },
+  "7": {
+    "math": {
+      "mcq": [
+        {
+          "q": "What is the value of 15 × 3 + 5?",
+          "a": "50",
+          "o": ["45", "50", "60", "75"],
+          "e": "Using the BODMAS/PEMDAS rule: First, perform multiplication: 15 × 3 = 45. Then, add 5: 45 + 5 = 50."
+        },
+        {
+          "q": "Which fraction is equivalent to 3/6?",
+          "a": "1/2",
+          "o": ["1/3", "1/2", "2/3", "3/4"],
+          "e": "To simplify 3/6, divide both numerator and denominator by their greatest common divisor (GCD), which is 3: 3 ÷ 3 / 6 ÷ 3 = 1/2."
+        },
+        {
+          "q": "What is the perimeter of a rectangle with length 8 cm and width 5 cm?",
+          "a": "26 cm",
+          "o": ["13 cm", "26 cm", "40 cm", "48 cm"],
+          "e": "The perimeter of a rectangle is given by: Perimeter = 2 × (Length + Width). Given Length = 8 cm, Width = 5 cm: 8 + 5 = 13, then 2 × 13 = 26 cm."
+        },
+        {
+          "q": "Which of the following is a prime number?",
+          "a": "11",
+          "o": ["4", "9", "11", "15"],
+          "e": "A prime number has only two factors: 1 and itself. Checking options: 4 (factors: 1, 2, 4), 9 (factors: 1, 3, 9), 11 (factors: 1, 11), 15 (factors: 1, 3, 5, 15). Only 11 is prime."
+        },
+        {
+          "q": "What is the value of 2^3?",
+          "a": "8",
+          "o": ["6", "8", "9", "12"],
+          "e": "2^3 means 2 raised to the power of 3: 2 × 2 × 2 = 4 × 2 = 8."
+        },
+        {
+          "q": "If the angles of a triangle are 40°, 60°, and 80°, what type of triangle is it?",
+          "a": "Scalene",
+          "o": ["Equilateral", "Isosceles", "Scalene", "Right-angled"],
+          "e": "The angles sum to 40° + 60° + 80° = 180°, confirming a valid triangle. Since all angles are different, it is a scalene triangle (all sides and angles different). Equilateral has equal angles (60°), isosceles has two equal angles, and right-angled has one 90° angle."
+        },
+        {
+          "q": "What is 25% of 200?",
+          "a": "50",
+          "o": ["25", "50", "75", "100"],
+          "e": "Convert 25% to a fraction: 25/100 = 1/4. Then, calculate: (1/4) × 200 = 50."
+        },
+        {
+          "q": "Which of the following is a proper fraction?",
+          "a": "3/7",
+          "o": ["5/4", "3/7", "8/3", "6/6"],
+          "e": "A proper fraction has a numerator smaller than the denominator. Checking options: 5/4 (5 > 4), 3/7 (3 < 7), 8/3 (8 > 3), 6/6 (6 = 6). Only 3/7 is a proper fraction."
+        },
+        {
+          "q": "What is the LCM of 6 and 8?",
+          "a": "24",
+          "o": ["12", "24", "36", "48"],
+          "e": "LCM is the smallest number that is a multiple of both. Multiples of 6: 6, 12, 18, 24, 30, ...; Multiples of 8: 8, 16, 24, 32, ... The smallest common multiple is 24."
+        },
+        {
+          "q": "If x + 5 = 12, what is the value of x?",
+          "a": "7",
+          "o": ["5", "7", "10", "17"],
+          "e": "Solve the equation: x + 5 = 12. Subtract 5 from both sides: x = 12 - 5 = 7."
+        }
+      ],
+      "blank": [
+        {
+          "q": "The sum of 345 and 678 is ________.",
+          "a": "1023",
+          "e": "Add the numbers: 345 + 678 = 1023."
+        },
+        {
+          "q": "The area of a square with side 6 cm is ________ cm².",
+          "a": "36",
+          "e": "The area of a square is side × side. Given side = 6 cm: 6 × 6 = 36 cm²."
+        },
+        {
+          "q": "A number divisible by both 2 and 3 is divisible by ________.",
+          "a": "6",
+          "e": "If a number is divisible by both 2 and 3, it is divisible by their LCM. The LCM of 2 and 3 is 6."
+        },
+        {
+          "q": "The value of 7 × (8 + 2) is ________.",
+          "a": "70",
+          "e": "Using BODMAS: First, solve the parentheses: 8 + 2 = 10. Then, multiply: 7 × 10 = 70."
+        },
+        {
+          "q": "The fraction 4/8 simplified is ________.",
+          "a": "1/2",
+          "e": "The GCD of 4 and 8 is 4. Divide both numerator and denominator by 4: 4 ÷ 4 / 8 ÷ 4 = 1/2."
+        },
+        {
+          "q": "The angle sum of a triangle is ________ degrees.",
+          "a": "180",
+          "e": "The sum of the interior angles of any triangle is always 180 degrees."
+        },
+        {
+          "q": "The decimal form of 3/4 is ________.",
+          "a": "0.75",
+          "e": "To convert 3/4 to a decimal, divide 3 by 4: 3 ÷ 4 = 0.75."
+        },
+        {
+          "q": "The number of sides in a hexagon is ________.",
+          "a": "6",
+          "e": "A hexagon is a polygon with 6 sides, derived from 'hexa' (six) and 'gon' (sides)."
+        },
+        {
+          "q": "If 3x = 21, then x = ________.",
+          "a": "7",
+          "e": "Solve the equation: 3x = 21. Divide both sides by 3: x = 21 / 3 = 7."
+        },
+        {
+          "q": "The perimeter of a square with side 4 cm is ________ cm.",
+          "a": "16",
+          "e": "The perimeter of a square is 4 × side. Given side = 4 cm: 4 × 4 = 16 cm."
+        }
+      ]
+    },
+    "eng": {
+      "mcq": [
+        {
+          "q": "Which word is a noun?",
+          "a": "Apple",
+          "o": ["Run", "Apple", "Quickly", "Big"],
+          "e": "A noun names a person, place, thing, or idea. Apple is a thing (fruit), hence a noun. Run is a verb, Quickly is an adverb, Big is an adjective."
+        },
+        {
+          "q": "What is the past tense of the verb 'go'?",
+          "a": "Went",
+          "o": ["Goes", "Going", "Went", "Gone"],
+          "e": "The simple past tense of 'go' is 'went'. Goes is present tense, Going is a present participle, Gone is a past participle."
+        },
+        {
+          "q": "Which sentence is in the present tense?",
+          "a": "She walks to school.",
+          "o": ["She walked to school.", "She walks to school.", "She will walk to school.", "She was walking to school."],
+          "e": "'She walks to school' is present tense, indicating a regular or current action. Walked is past, will walk is future, was walking is past continuous."
+        },
+        {
+          "q": "What is the plural form of 'child'?",
+          "a": "Children",
+          "o": ["Childs", "Children", "Childes", "Childrens"],
+          "e": "'Children' is the correct plural of 'child', an irregular noun. Childs, Childes, and Childrens are incorrect forms."
+        },
+        {
+          "q": "Which word is an adjective?",
+          "a": "Beautiful",
+          "o": ["Table", "Beautiful", "Run", "Slowly"],
+          "e": "An adjective describes a noun. Beautiful describes a noun (e.g., a beautiful smile). Table is a noun, Run is a verb, Slowly is an adverb."
+        },
+        {
+          "q": "What is the antonym of 'big'?",
+          "a": "Small",
+          "o": ["Large", "Small", "Huge", "Great"],
+          "e": "Small is the opposite of big, referring to size. Large, Huge, and Great are synonyms or related to big."
+        },
+        {
+          "q": "Which punctuation mark is used at the end of a question?",
+          "a": "Question mark",
+          "o": ["Full stop", "Comma", "Question mark", "Exclamation mark"],
+          "e": "A question mark (?) is used at the end of a question (e.g., What is your name?). Full stop is for statements, Comma separates items, Exclamation mark shows emotion."
+        },
+        {
+          "q": "What is the synonym of 'happy'?",
+          "a": "Joyful",
+          "o": ["Sad", "Joyful", "Angry", "Tired"],
+          "e": "Joyful means full of joy, similar to happy. Sad is an antonym, Angry and Tired are unrelated."
+        },
+        {
+          "q": "Which of these is a pronoun?",
+          "a": "She",
+          "o": ["House", "She", "Run", "Fast"],
+          "e": "A pronoun replaces a noun. She replaces a female person's name. House is a noun, Run is a verb, Fast is an adjective/adverb."
+        },
+        {
+          "q": "What is the correct form of the verb in this sentence: 'They ___ playing football'?",
+          "a": "Are",
+          "o": ["Is", "Are", "Was", "Were"],
+          "e": "The sentence 'They are playing football' uses present continuous tense: are + verb-ing. They is plural, so 'are' is correct. Is is singular, Was/Were are past tense."
+        }
+      ],
+      "blank": [
+        {
+          "q": "The plural of 'book' is ________.",
+          "a": "books",
+          "e": "The plural of the regular noun 'book' is formed by adding -s: book + s = books."
+        },
+        {
+          "q": "The opposite of 'hot' is ________.",
+          "a": "cold",
+          "e": "Hot refers to high temperature; its opposite is cold, meaning low temperature."
+        },
+        {
+          "q": "She ________ (write) a letter yesterday.",
+          "a": "wrote",
+          "e": "Yesterday indicates past tense. The past tense of 'write' is 'wrote' (e.g., She wrote a letter)."
+        },
+        {
+          "q": "A group of words that expresses a complete thought is called a ________.",
+          "a": "sentence",
+          "e": "A sentence contains a subject and verb, expressing a complete idea (e.g., The sun is shining)."
+        },
+        {
+          "q": "The ________ is the person, place, or thing a sentence is about.",
+          "a": "subject",
+          "e": "The subject is what the sentence is about or what does the action (e.g., Riya in 'Riya is reading')."
+        },
+        {
+          "q": "'Big' is an example of a/an ________.",
+          "a": "adjective",
+          "e": "Big describes a noun (e.g., a big house), making it an adjective."
+        },
+        {
+          "q": "The past tense of 'see' is ________.",
+          "a": "saw",
+          "e": "The irregular verb 'see' has the past tense 'saw' (e.g., I saw a bird)."
+        },
+        {
+          "q": "A word that shows action or state of being is called a ________.",
+          "a": "verb",
+          "e": "A verb shows action (e.g., run) or state of being (e.g., is). Example: She runs."
+        },
+        {
+          "q": "The synonym of 'fast' is ________.",
+          "a": "quick",
+          "e": "Fast means high speed; quick is a synonym meaning rapid (e.g., She runs quickly)."
+        },
+        {
+          "q": "Add a ________ to separate items in a list.",
+          "a": "comma",
+          "e": "A comma separates items in a list for clarity (e.g., I bought apples, bananas, oranges)."
+        }
+      ]
+    },
+    "biology": {
+      "mcq": [
+        {
+          "q": "Which part of a plant absorbs water and nutrients from the soil?",
+          "a": "Root",
+          "o": ["Leaf", "Stem", "Root", "Flower"],
+          "e": "Roots absorb water and nutrients from the soil and anchor the plant. Leaves perform photosynthesis, stems transport nutrients, flowers are for reproduction."
+        },
+        {
+          "q": "What is the process by which plants make their own food?",
+          "a": "Photosynthesis",
+          "o": ["Respiration", "Photosynthesis", "Digestion", "Transpiration"],
+          "e": "Photosynthesis uses sunlight, carbon dioxide, and water to produce glucose and oxygen: 6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂. Respiration uses energy, digestion is for animals, transpiration is water loss."
+        },
+        {
+          "q": "Which organ in the human body pumps blood?",
+          "a": "Heart",
+          "o": ["Brain", "Heart", "Lungs", "Stomach"],
+          "e": "The heart pumps blood to circulate oxygen and nutrients. Brain controls functions, lungs handle breathing, stomach digests food."
+        },
+        {
+          "q": "Which of these is a herbivore?",
+          "a": "Cow",
+          "o": ["Lion", "Cow", "Tiger", "Eagle"],
+          "e": "A herbivore eats only plants. Cow eats grass (herbivore). Lion, tiger, and eagle are carnivores, eating meat."
+        },
+        {
+          "q": "What is the main source of energy for Earth?",
+          "a": "Sun",
+          "o": ["Moon", "Sun", "Stars", "Wind"],
+          "e": "The Sun provides energy for photosynthesis, weather, and life. Moon reflects light, stars are too far, wind is driven by solar heat."
+        },
+        {
+          "q": "Which part of a flower contains pollen?",
+          "a": "Stamen",
+          "o": ["Petal", "Sepal", "Stamen", "Pistil"],
+          "e": "The stamen (male part) produces pollen in the anther. Petals attract pollinators, sepals protect buds, pistil is the female part."
+        },
+        {
+          "q": "What do humans breathe in from the air?",
+          "a": "Oxygen",
+          "o": ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+          "e": "Humans inhale oxygen (~21% of air) for cellular respiration. Carbon dioxide is exhaled, nitrogen is inert, hydrogen is negligible in air."
+        },
+        {
+          "q": "Which of these is a sense organ?",
+          "a": "Ear",
+          "o": ["Heart", "Ear", "Liver", "Kidney"],
+          "e": "The ear is a sense organ for hearing and balance. Heart pumps blood, liver processes nutrients, kidney filters waste."
+        },
+        {
+          "q": "What type of reproduction involves only one parent?",
+          "a": "Asexual",
+          "o": ["Sexual", "Asexual", "Binary", "Budding"],
+          "e": "Asexual reproduction involves one parent, producing identical offspring. Sexual involves two parents, binary and budding are types of asexual reproduction."
+        },
+        {
+          "q": "Which nutrient is the main source of energy for the body?",
+          "a": "Carbohydrates",
+          "o": ["Proteins", "Carbohydrates", "Vitamins", "Minerals"],
+          "e": "Carbohydrates break down into glucose, the body’s primary energy source. Proteins build tissues, vitamins/minerals support functions but don’t provide energy."
+        }
+      ],
+      "blank": [
+        {
+          "q": "The green pigment in plants is called ________.",
+          "a": "chlorophyll",
+          "e": "Chlorophyll, a green pigment in leaves, captures sunlight for photosynthesis to produce plant food."
+        },
+        {
+          "q": "The process of breathing out carbon dioxide is called ________.",
+          "a": "exhalation",
+          "e": "Exhalation is breathing out carbon dioxide as a waste product of respiration through the nose or mouth."
+        },
+        {
+          "q": "The ________ system helps the body fight diseases.",
+          "a": "immune",
+          "e": "The immune system defends against pathogens like viruses and bacteria to keep the body healthy."
+        },
+        {
+          "q": "Plants release ________ gas during photosynthesis.",
+          "a": "oxygen",
+          "e": "During photosynthesis, plants convert carbon dioxide and water into glucose, releasing oxygen as a byproduct: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂."
+        },
+        {
+          "q": "The part of the plant that supports leaves and flowers is the ________.",
+          "a": "stem",
+          "e": "The stem supports leaves and flowers and transports water, nutrients, and food within the plant."
+        },
+        {
+          "q": "The human body has ________ bones.",
+          "a": "206",
+          "e": "An adult human has 206 bones, providing structure, protection, movement, and mineral storage."
+        },
+        {
+          "q": "Animals that eat both plants and animals are called ________.",
+          "a": "omnivores",
+          "e": "Omnivores, like humans and bears, eat both plants and animals, with teeth and digestion suited for both."
+        },
+        {
+          "q": "The ________ is the control center of the human body.",
+          "a": "brain",
+          "e": "The brain controls body functions, thinking, and senses, sending messages via the nervous system."
+        },
+        {
+          "q": "The tiny holes on leaves that allow gas exchange are called ________.",
+          "a": "stomata",
+          "e": "Stomata are pores on leaves for gas exchange, taking in CO₂ and releasing O₂ during photosynthesis."
+        },
+        {
+          "q": "The process of breaking down food in the body is called ________.",
+          "a": "digestion",
+          "e": "Digestion breaks down food into nutrients for energy, growth, and repair, occurring in the digestive system."
+        }
+      ]
+    },
+    "chemistry": {
+      "mcq": [
+        {
+          "q": "What is the chemical formula for water?",
+          "a": "H₂O",
+          "o": ["H₂O", "CO₂", "O₂", "H₂"],
+          "e": "Water’s formula is H₂O, with 2 hydrogen atoms and 1 oxygen atom. CO₂ is carbon dioxide, O₂ is oxygen gas, H₂ is hydrogen gas."
+        },
+        {
+          "q": "Which state of matter has a definite shape and volume?",
+          "a": "Solid",
+          "o": ["Solid", "Liquid", "Gas", "Plasma"],
+          "e": "Solids have a definite shape and volume due to tightly packed particles. Liquids have definite volume but no shape, gases and plasma have neither."
+        },
+        {
+          "q": "What gas do plants use during photosynthesis?",
+          "a": "Carbon dioxide",
+          "o": ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+          "e": "Plants use carbon dioxide (CO₂) in photosynthesis to produce glucose: 6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂. Oxygen is a byproduct, nitrogen and hydrogen are not used."
+        },
+        {
+          "q": "Which of these is a physical change?",
+          "a": "Melting ice",
+          "o": ["Burning wood", "Melting ice", "Rusting iron", "Cooking food"],
+          "e": "Melting ice is a physical change; it becomes water but remains H₂O. Burning wood, rusting iron, and cooking food create new substances (chemical changes)."
+        },
+        {
+          "q": "What is the smallest unit of an element?",
+          "a": "Atom",
+          "o": ["Molecule", "Atom", "Compound", "Mixture"],
+          "e": "An atom is the smallest unit of an element, retaining its properties. Molecules are multiple atoms, compounds are chemically bonded elements, mixtures are physically combined substances."
+        },
+        {
+          "q": "Which of the following is a metal?",
+          "a": "Iron",
+          "o": ["Oxygen", "Iron", "Chlorine", "Sulfur"],
+          "e": "Iron is a metal with conductivity, malleability, and luster. Oxygen, chlorine, and sulfur are non-metals."
+        },
+        {
+          "q": "What is formed when two or more elements chemically combine?",
+          "a": "Compound",
+          "o": ["Mixture", "Compound", "Solution", "Alloy"],
+          "e": "A compound forms when elements chemically bond (e.g., H₂O). Mixtures, solutions, and alloys are physical combinations, not chemical."
+        },
+        {
+          "q": "Which gas is most abundant in the Earth’s atmosphere?",
+          "a": "Nitrogen",
+          "o": ["Oxygen", "Nitrogen", "Carbon dioxide", "Argon"],
+          "e": "Nitrogen (~78%) is the most abundant gas in the atmosphere. Oxygen (~21%), carbon dioxide (~0.04%), and argon (~0.93%) are less abundant."
+        },
+        {
+          "q": "What happens to water when it is heated to 100°C at standard pressure?",
+          "a": "It boils",
+          "o": ["It freezes", "It boils", "It condenses", "It sublimates"],
+          "e": "At 100°C and standard pressure, water boils, turning into vapor. Freezing is at 0°C, condensation is gas to liquid, sublimation is solid to gas."
+        },
+        {
+          "q": "Which of these is an example of a chemical change?",
+          "a": "Burning a candle",
+          "o": ["Cutting paper", "Dissolving sugar in water", "Burning a candle", "Freezing water"],
+          "e": "Burning a candle produces new substances (CO₂, water vapor), a chemical change. Cutting paper, dissolving sugar, and freezing water are physical changes."
+        }
+      ],
+      "blank": [
+        {
+          "q": "The chemical symbol for oxygen is ________.",
+          "a": "O",
+          "e": "Oxygen’s chemical symbol is O, derived from its name, representing one oxygen atom in the periodic table."
+        },
+        {
+          "q": "A substance made of only one type of atom is called a/an ________.",
+          "a": "element",
+          "e": "An element consists of only one type of atom (e.g., gold, Au) and cannot be broken down chemically."
+        },
+        {
+          "q": "The process of a liquid turning into a gas is called ________.",
+          "a": "evaporation",
+          "e": "Evaporation occurs when liquid molecules at the surface gain energy to become gas, happening below the boiling point."
+        },
+        {
+          "q": "The smallest particle of a compound is called a ________.",
+          "a": "molecule",
+          "e": "A molecule is the smallest unit of a compound (e.g., H₂O in water) retaining its chemical properties."
+        },
+        {
+          "q": "Iron reacts with oxygen and moisture to form ________.",
+          "a": "rust",
+          "e": "Iron reacts with oxygen and moisture to form iron oxide (rust, Fe₂O₃·xH₂O), a reddish-brown substance."
+        },
+        {
+          "q": "The chemical formula for carbon dioxide is ________.",
+          "a": "CO₂",
+          "e": "Carbon dioxide’s formula is CO₂, with one carbon and two oxygen atoms chemically bonded."
+        },
+        {
+          "q": "A change that does not produce a new substance is called a ________ change.",
+          "a": "physical",
+          "e": "A physical change alters form or state (e.g., melting ice) but not chemical composition, unlike chemical changes."
+        },
+        {
+          "q": "The ________ table organizes all known elements.",
+          "a": "periodic",
+          "e": "The periodic table arranges elements by atomic number, showing patterns in properties and aiding chemical studies."
+        },
+        {
+          "q": "The boiling point of water is ________ °C.",
+          "a": "100",
+          "e": "Water boils at 100°C at standard pressure, turning from liquid to vapor."
+        },
+        {
+          "q": "A mixture of two or more metals is called a/an ________.",
+          "a": "alloy",
+          "e": "An alloy is a mixture of metals (e.g., steel = iron + carbon) to enhance properties like strength."
+        }
+      ]
+    },
+    "physics": {
+      "mcq": [
+        {
+          "q": "What is the SI unit of length?",
+          "a": "Meter",
+          "o": ["Kilogram", "Meter", "Second", "Liter"],
+          "e": "Meter is the SI unit of length. Kilogram is for mass, Second for time, Liter for volume."
+        },
+        {
+          "q": "Which of the following is an example of a non-contact force?",
+          "a": "Gravity",
+          "o": ["Friction", "Gravity", "Push", "Pull"],
+          "e": "Gravity acts without physical contact, pulling objects toward Earth. Friction, push, and pull require contact."
+        },
+        {
+          "q": "What type of energy is stored in a stretched rubber band?",
+          "a": "Potential energy",
+          "o": ["Kinetic energy", "Potential energy", "Thermal energy", "Chemical energy"],
+          "e": "A stretched rubber band stores elastic potential energy due to its deformation. Kinetic is motion, thermal is heat, chemical is in bonds."
+        },
+        {
+          "q": "Which instrument is used to measure time accurately?",
+          "a": "Stopwatch",
+          "o": ["Thermometer", "Barometer", "Stopwatch", "Ruler"],
+          "e": "A stopwatch measures time intervals accurately. Thermometer measures temperature, barometer pressure, ruler length."
+        },
+        {
+          "q": "What happens to the speed of an object if it moves with uniform motion?",
+          "a": "It remains constant",
+          "o": ["It increases", "It decreases", "It remains constant", "It stops"],
+          "e": "Uniform motion means constant speed in a straight line, so speed remains constant."
+        },
+        {
+          "q": "Which of these is a source of heat energy?",
+          "a": "Sun",
+          "o": ["Sun", "Moon", "Wind", "Water"],
+          "e": "The Sun produces heat via nuclear reactions, warming Earth. Moon reflects light, wind and water transfer but don’t produce heat."
+        },
+        {
+          "q": "A plane mirror forms an image that is:",
+          "a": "Virtual and upright",
+          "o": ["Real and inverted", "Virtual and upright", "Real and upright", "Virtual and inverted"],
+          "e": "Plane mirrors form virtual, upright images, same size and distance behind the mirror, laterally inverted."
+        },
+        {
+          "q": "Which of the following is an example of a renewable energy source?",
+          "a": "Solar energy",
+          "o": ["Coal", "Solar energy", "Petroleum", "Natural gas"],
+          "e": "Solar energy is renewable, sourced from the Sun. Coal, petroleum, and natural gas are finite fossil fuels."
+        },
+        {
+          "q": "What is the term for the distance covered by an object in a unit of time?",
+          "a": "Speed",
+          "o": ["Speed", "Force", "Acceleration", "Mass"],
+          "e": "Speed is distance per unit time (e.g., 50 km/h). Force is push/pull, acceleration is velocity change, mass is matter quantity."
+        },
+        {
+          "q": "Which color of light is reflected by a red object?",
+          "a": "Red",
+          "o": ["Blue", "Green", "Red", "Yellow"],
+          "e": "A red object reflects red light and absorbs other colors, making it appear red."
+        }
+      ],
+      "blank": [
+        {
+          "q": "The SI unit of force is ________.",
+          "a": "Newton",
+          "e": "The SI unit of force is Newton (N), defined as 1 kg·m/s²."
+        },
+        {
+          "q": "The energy of a moving object is called ________ energy.",
+          "a": "kinetic",
+          "e": "Kinetic energy is the energy of motion, proportional to mass and speed squared."
+        },
+        {
+          "q": "The force that opposes motion between two surfaces is called ________.",
+          "a": "friction",
+          "e": "Friction opposes motion between contacting surfaces, like rubbing hands."
+        },
+        {
+          "q": "A ________ is used to measure the mass of an object.",
+          "a": "balance",
+          "e": "A balance (e.g., beam balance) measures an object’s mass by comparing it to known weights."
+        },
+        {
+          "q": "The change in position of an object with respect to time is called ________.",
+          "a": "motion",
+          "e": "Motion is the change in an object’s position over time, like a moving car."
+        },
+        {
+          "q": "The image formed by a convex lens can be ________ or virtual.",
+          "a": "real",
+          "e": "A convex lens can form real (projectable) or virtual images, depending on object distance."
+        },
+        {
+          "q": "The ability to do work is called ________.",
+          "a": "energy",
+          "e": "Energy is the capacity to do work, existing in forms like kinetic or potential."
+        },
+        {
+          "q": "The bouncing back of light from a surface is called ________.",
+          "a": "reflection",
+          "e": "Reflection is light bouncing off a surface, like in a mirror, following the law of reflection."
+        },
+        {
+          "q": "The speed of an object is calculated as ________ divided by time.",
+          "a": "distance",
+          "e": "Speed is distance divided by time (e.g., 100 km / 2 h = 50 km/h)."
+        },
+        {
+          "q": "A shadow is formed when light is blocked by a/an ________ object.",
+          "a": "opaque",
+          "e": "An opaque object blocks light, casting a shadow, unlike transparent or translucent objects."
+        }
+      ]
+    }
+  },
   "8": {
     "math": {
       "mcq": [
