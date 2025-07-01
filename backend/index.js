@@ -15,6 +15,7 @@ const courseRouter = require("./routes/courseRoute")
 const subjectRouter = require("./routes/subjectRoute");
 const examRouter = require("./routes/examRoute");
 const feedbackRouter = require("./routes/feedbackRoute");
+const behaviourRouter = require("./routes/behaviourRoute");
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use('/api/course', courseRouter)
 app.use('/api/subject', subjectRouter);
 app.use('/api/exam', examRouter);
 app.use('/api/feedback', feedbackRouter);
+app.use('/api/behaviour', behaviourRouter);
 
 
 const PORT = process.env.PORT || 5000;
