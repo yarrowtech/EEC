@@ -390,6 +390,10 @@ function MCQ({array, insight, setInsight}) {
     setChecked(false)
   }, [checked])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [showAnswers])
+
   // Handler for answer input
   const handleEecInput = (idx, value) => {
     setEecAnswers((prev) => ({ ...prev, [idx]: value }));
@@ -490,6 +494,10 @@ function Blank({array, insight, setInsight}) {
     setShowAnswers(false);
     setEecFeedback(null);
   }, [array])
+
+    useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [showAnswers])
 
   useEffect(() => {
     if (!checked) return
