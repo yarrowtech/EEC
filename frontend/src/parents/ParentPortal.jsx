@@ -51,20 +51,33 @@ const ParentPortal = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 flex gap-0">
       {/* Mobile Sidebar Toggle */}
-      <button
+      {/* <button
         className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-yellow-500 text-white rounded-lg"
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
         {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+      </button> */}
+
+      {/* Backdrop for mobile sidebar */}
+      {/* {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-30 z-30 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+          aria-label="Close sidebar"
+        />
+      )} */}
 
       {/* Sidebar */}
-      <div className={`
-        fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-40
-        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-      `}>
+      <div
+        className={`
+          top-0 left-0 h-screen bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-40
+          lg:translate-x-0
+        `}
+        style={{ willChange: 'transform' }}
+        aria-label="Sidebar"
+      >
         <div className="p-6 h-full flex flex-col">
           <div className="flex items-center space-x-3 mb-8">
             <div className="h-12 w-12 rounded-full bg-yellow-100 flex items-center justify-center">
@@ -107,22 +120,22 @@ const ParentPortal = () => {
       </div>
 
       {/* Main Content */}
-      <div className="lg:ml-64 min-h-screen">
+      <div className="min-h-screen">
         <Routes>
           <Route path="/" element={<ParentDashboard />} />
-          <Route path="/attendance" element={<AttendanceReport />} />
-          <Route path="/academic" element={<AcademicReport />} />
-          <Route path="/fees" element={<FeesPayment />} />
-          <Route path="/health" element={<HealthReport />} />
-          <Route path="/complaints" element={<ComplaintManagementSystem />} />
-          <Route path="/ptm" element={<PTMPortal />} />
-          <Route path="/results" element={<ResultsView />} />
-          <Route path="/achievements" element={<AchievementsView />} />
-          <Route path="/courses" element={<CoursesView />} />
+          <Route path="attendance" element={<AttendanceReport />} />
+          <Route path="academic" element={<AcademicReport />} />
+          <Route path="fees" element={<FeesPayment />} />
+          <Route path="health" element={<HealthReport />} />
+          <Route path="complaints" element={<ComplaintManagementSystem />} />
+          <Route path="ptm" element={<PTMPortal />} />
+          <Route path="results" element={<ResultsView />} />
+          <Route path="achievements" element={<AchievementsView />} />
+          <Route path="courses" element={<CoursesView />} />
         </Routes>
       </div>
     </div>
   );
 };
 
-export default ParentPortal; 
+export default ParentPortal;
