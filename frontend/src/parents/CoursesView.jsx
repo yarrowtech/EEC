@@ -46,57 +46,48 @@ const CoursesView = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-2 sm:p-4 md:p-6 max-w-5xl mx-auto w-full">
       {/* Header */}
-      <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl p-6 mb-6 text-white">
-        <h1 className="text-3xl font-bold mb-2">Courses</h1>
-        <p className="text-yellow-100">View your child's enrolled courses</p>
+      <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl p-4 sm:p-6 mb-4 sm:mb-6 text-white">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2">Courses</h1>
+        <p className="text-yellow-100 text-sm sm:text-base">View your child's enrolled courses</p>
       </div>
 
       {/* Student Info & Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-        <div className="bg-white rounded-xl p-6 shadow-sm">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">Student Info</h3>
-          <div className="space-y-2">
-            <p className="text-gray-600">Name: {coursesData.studentName}</p>
-            <p className="text-gray-600">Class: {coursesData.class}</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-4 sm:mb-6">
+        <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm">
+          <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2 sm:mb-4">Student Info</h3>
+          <div className="space-y-1 sm:space-y-2">
+            <p className="text-gray-600 text-sm sm:text-base">Name: {coursesData.studentName}</p>
+            <p className="text-gray-600 text-sm sm:text-base">Class: {coursesData.class}</p>
           </div>
         </div>
-
-        <div className="bg-white rounded-xl p-6 shadow-sm">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold text-yellow-600">{coursesData.totalCourses}</h3>
-            <p className="text-gray-600">Total Courses</p>
-          </div>
+        <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm flex flex-col items-center justify-center">
+          <h3 className="text-xl sm:text-2xl font-bold text-yellow-600">{coursesData.totalCourses}</h3>
+          <p className="text-gray-600 text-sm sm:text-base">Total Courses</p>
         </div>
-
-        <div className="bg-white rounded-xl p-6 shadow-sm">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold text-blue-600">{coursesData.completedModules}</h3>
-            <p className="text-gray-600">Completed Modules</p>
-          </div>
+        <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm flex flex-col items-center justify-center">
+          <h3 className="text-xl sm:text-2xl font-bold text-blue-600">{coursesData.completedModules}</h3>
+          <p className="text-gray-600 text-sm sm:text-base">Completed Modules</p>
         </div>
-
-        <div className="bg-white rounded-xl p-6 shadow-sm">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold text-red-600">{coursesData.upcomingAssignments}</h3>
-            <p className="text-gray-600">Upcoming Assignments</p>
-          </div>
+        <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm flex flex-col items-center justify-center">
+          <h3 className="text-xl sm:text-2xl font-bold text-red-600">{coursesData.upcomingAssignments}</h3>
+          <p className="text-gray-600 text-sm sm:text-base">Upcoming Assignments</p>
         </div>
       </div>
 
       {/* Course List */}
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {coursesData.courses.map((course) => (
           <div key={course.id} className="bg-white rounded-xl shadow-sm overflow-hidden">
-            <div className="p-6">
-              <div className="flex items-start justify-between mb-4">
+            <div className="p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-3 sm:mb-4 gap-2 sm:gap-0">
                 <div className="space-y-1">
                   <div className="flex items-center space-x-2">
                     <BookOpen className="w-5 h-5 text-yellow-500" />
-                    <h3 className="text-lg font-semibold text-gray-800">{course.name}</h3>
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-800">{course.name}</h3>
                   </div>
-                  <div className="flex items-center space-x-4 text-sm text-gray-500">
+                  <div className="flex flex-wrap items-center space-x-4 text-xs sm:text-sm text-gray-500">
                     <div className="flex items-center space-x-1">
                       <Users className="w-4 h-4" />
                       <span>{course.teacher}</span>
@@ -107,16 +98,16 @@ const CoursesView = () => {
                     </div>
                   </div>
                 </div>
-                <button className="flex items-center space-x-1 text-sm text-yellow-600 hover:text-yellow-700">
+                <button className="flex items-center space-x-1 text-xs sm:text-sm text-yellow-600 hover:text-yellow-700">
                   <Download className="w-4 h-4" />
                   <span>Materials</span>
                 </button>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {/* Progress Bar */}
                 <div>
-                  <div className="flex items-center justify-between text-sm mb-1">
+                  <div className="flex items-center justify-between text-xs sm:text-sm mb-1">
                     <span className="text-gray-600">Course Progress</span>
                     <span className="font-medium text-gray-800">{course.progress}%</span>
                   </div>
@@ -129,35 +120,35 @@ const CoursesView = () => {
                 </div>
 
                 {/* Course Stats */}
-                <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-100">
+                <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 pt-3 sm:pt-4 border-t border-gray-100">
                   <div>
-                    <p className="text-sm text-gray-500">Modules</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Modules</p>
                     <p className="font-medium text-gray-800">{course.completedModules}/{course.modules}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Next Assignment</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Next Assignment</p>
                     <div className="flex items-center space-x-1">
                       <Calendar className="w-4 h-4 text-gray-400" />
                       <p className="font-medium text-gray-800">{new Date(course.nextAssignment).toLocaleDateString()}</p>
                     </div>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Materials</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Materials</p>
                     <p className="font-medium text-gray-800">{course.materials.length} items</p>
                   </div>
                 </div>
 
                 {/* Course Materials */}
-                <div className="pt-4 border-t border-gray-100">
-                  <div className="flex items-center space-x-2 mb-2">
+                <div className="pt-3 sm:pt-4 border-t border-gray-100">
+                  <div className="flex items-center space-x-2 mb-1 sm:mb-2">
                     <FileText className="w-4 h-4 text-gray-500" />
-                    <h4 className="text-sm font-medium text-gray-700">Available Materials</h4>
+                    <h4 className="text-xs sm:text-sm font-medium text-gray-700">Available Materials</h4>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {course.materials.map((material, index) => (
                       <span
                         key={index}
-                        className="inline-block px-3 py-1 text-xs font-medium bg-gray-100 text-gray-600 rounded-full"
+                        className="inline-block px-2 sm:px-3 py-1 text-xs font-medium bg-gray-100 text-gray-600 rounded-full"
                       >
                         {material}
                       </span>
@@ -173,4 +164,4 @@ const CoursesView = () => {
   );
 };
 
-export default CoursesView; 
+export default CoursesView;
