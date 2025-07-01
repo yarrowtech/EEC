@@ -119,9 +119,9 @@ const RoutineView = () => {
   };
 
   return (
-    <div className="space-y-4 sm:space-y-6 p-2 sm:p-0">
+    <div className=" space-y-4 sm:space-y-6 p-2 sm:p-0">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
+      <div className=" flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
         <div className="flex items-center space-x-3">
           <div className="p-3 bg-indigo-100 rounded-lg">
             <Calendar className="text-indigo-600" size={24} />

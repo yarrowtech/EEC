@@ -8,6 +8,7 @@ import AssignmentView from './AssignmentView';
 import CoursesView from './CoursesView';
 import AchievementsView from './AchievementsView';
 import ThemeCustomizer from './ThemeCustomizer';
+import ProfileUpdate from './ProfileUpdate';
 
 const Dashboard = () => {
   const [activeView, setActiveView] = useState('dashboard');
@@ -21,6 +22,7 @@ const Dashboard = () => {
     assignments: <AssignmentView />,
     courses: <CoursesView />,
     achievements: <AchievementsView />,
+    profile: <ProfileUpdate />,
     themecustomizer: <ThemeCustomizer />,
   };
 
@@ -37,7 +39,7 @@ const Dashboard = () => {
         setIsOpen={setSidebarOpen}
       />
       <div 
-        className={`flex-1 flex flex-col w-full transition-all duration-300 ${
+        className={` flex-1 flex flex-col w-screen transition-all duration-300 ${
           sidebarOpen ? 'md:ml-64' : 'md:ml-20'
         }`}
       >

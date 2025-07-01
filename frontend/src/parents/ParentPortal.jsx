@@ -103,7 +103,8 @@ const ParentPortal = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-yellow-50 text-gray-700 hover:text-yellow-600 transition-colors ${
+                onClick={() => setSidebarOpen(false)}
+                className={`flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-yellow-50!sidebarOpen) text-gray-700 hover:text-yellow-600 transition-colors ${
                   item.readOnly ? 'cursor-default opacity-75' : ''
                 }`}
               >

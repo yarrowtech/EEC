@@ -3,6 +3,27 @@ import { Bell, Search, Menu } from 'lucide-react';
 
 const Header = ({ sidebarOpen, setSidebarOpen }) => {
   const [notifications] = useState(3);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const notificationList = [
+    {
+      id: 1,
+      type: 'assignment',
+      message: 'Math Assignment due tomorrow!',
+      time: '2 hours ago',
+    },
+    {
+      id: 2,
+      type: 'exam',
+      message: 'Science Exam scheduled for Friday.',
+      time: '1 day ago',
+    },
+    {
+      id: 3,
+      type: 'general',
+      message: 'School will be closed next Monday.',
+      time: '3 days ago',
+    },
+  ];
   const [profileOpen, setProfileOpen] = useState(false);
   
   const studentData = {
@@ -64,7 +85,11 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
           <div className="hidden sm:flex items-center space-x-4 ml-4">
             {/* Notifications */}
             <div className="relative">
-              <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors relative">
+              <button
+                className="p-2 rounded-lg hover:bg-gray-100 transition-colors relative"
+                onClick={() => setShowNotifications((prev) => !prev)}
+                aria-label="Show notifications"
+              >
                 <Bell size={20} className="text-gray-600" />
                 {notifications > 0 && (
                   <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
@@ -72,6 +97,25 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
                   </span>
                 )}
               </button>
+              {showNotifications && (
+                <div className="absolute right-0 mt-2 w-80 max-w-xs bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                  <div className="p-4 border-b font-semibold text-gray-700">Notifications</div>
+                  <ul className="divide-y divide-gray-100 max-h-64 overflow-y-auto">
+                    {notificationList.map((n) => (
+                      <li key={n.id} className="px-4 py-3 flex items-start gap-3 hover:bg-yellow-50 transition-colors">
+                        <span className={`mt-1 w-2 h-2 rounded-full ${n.type === 'assignment' ? 'bg-yellow-500' : n.type === 'exam' ? 'bg-blue-500' : 'bg-gray-400'}`}></span>
+                        <div className="flex-1">
+                          <div className="text-sm text-gray-800">{n.message}</div>
+                          <div className="text-xs text-gray-400 mt-1">{n.time}</div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                  {notificationList.length === 0 && (
+                    <div className="p-4 text-gray-500 text-sm text-center">No new notifications</div>
+                  )}
+                </div>
+              )}
             </div>
             {/* Profile (desktop) */}
             <div className="relative flex items-center space-x-2">

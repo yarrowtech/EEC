@@ -352,7 +352,7 @@ const ComplaintManagementSystem = () => {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
               <FileText className="w-8 h-8 text-blue-600" />
-              <h1 className="text-xl font-bold text-gray-900" >Complaint Portal</h1>
+              <h1 className="text-xs md:text-5xl font-bold text-gray-900" >Complaint Portal</h1>
             </div>
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
