@@ -118,11 +118,16 @@ const AssignmentView = () => {
   const [selectedClass, setSelectedClass] = useState("5");
   const [eecSubject, setEecSubject] = useState("science"); // 'science', 'math', 'game'
   const [questionData, setQuestionData] = useState(questionPaper);
+  const [insight, setInsight] = useState({studentClass: selectedClass, subject: eecSubject, startTime: new Date(), questionType: questionType, endTime: null, correct: 0, incorrect: 0});
 
   useEffect(() => {
     if(!selectedClass || !questionData[selectedClass]) return;
     setEecSubject(Object.keys(questionData[selectedClass])[0])
   }, [selectedClass])
+
+  useEffect(() => {
+    setInsight({studentClass: selectedClass, subject: eecSubject, questionType: questionType, startTime: new Date(), endTime: null, correct: 0, incorrect: 0});
+  }, [selectedClass, eecSubject, questionType])
 
   return (
     <div className="w-full min-h-screen bg-white px-1 sm:px-4 md:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6">
@@ -342,8 +347,8 @@ const AssignmentView = () => {
           </div>
           <div className="space-y-4">
             {
-              questionType === "mcq" ? <MCQ array={questionData[selectedClass][eecSubject]?.mcq} /> :
-              <Blank array={questionData[selectedClass][eecSubject]?.blank} />
+              questionType === "mcq" ? <MCQ array={questionData[selectedClass][eecSubject]?.mcq} insight={insight} setInsight={setInsight} /> :
+              <Blank array={questionData[selectedClass][eecSubject]?.blank} insight={insight} setInsight={setInsight} />
             }
           </div>
         </div>
@@ -352,16 +357,38 @@ const AssignmentView = () => {
   );
 };
 
-function MCQ({array}) {
+function MCQ({array, insight, setInsight}) {
   const [eecFeedback, setEecFeedback] = useState(null);
   const [showAnswers, setShowAnswers] = useState(false);
   const [eecAnswers, setEecAnswers] = useState({}); // { [idx]: userInput }
+  const [checked, setChecked] = useState(false)
 
 
   useEffect(() => {
     setShowAnswers(false);
     setEecFeedback(null);
   }, [array])
+
+  useEffect(() => {
+    if (!checked) return
+    fetch(`${import.meta.env.VITE_API_URL}/api/behaviour/submit`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(insight)
+    }).then(res => {
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return res.json();
+    }).then(data => {
+      console.log(data)
+    }).catch(error => {
+      console.error(error);
+    })
+    setChecked(false)
+  }, [checked])
 
   // Handler for answer input
   const handleEecInput = (idx, value) => {
@@ -378,6 +405,10 @@ function MCQ({array}) {
     });
     setEecFeedback(correction);
     setShowAnswers(true);
+    setInsight((prev) => {
+      return {...prev, endTime: new Date(), correct: correction.filter(c => c).length, incorrect: correction.filter(c => !c).length}
+    })
+    setChecked(true)
   };
 
   return (
@@ -448,16 +479,38 @@ function MCQ({array}) {
   );
 }
 
-function Blank({array}) {
+function Blank({array, insight, setInsight}) {
 
   const [eecFeedback, setEecFeedback] = useState(null);
   const [showAnswers, setShowAnswers] = useState(false);
   const [eecAnswers, setEecAnswers] = useState({}); // { [idx]: userInput }
+  const [checked, setChecked] = useState(false)
 
   useEffect(() => {
     setShowAnswers(false);
     setEecFeedback(null);
   }, [array])
+
+  useEffect(() => {
+    if (!checked) return
+    fetch(`${import.meta.env.VITE_API_URL}/api/behaviour/submit`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(insight)
+    }).then(res => {
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return res.json();
+    }).then(data => {
+      console.log(data)
+    }).catch(error => {
+      console.error(error);
+    })
+    setChecked(false)
+  }, [checked])
 
   // Handler for answer input
   const handleEecInput = (idx, value) => {
@@ -474,6 +527,10 @@ function Blank({array}) {
     });
     setEecFeedback(correction);
     setShowAnswers(true);
+    setInsight((prev) => {
+      return {...prev, endTime: new Date(), correct: correction.filter(c => c).length, incorrect: correction.filter(c => !c).length}
+    })
+    setChecked(true)
   };
 
   return (
