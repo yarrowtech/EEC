@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
-import { FileText, Calendar, Search, Plus, Clock, AlertCircle } from 'lucide-react';
+import { FileText, Calendar, Search, Plus, Clock, AlertCircle, X } from 'lucide-react';
 
 const AssignmentManagement = () => {
   const [selectedAssignment, setSelectedAssignment] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [newAssignment, setNewAssignment] = useState({
+    title: "",
+    subject: "",
+    class: "",
+    dueDate: "",
+    maxMarks: "",
+    status: "draft",
+  });
 
   const assignments = [
     {
@@ -28,6 +37,15 @@ const AssignmentManagement = () => {
       totalStudents: 45
     }
   ];
+
+  const handleChange = (e) => {
+    setNewAssignment({ ...newAssignment, [e.target.name]: e.target.value });
+  };
+
+  const handleCreate = () => {
+    // Add logic to save this assignment to your backend or state
+    setShowModal(false);
+  };
 
   return (
     <div className="p-6">
@@ -59,6 +77,7 @@ const AssignmentManagement = () => {
 
           <button 
             className="flex items-center space-x-2 px-4 py-2 bg-yellow-500 text-black rounded-lg hover:bg-yellow-600 transition-colors"
+            onClick={() => setShowModal(true)}
           >
             <Plus className="w-4 h-4" />
             <span>Create Assignment</span>
@@ -155,8 +174,88 @@ const AssignmentManagement = () => {
           </div>
         </div>
       </div>
+
+      {/* Create Assignment Modal */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-30 flex items-center justify-center">
+          <div className="bg-white w-full max-w-lg rounded-xl p-6 shadow-lg relative">
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <h2 className="text-xl font-semibold text-gray-800 mb-4">Create New Assignment</h2>
+            <div className="space-y-4">
+              <input
+                name="title"
+                value={newAssignment.title}
+                onChange={handleChange}
+                type="text"
+                placeholder="Title"
+                className="w-full border px-3 py-2 rounded-lg"
+              />
+              <input
+                name="subject"
+                value={newAssignment.subject}
+                onChange={handleChange}
+                type="text"
+                placeholder="Subject"
+                className="w-full border px-3 py-2 rounded-lg"
+              />
+              <input
+                name="class"
+                value={newAssignment.class}
+                onChange={handleChange}
+                type="text"
+                placeholder="Class (e.g. 10-A)"
+                className="w-full border px-3 py-2 rounded-lg"
+              />
+              <input
+                name="dueDate"
+                value={newAssignment.dueDate}
+                onChange={handleChange}
+                type="date"
+                placeholder="Due date"
+                className="w-full border px-3 py-2 rounded-lg"
+              />
+              <input
+                name="maxMarks"
+                value={newAssignment.maxMarks}
+                onChange={handleChange}
+                type="number"
+                placeholder="Marks"
+                className="w-full border px-3 py-2 rounded-lg"
+              />
+              <select
+                name="status"
+                value={newAssignment.status}
+                onChange={handleChange}
+                className="w-full border px-3 py-2 rounded-lg"
+              >
+                <option value="active">Active</option>
+                <option value="draft">Draft</option>
+              </select>
+            </div>
+            <div className="mt-6 flex justify-end space-x-3">
+              <button
+                onClick={() => setShowModal(false)}
+                className="px-4 py-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-100"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleCreate}
+                className="px-4 py-2 rounded-lg bg-yellow-500 hover:bg-yellow-600 text-black font-medium"
+              >
+                Create
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-export default AssignmentManagement; 
+export default AssignmentManagement;
