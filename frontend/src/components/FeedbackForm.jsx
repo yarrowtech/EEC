@@ -45,7 +45,7 @@ const FeedbackForm = ({ onClose, onSubmit }) => {
           {/* Feedback Text Area */}
           <div className="mb-6">
             <label htmlFor="feedback" className="block text-sm font-medium text-gray-700 mb-2">
-              Additional Comments (Optional)
+              Additional Comments
             </label>
             <textarea
               id="feedback"
