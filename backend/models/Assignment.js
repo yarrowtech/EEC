@@ -5,6 +5,11 @@ const assignmentSchema = new mongoose.Schema({
   subject: String,
   class: String,
   marks: Number,
+  status: {
+    type: String,
+    enum: ["draft", "active"],
+    default: "draft",
+  },
   dueDate: Date,
   createdAt: {
     type: Date,

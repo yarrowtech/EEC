@@ -1,51 +1,67 @@
 import React, { useState } from 'react';
 import { FileText, Calendar, Search, Plus, Clock, AlertCircle, X } from 'lucide-react';
+import { useEffect } from 'react';
 
 const AssignmentManagement = () => {
-  const [selectedAssignment, setSelectedAssignment] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [newAssignment, setNewAssignment] = useState({
     title: "",
     subject: "",
     class: "",
     dueDate: "",
-    maxMarks: "",
+    marks: "",
     status: "draft",
   });
 
-  const assignments = [
-    {
-      id: 1,
-      title: "Mathematics Assignment 1",
-      subject: "Mathematics",
-      class: "10-A",
-      dueDate: "2024-03-25",
-      maxMarks: 100,
-      status: "active",
-      submissionCount: 15,
-      totalStudents: 45
-    },
-    {
-      id: 2,
-      title: "Science Project",
-      subject: "Science",
-      class: "10-A",
-      dueDate: "2024-03-28",
-      maxMarks: 50,
-      status: "draft",
-      submissionCount: 0,
-      totalStudents: 45
-    }
-  ];
+  const [assignments, setAssignments] = useState([])
+  const [filteredAssignments, setFilteredAssignments] = useState(assignments);
 
   const handleChange = (e) => {
     setNewAssignment({ ...newAssignment, [e.target.name]: e.target.value });
   };
 
-  const handleCreate = () => {
-    // Add logic to save this assignment to your backend or state
-    setShowModal(false);
+  const handleCreate = async () => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/assignment/add`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newAssignment),
+      })
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await res.json();
+      console.log(data)
+      setShowModal(false);
+    } catch(error) {
+      console.error("Error creating assignment:", error);
+    }
   };
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/assignment/fetch`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then( res => {
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return res.json();
+    }).then( data => {
+      setAssignments(data);
+      console.log(data[0].dueDate)
+    }).catch( error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
+  }, [])
+
+  useEffect(() => {
+    setFilteredAssignments(assignments);
+  }, [assignments]);
 
   return (
     <div className="p-6">
@@ -65,13 +81,37 @@ const AssignmentManagement = () => {
                 type="text"
                 placeholder="Search assignments..."
                 className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                onChange={(e) => {
+                  const query = e.target.value.toLowerCase();
+                  setFilteredAssignments(
+                    assignments.filter(assignment =>
+                      assignment.title.toLowerCase().includes(query) ||
+                      assignment.subject.toLowerCase().includes(query) ||
+                      assignment.class.toLowerCase().includes(query)
+                    )
+                  );
+                }}
               />
             </div>
             
-            <select className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+            <select className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-yellow-500 focus:border-transparent" onChange={(e) => {
+              const selectedClass = e.target.value;
+              if (selectedClass === "all") {
+                setFilteredAssignments(assignments);
+              } else {
+                setFilteredAssignments(
+                  assignments.filter(assignment => assignment.class === selectedClass)
+                );
+              }
+            }}>
               <option value="all">All Classes</option>
-              <option value="10-A">Class 10-A</option>
-              <option value="10-B">Class 10-B</option>
+              {
+                assignments.map((assignment, index) => (
+                  <option key={index} value={assignment.class}>
+                    {assignment.class}
+                  </option>
+                ))
+              }
             </select>
           </div>
 
@@ -94,9 +134,9 @@ const AssignmentManagement = () => {
             </div>
             <div className="p-4">
               <div className="space-y-4">
-                {assignments.map((assignment) => (
+                {filteredAssignments.map((assignment) => (
                   <div
-                    key={assignment.id}
+                    key={assignment._id}
                     className="bg-white border border-gray-200 rounded-lg p-4 hover:border-yellow-500 transition-colors"
                   >
                     <div className="flex items-start justify-between">
@@ -117,15 +157,15 @@ const AssignmentManagement = () => {
                         <div className="flex items-center space-x-4 text-sm text-gray-500">
                           <div className="flex items-center space-x-1">
                             <Calendar className="w-4 h-4" />
-                            <span>Due: {assignment.dueDate}</span>
+                            <span>Due: {new Date(assignment.dueDate).toLocaleDateString()}</span>
                           </div>
                           <div className="flex items-center space-x-1">
                             <FileText className="w-4 h-4" />
-                            <span>Max Marks: {assignment.maxMarks}</span>
+                            <span>Max Marks: {assignment.marks}</span>
                           </div>
                         </div>
                         <div className="flex items-center space-x-2 text-sm text-gray-500">
-                          <span>Submissions: {assignment.submissionCount}/{assignment.totalStudents}</span>
+                          <span>Submissions: 0/0</span>
                         </div>
                       </div>
                     </div>
@@ -162,11 +202,11 @@ const AssignmentManagement = () => {
               {assignments
                 .filter(a => a.status === 'active')
                 .map(assignment => (
-                  <div key={assignment.id} className="flex items-start space-x-3">
+                  <div key={assignment._id} className="flex items-start space-x-3">
                     <Calendar className="w-5 h-5 text-yellow-500" />
                     <div>
                       <p className="text-sm font-medium text-gray-800">{assignment.title}</p>
-                      <p className="text-xs text-gray-500">Due: {assignment.dueDate}</p>
+                      <p className="text-xs text-gray-500">Due: {new Date(assignment.dueDate).toLocaleDateString()}</p>
                     </div>
                   </div>
                 ))}
@@ -220,8 +260,8 @@ const AssignmentManagement = () => {
                 className="w-full border px-3 py-2 rounded-lg"
               />
               <input
-                name="maxMarks"
-                value={newAssignment.maxMarks}
+                name="marks"
+                value={newAssignment.marks}
                 onChange={handleChange}
                 type="number"
                 placeholder="Marks"
