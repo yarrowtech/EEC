@@ -13,16 +13,17 @@ router.get("/fetch", async (req, res) => {
 })
 router.post("/add", async (req, res) => {
     try {
-        const { title, subject, class: className, marks, dueDate } = req.body;
+        const { title, subject, class: className, marks, status, dueDate } = req.body;
         const assignment = new Assignment({
             title,
             subject,
             class: className,
             marks,
+            status,
             dueDate
         });
         await assignment.save();
-        res.status(201).json({ message: "Assignment created successfully", assignment });
+        res.status(201).json({ message: "Assignment created successfully" });
     } catch(err) {
         res.status(500).json({ error: "Internal server error" });
     }
