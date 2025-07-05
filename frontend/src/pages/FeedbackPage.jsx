@@ -196,7 +196,6 @@ const FeedbackPage = () => {
             <label htmlFor="feedback" className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 mb-2">
               <MessageCircle className="w-3 sm:w-4 h-3 sm:h-4" />
               <span className="ml-2">Additional Comments</span>
-              <span className="ml-1 text-gray-400 text-xs">(Optional)</span>
             </label>
             <textarea
               id="feedback"
