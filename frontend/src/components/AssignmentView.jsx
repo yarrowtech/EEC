@@ -147,6 +147,7 @@ const AssignmentView = () => {
           >
             <option value="school">School Assignment</option>
             <option value="eec">Practice Paper</option>
+            <option value="tryout">Tryout</option>
           </select>
         </div>
       </div>
@@ -351,6 +352,13 @@ const AssignmentView = () => {
               <Blank array={questionData[selectedClass][eecSubject]?.blank} insight={insight} setInsight={setInsight} />
             }
           </div>
+        </div>
+      )}
+
+      {/* Tryout Section */}
+      {assignmentType === 'tryout' && (
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 text-center text-lg text-gray-700 font-semibold">
+          Tryout assignments coming soon!
         </div>
       )}
     </div>
