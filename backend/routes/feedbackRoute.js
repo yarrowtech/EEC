@@ -14,7 +14,7 @@ router.get('/fetch', async (req, res) => {
 })
 
 router.post("/add", async (req, res) => {
-    const { role, name, schoolName, phone, rating, feedback } = req.body;
+    const { role, name, schoolName, phone, consent, email, class: className, rating, feedback } = req.body;
 
     if (!role || !name || !schoolName || !phone || !rating || !feedback) {
         return res.status(400).json({ message: 'All fields are required' });
@@ -26,6 +26,9 @@ router.post("/add", async (req, res) => {
             name,
             schoolName,
             phone,
+            email,
+            class: className,
+            consent,
             rating,
             feedback
         });
