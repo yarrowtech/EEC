@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Star, MessageCircle, Users, Phone, School, User } from 'lucide-react';
+import { Star, MessageCircle, Users, Phone, School, User, Book, Mail } from 'lucide-react';
 import {useNavigate} from 'react-router-dom';
 
 const FeedbackPage = () => {
@@ -10,11 +10,26 @@ const FeedbackPage = () => {
   const [name, setName] = useState('');
   const [schoolName, setSchoolName] = useState('');
   const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [selectedClass, setSelectedClass] = useState('');
+  const [agreed, setAgreed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [promoConsent, setPromoConsent] = useState('');
   const navigate = useNavigate();
+
+  const isStudent = role === 'Student';
+  const isParent = role === 'Parent';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!promoConsent) {
+      alert('Please indicate if you are willing to allow promotional use.');
+      return;
+    }
+    if (isStudent && !agreed) {
+      alert('You must agree to the Terms & Conditions.');
+      return;
+    }
     try {
       // In a real app, you would send this to your backend
       setIsLoading(true);
@@ -28,6 +43,8 @@ const FeedbackPage = () => {
           name,
           schoolName,
           phone,
+          email,
+          class: selectedClass,
           rating,
           feedback,
         }),
@@ -78,7 +95,7 @@ const FeedbackPage = () => {
           </p>
         </div>
 
-        <div onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           {/* Role Dropdown */}
           <div className="group">
             <label htmlFor="role" className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 mb-2">
@@ -157,6 +174,54 @@ const FeedbackPage = () => {
             />
           </div>
 
+          {/* Email (for everyone) */}
+          <div className="group">
+            <label htmlFor="email" className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+              <Mail className="w-3 sm:w-4 h-3 sm:h-4" />
+              <span className="ml-2">Email</span>
+            </label>
+            <input
+              id="email"
+              type="email"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-xl focus:outline-none focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 transition-all duration-200 bg-white/50 backdrop-blur-sm placeholder-gray-400"
+              placeholder="Enter your email address"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* Class Dropdown (for Student and Parent) */}
+          {(isStudent || isParent) && (
+            <div className="group">
+              <label htmlFor="class" className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+                <Book className="w-3 sm:w-4 h-3 sm:h-4" />
+                <span className="ml-2">Class</span>
+              </label>
+              <select
+                id="class"
+                value={selectedClass}
+                onChange={e => setSelectedClass(e.target.value)}
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-xl focus:outline-none focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 transition-all duration-200 bg-white/50 backdrop-blur-sm appearance-none cursor-pointer"
+                required
+              >
+                <option value="">Select class</option>
+                <option value="1">Class 1</option>
+                <option value="2">Class 2</option>
+                <option value="3">Class 3</option>
+                <option value="4">Class 4</option>
+                <option value="5">Class 5</option>
+                <option value="6">Class 6</option>
+                <option value="7">Class 7</option>
+                <option value="8">Class 8</option>
+                <option value="9">Class 9</option>
+                <option value="10">Class 10</option>
+                <option value="11">Class 11</option>
+                <option value="12">Class 12</option>
+              </select>
+            </div>
+          )}
+
           {/* Star Rating */}
           <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-4 sm:p-6 border border-yellow-100">
             <div className="flex flex-col items-center space-y-3 sm:space-y-4">
@@ -207,6 +272,39 @@ const FeedbackPage = () => {
             />
           </div>
 
+          {/* Promotional Use Consent Dropdown */}
+          <div className="group">
+            <label htmlFor="promoConsent" className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+              Are you willing to add this comment and video for our promotional use?
+            </label>
+            <select
+              id="promoConsent"
+              value={promoConsent}
+              onChange={e => setPromoConsent(e.target.value)}
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border-2 border-gray-200 rounded-xl focus:outline-none focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 transition-all duration-200 bg-white/50 backdrop-blur-sm appearance-none cursor-pointer"
+              required
+            >
+              <option value="">Select an option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+
+          {/* Terms & Conditions (for all users) */}
+          <div className="flex items-start space-x-2">
+            <input
+              id="terms"
+              type="checkbox"
+              checked={agreed}
+              onChange={e => setAgreed(e.target.checked)}
+              className="mt-1 h-4 w-4 text-yellow-600 border-gray-300 rounded focus:ring-yellow-500"
+              required
+            />
+            <label htmlFor="terms" className="text-xs sm:text-sm text-gray-700">
+              I agree to the Terms & Conditions and Privacy Policy:
+            </label>
+          </div>
+
           {/* Action Buttons */}
           <div className="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3 pt-2 sm:pt-4">
             <button
@@ -221,7 +319,7 @@ const FeedbackPage = () => {
               </svg>
             </button>
           </div>
-        </div>
+        </form>
 
         {/* Footer note */}
         <div className="mt-4 sm:mt-6 text-center">
