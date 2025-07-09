@@ -24,7 +24,6 @@ app.use(cors());
 app.use(express.json());
 
 mongoose
-  // .connect('mongodb+srv://electroniceducaresales:2JKOLjXblY74cd65@cluster0.t0wekh5.mongodb.net/eecmodifydb?retryWrites=true&w=majority&appName=Cluster0')
   .connect(process.env.MONGODB_URL)
   .then(() => console.log('MongoDB Connected'))
   .catch((err) => console.log(err));
