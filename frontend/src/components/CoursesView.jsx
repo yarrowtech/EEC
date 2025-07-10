@@ -183,10 +183,10 @@ const CoursesView = () => {
       </div>
 
       {/* Courses Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 w-full overflow-x-hidden">
         {filteredCourses.map((course) => (
           <div key={course.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden w-full">
-            <div className="h-48 bg-blue-100 relative flex items-end justify-start">
+            <div className="h-48 bg-blue-100 relative flex items-end justify-start w-full">
               {/* Show course image if available, else fallback to light bg */}
               {course.image && (
                 <img src={course.image} alt={course.title} className="absolute inset-0 w-full h-full object-cover object-center" style={{zIndex:0}} />

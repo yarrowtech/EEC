@@ -67,7 +67,7 @@ const Sidebar = ({ activeView, setActiveView, isOpen, setIsOpen }) => {
                   <li key={item.id}>
                     <Link
                       to={item.link}
-                      onClick={() => setIsOpen(false)}
+                      // No sidebar close on menu click
                       className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 ${
                         window.location.pathname === item.link
                           ? 'bg-gradient-to-r from-yellow-400 to-amber-500 text-white shadow-lg'
@@ -85,7 +85,7 @@ const Sidebar = ({ activeView, setActiveView, isOpen, setIsOpen }) => {
                   <button
                     onClick={() => {
                       setActiveView(item.id)
-                      setIsOpen(false);
+                      // No sidebar close on menu click
                     }}
                     className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 ${
                       isActive 

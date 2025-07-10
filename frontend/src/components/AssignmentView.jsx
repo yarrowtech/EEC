@@ -9,10 +9,22 @@ import {
   Download,
 } from "lucide-react";
 import { questionPaper } from "./questionPaper";
+import ChoiceMatrix from '../tryout/choice_matrix';
+import ClozeDragDrop from '../tryout/cloze_drag_drop';
+import ClozeDropDown from '../tryout/cloze_drop_down';
+import ClozeText from '../tryout/cloze_text';
+import FileUpload from '../tryout/file_upload';
+import ImageHighlighter from '../tryout/image_highlighter';
+import MatchList from '../tryout/match_list';
+import MCQTryout from '../tryout/mcq';
+import TextEditor from '../tryout/plain_txt';
+import SortList from '../tryout/sort_list';
+import LessonPlanDashboard from '../tryout/lesson_plan';
 
 const AssignmentView = () => {
   const [filter, setFilter] = useState("all"); // all, pending, completed, overdue
   const [assignmentType, setAssignmentType] = useState("school"); // 'school' or 'eec'
+  const [tryoutType, setTryoutType] = useState("names"); // default tryout type
 
 
   // Sample assignment data
@@ -130,7 +142,7 @@ const AssignmentView = () => {
   }, [selectedClass, eecSubject, questionType])
 
   return (
-    <div className="w-full min-h-screen bg-white px-1 sm:px-4 md:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6">
+    <div className="w-full min-h-screen bg-white px-1 sm:px-4 md:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6 overflow-x-hidden">
       {/* Assignment Type Dropdown */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2 sm:gap-4">
         <div>
@@ -333,8 +345,6 @@ const AssignmentView = () => {
               ))
               }
             </select>
-          </div>
-          <div>
             <label
               htmlFor="eecSubject"
               className="font-medium text-gray-700 ml-4"
@@ -352,13 +362,60 @@ const AssignmentView = () => {
               <Blank array={questionData[selectedClass][eecSubject]?.blank} insight={insight} setInsight={setInsight} />
             }
           </div>
+          <div>
+            
+          </div>
         </div>
       )}
 
       {/* Tryout Section */}
       {assignmentType === 'tryout' && (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 text-center text-lg text-gray-700 font-semibold">
-          Tryout assignments coming soon!
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="mb-6 flex flex-wrap items-center gap-3 justify-left">
+            <label htmlFor="tryoutType" className="font-medium text-gray-700">Tryout Type:</label>
+            <select
+              id="tryoutType"
+              value={tryoutType}
+              onChange={e => setTryoutType(e.target.value)}
+              className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="choice_matrix">Choice Matrix</option>
+              <option value="cloze_drag_drop">Cloze Drag Drop</option>
+              <option value="cloze_drop_down">Cloze Drop Down</option>
+              <option value="cloze_text">Cloze Text</option>
+              <option value="file_upload">File Upload</option>
+              <option value="image_highlighter">Image Highlighter</option>
+              <option value="match_list">Match List</option>
+              <option value="mcq">MCQ</option>
+              <option value="plain_txt">Plain Text</option>
+              <option value="sort_list">Sort List</option>
+              <option value="lesson_plan">Lesson Plan</option>
+            </select>
+          </div>
+          <div>
+            {tryoutType === 'choice_matrix' && <ChoiceMatrix />}
+            {tryoutType === 'cloze_drag_drop' && <ClozeDragDrop />}
+            {tryoutType === 'cloze_drop_down' && <ClozeDropDown />}
+            {tryoutType === 'cloze_text' && <ClozeText />}
+            {tryoutType === 'file_upload' && <FileUpload />}
+            {tryoutType === 'image_highlighter' && <ImageHighlighter />}
+            {tryoutType === 'match_list' && <MatchList />}
+            {tryoutType === 'mcq' && <MCQTryout />}
+            {tryoutType === 'plain_txt' && <TextEditor />}
+            {tryoutType === 'sort_list' && <SortList />}
+            {tryoutType === 'lesson_plan' && <LessonPlanDashboard />}
+            {tryoutType === 'names' && (
+              <div className="text-gray-500 text-center py-8">No component implemented for 'Names' tryout type.</div>
+            )}
+            {tryoutType === 'rich_text' && (
+              <div className="text-gray-500 text-center py-8">Rich Text tryout is not available. Please check the file name or implementation.</div>
+            )}
+            {![
+              'choice_matrix','cloze_drag_drop','cloze_drop_down','cloze_text','file_upload','image_highlighter','match_list','mcq','plain_txt','rich_text','sort_list','lesson_plan','names'
+            ].includes(tryoutType) && (
+              <div className="text-gray-500 text-center py-8">Select a tryout type to begin.</div>
+            )}
+          </div>
         </div>
       )}
     </div>

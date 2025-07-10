@@ -169,9 +169,9 @@ const ProfileUpdate = () => {
             
           </div>
 
-          <div className="flex flex-col md:flex-row">
+          <div className="flex flex-col md:flex-row w-full overflow-x-hidden">
             {/* Sidebar Navigation */}
-            <div className="w-full md:w-64 bg-gray-50 border-r border-gray-200 p-6">
+            <div className="w-full md:w-64 bg-gray-50 border-r border-gray-200 p-4 md:p-6">
               <div className="flex flex-col items-center space-y-4 mb-8">
                 <div className="relative group">
                   <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-yellow-300 shadow-lg bg-gray-100">
@@ -242,7 +242,7 @@ const ProfileUpdate = () => {
             </div>
 
             {/* Main Form Content */}
-            <div className="flex-1 p-8">
+            <div className="flex-1 w-full p-4 md:p-8">
               {activeTab === 'personal' && (
                 <div className="space-y-6">
                   <h3 className="text-2xl font-semibold text-gray-800 border-b pb-3">Personal Information</h3>
@@ -619,7 +619,7 @@ const ProfileUpdate = () => {
               <div className="h-8 w-8 rounded-full bg-yellow-500 flex items-center justify-center">
                 <User className="h-5 w-5 text-white" />
               </div>
-              <p className="text-gray-600">© 2023 Student Portal. All rights reserved.</p>
+              <p className="text-gray-600">© 2025 Student Portal. All rights reserved to EEC.</p>
             </div>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-gray-600 hover:text-yellow-600 transition-colors">Terms</a>
