@@ -102,7 +102,7 @@ const Sidebar = ({ activeView, setActiveView, isOpen, setIsOpen }) => {
           </ul>
         </nav>
         {/* Bottom Section */}
-        <div className="absolute bottom-0 left-0 right-0 p-3 border-t border-yellow-200">
+        <div className="bottom-0 left-0 right-0 p-3 border-t border-yellow-200">
           <div className="space-y-2">
             <button className="w-full flex items-center space-x-3 px-3 py-3 rounded-lg text-amber-700 hover:bg-yellow-100 hover:text-amber-800 transition-colors">
               <Settings size={20} className="flex-shrink-0" />
