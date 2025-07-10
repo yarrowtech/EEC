@@ -35,7 +35,7 @@ const Sidebar = ({ activeView, setActiveView, isOpen, setIsOpen }) => {
         <div className="fixed inset-0 bg-black bg-opacity-30 z-40 md:hidden" onClick={() => setIsOpen(false)} aria-label="Close sidebar" />
       )} */}
       <div
-        className={`fixed left-0 top-0 h-full bg-gradient-to-b from-yellow-50 to-amber-50 shadow-lg transition-all duration-300 z-50 border-r border-yellow-200
+        className={`fixed left-0 top-0 h-full bg-gradient-to-b from-yellow-50 to-amber-50 shadow-lg transition-all duration-300 z-50 border-r border-yellow-200 rounded-2xl
           ${isOpen ? 'w-64' : 'w-0 md:w-20'}
           ${isOpen ? 'block' : 'hidden md:block'}
         `}
@@ -69,7 +69,7 @@ const Sidebar = ({ activeView, setActiveView, isOpen, setIsOpen }) => {
                   <li key={item.id}>
                     <Link
                       to={item.link}
-                      onClick={() => setIsOpen(false)}
+                      // No sidebar close on menu click
                       className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 ${
                         window.location.pathname === item.link
                           ? 'bg-gradient-to-r from-yellow-400 to-amber-500 text-white shadow-lg'
@@ -87,7 +87,7 @@ const Sidebar = ({ activeView, setActiveView, isOpen, setIsOpen }) => {
                   <button
                     onClick={() => {
                       setActiveView(item.id)
-                      setIsOpen(false);
+                      // No sidebar close on menu click
                     }}
                     className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 ${
                       isActive 

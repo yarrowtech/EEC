@@ -188,7 +188,7 @@ const AttendanceView = () => {
   const recentRecords = getRecentRecords();
 
   return (
-    <div className="space-y-4 sm:space-y-6 p-2 sm:p-6 bg-gray-50 min-h-screen">
+    <div className="space-y-4 sm:space-y-6 p-2 sm:p-6 bg-gray-50 min-h-screen w-full overflow-x-hidden">
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
         <div className="flex items-center space-x-3">
@@ -270,13 +270,13 @@ const AttendanceView = () => {
               <Calendar className="text-indigo-500" size={20} />
               <h2 className="text-lg font-semibold text-gray-900">Attendance Calendar</h2>
             </div>
-            <button
+            {/* <button
               onClick={handleAddRecord}
               className="flex items-center space-x-2 bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition-colors"
             >
               <Plus size={16} />
               <span>Add Record</span>
-            </button>
+            </button> */}
           </div>
         </div>
         
