@@ -6,6 +6,9 @@ const feedbackSchema = new mongoose.Schema({
     name: String,
     schoolName: String,
     phone: String,
+    email: String,
+    class: String,
+    consent: Boolean,
     rating: Number,
     feedback: String,
     createdAt: {

@@ -35,9 +35,7 @@ const Sidebar = ({ activeView, setActiveView, isOpen, setIsOpen }) => {
         <div className="fixed inset-0 bg-black bg-opacity-30 z-40 md:hidden" onClick={() => setIsOpen(false)} aria-label="Close sidebar" />
       )} */}
       <div
-        className={`fixed left-0 top-0 h-full bg-gradient-to-b from-yellow-50 to-amber-50 shadow-lg transition-all duration-300 z-50 border-r border-yellow-200 rounded-2xl
-          ${isOpen ? 'w-64' : 'w-0 md:w-20'}
-          ${isOpen ? 'block' : 'hidden md:block'}
+        className={`h-full bg-gradient-to-b from-yellow-50 to-amber-50 shadow-lg transition-all duration-300 z-50 border-r border-yellow-200
         `}
         aria-label="Sidebar"
         aria-hidden={!isOpen && window.innerWidth < 768}

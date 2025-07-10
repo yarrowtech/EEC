@@ -45,6 +45,7 @@ const FeedbackPage = () => {
           phone,
           email,
           class: selectedClass,
+          consent: promoConsent,
           rating,
           feedback,
         }),
