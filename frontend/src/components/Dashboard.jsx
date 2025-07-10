@@ -31,7 +31,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gray-50 flex flex-col md:flex-row overflow-hidden">
+    <div className={`min-h-screen w-full bg-gray-50 grid ${sidebarOpen ? "grid-cols-[300px_1fr]" : "grid-cols-[100px_1fr]"} transition-all duration-300`}>
       <Sidebar 
         activeView={activeView} 
         setActiveView={setActiveView}
@@ -39,9 +39,7 @@ const Dashboard = () => {
         setIsOpen={setSidebarOpen}
       />
       <div 
-        className={` flex-1 flex flex-col w-screen transition-all duration-300 ${
-          sidebarOpen ? 'md:ml-64' : 'md:ml-20'
-        }`}
+        className={` flex-1 flex flex-col w-full transition-all duration-300`}
       >
         <Header 
           sidebarOpen={sidebarOpen}
