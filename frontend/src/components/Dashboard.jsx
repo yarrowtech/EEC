@@ -39,7 +39,7 @@ const Dashboard = () => {
         setIsOpen={setSidebarOpen}
       />
       <div 
-        className={` flex-1 flex flex-col w-full transition-all duration-300`}
+        className={`h-screen overflow-y-scroll flex-1 flex flex-col w-full transition-all duration-300`}
       >
         <Header 
           sidebarOpen={sidebarOpen}
