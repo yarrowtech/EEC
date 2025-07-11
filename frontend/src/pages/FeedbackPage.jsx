@@ -82,7 +82,7 @@ const FeedbackPage = () => {
         <div className="absolute -bottom-20 sm:-bottom-40 -left-20 sm:-left-40 w-40 sm:w-80 h-40 sm:h-80 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full opacity-20 blur-3xl"></div>
       </div>
 
-      <div className="relative w-full max-w-md mx-auto bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-4 sm:p-8 transform transition-all duration-300 hover:shadow-3xl">
+      <div className="relative w-full max-w-md mx-auto bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-4 sm:p-8 transform transition-all duration-300 hover:shadow-3xl overflow-y-auto max-h-[90vh]">
         {/* Header with icon */}
         <div className="text-center mb-6 sm:mb-8">
           <div className="inline-flex items-center justify-center w-12 sm:w-16 h-12 sm:h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full mb-3 sm:mb-4 shadow-lg">

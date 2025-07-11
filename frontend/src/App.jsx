@@ -11,6 +11,7 @@ import ParentPortal from './parents/ParentPortal'
 import TeacherPortal from './teachers/TeacherPortal'
 import FeedbackPage from './pages/FeedbackPage'
 import FeedbackThankYou from './pages/FeedbackThankYou'
+import MeetTheDeveloper from './pages/MeetTheDeveloper'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/teachers/*" element={<TeacherPortal />} />
         <Route path="/feedback" element={<FeedbackPage />} />
         <Route path="/feedback/thank-you" element={<FeedbackThankYou />} />
+        <Route path="/meet-the-developer" element={<MeetTheDeveloper />} />
       </Routes>
     </BrowserRouter>
   )

@@ -18,6 +18,8 @@ import AssignmentManagement from './AssignmentManagement';
 import AssignmentEvaluation from './AssignmentEvaluation';
 import AttendanceManagement from './AttendanceManagement';
 import TeacherDashboard from './TeacherDashboard';
+import LessonPlanDashboard from './lesson_plan';
+
 
 const TeacherPortal = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
