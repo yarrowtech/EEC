@@ -19,7 +19,7 @@ import AssignmentManagement from './AssignmentManagement';
 import AssignmentEvaluation from './AssignmentEvaluation';
 import AttendanceManagement from './AttendanceManagement';
 import TeacherDashboard from './TeacherDashboard';
-import LessonPlanDashboard from './lesson_plan';
+import LessonPlanDashboard from './LessonPlanDashboard';
 
 const TeacherPortal = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -86,6 +86,7 @@ const TeacherPortal = () => {
             <Route path="/parent-meetings" element={<ParentMeetings />} />
             <Route path="/assignments" element={<AssignmentManagement />} />
             <Route path="/evaluation" element={<AssignmentEvaluation />} />
+            <Route path="/lesson-plans" element={<LessonPlanDashboard />} />
           </Routes>
         </div>
       </div>
