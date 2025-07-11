@@ -9,7 +9,8 @@ import {
   Menu,
   X,
   UserCheck,
-  Home
+  Home,
+  BookOpen
 } from 'lucide-react';
 
 import HealthUpdates from './HealthUpdates';
@@ -20,7 +21,6 @@ import AttendanceManagement from './AttendanceManagement';
 import TeacherDashboard from './TeacherDashboard';
 import LessonPlanDashboard from './lesson_plan';
 
-
 const TeacherPortal = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -30,7 +30,8 @@ const TeacherPortal = () => {
     { icon: Activity, label: 'Student Health Updates', path: '/teachers/health-updates' },
     { icon: Calendar, label: 'Parent Meetings', path: '/teachers/parent-meetings' },
     { icon: FileText, label: 'Assignment Management', path: '/teachers/assignments' },
-    { icon: ClipboardCheck, label: 'Assignment Evaluation', path: '/teachers/evaluation' }
+    { icon: ClipboardCheck, label: 'Assignment Evaluation', path: '/teachers/evaluation' },
+    { icon: BookOpen, label: 'Lesson Plans', path: '/teachers/lesson-plans' },
   ];
 
   return (

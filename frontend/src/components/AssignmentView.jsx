@@ -19,7 +19,6 @@ import MatchList from '../tryout/match_list';
 import MCQTryout from '../tryout/mcq';
 import TextEditor from '../tryout/plain_txt';
 import SortList from '../tryout/sort_list';
-import LessonPlanDashboard from '../tryout/lesson_plan';
 
 const AssignmentView = () => {
   const [filter, setFilter] = useState("all"); // all, pending, completed, overdue
@@ -389,7 +388,6 @@ const AssignmentView = () => {
               <option value="mcq">MCQ</option>
               <option value="plain_txt">Plain Text</option>
               <option value="sort_list">Sort List</option>
-              <option value="lesson_plan">Lesson Plan</option>
             </select>
           </div>
           <div>
