@@ -405,7 +405,7 @@ const AssignmentView = () => {
             {tryoutType === 'sort_list' && <SortList />}
             {tryoutType === 'lesson_plan' && <LessonPlanDashboard />}
             {tryoutType === 'names' && (
-              <div className="text-gray-500 text-center py-8">No component implemented for 'Names' tryout type.</div>
+              <div className="text-gray-500 text-center py-8">Select The Tryout From The Drop Down Menu.</div>
             )}
             {tryoutType === 'rich_text' && (
               <div className="text-gray-500 text-center py-8">Rich Text tryout is not available. Please check the file name or implementation.</div>
