@@ -19,7 +19,6 @@ import MatchList from '../tryout/match_list';
 import MCQTryout from '../tryout/mcq';
 import TextEditor from '../tryout/plain_txt';
 import SortList from '../tryout/sort_list';
-import LessonPlanDashboard from '../tryout/lesson_plan';
 
 const AssignmentView = () => {
   const [filter, setFilter] = useState("all"); // all, pending, completed, overdue
@@ -389,7 +388,6 @@ const AssignmentView = () => {
               <option value="mcq">MCQ</option>
               <option value="plain_txt">Plain Text</option>
               <option value="sort_list">Sort List</option>
-              <option value="lesson_plan">Lesson Plan</option>
             </select>
           </div>
           <div>
@@ -405,7 +403,7 @@ const AssignmentView = () => {
             {tryoutType === 'sort_list' && <SortList />}
             {tryoutType === 'lesson_plan' && <LessonPlanDashboard />}
             {tryoutType === 'names' && (
-              <div className="text-gray-500 text-center py-8">No component implemented for 'Names' tryout type.</div>
+              <div className="text-gray-500 text-center py-8">Select The Tryout From The Drop Down Menu.</div>
             )}
             {tryoutType === 'rich_text' && (
               <div className="text-gray-500 text-center py-8">Rich Text tryout is not available. Please check the file name or implementation.</div>

@@ -9,7 +9,8 @@ import {
   Menu,
   X,
   UserCheck,
-  Home
+  Home,
+  BookOpen
 } from 'lucide-react';
 
 import HealthUpdates from './HealthUpdates';
@@ -18,8 +19,7 @@ import AssignmentManagement from './AssignmentManagement';
 import AssignmentEvaluation from './AssignmentEvaluation';
 import AttendanceManagement from './AttendanceManagement';
 import TeacherDashboard from './TeacherDashboard';
-import LessonPlanDashboard from './lesson_plan';
-
+import LessonPlanDashboard from './LessonPlanDashboard';
 
 const TeacherPortal = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -30,7 +30,8 @@ const TeacherPortal = () => {
     { icon: Activity, label: 'Student Health Updates', path: '/teachers/health-updates' },
     { icon: Calendar, label: 'Parent Meetings', path: '/teachers/parent-meetings' },
     { icon: FileText, label: 'Assignment Management', path: '/teachers/assignments' },
-    { icon: ClipboardCheck, label: 'Assignment Evaluation', path: '/teachers/evaluation' }
+    { icon: ClipboardCheck, label: 'Assignment Evaluation', path: '/teachers/evaluation' },
+    { icon: BookOpen, label: 'Lesson Plans', path: '/teachers/lesson-plans' },
   ];
 
   return (
@@ -85,6 +86,7 @@ const TeacherPortal = () => {
             <Route path="/parent-meetings" element={<ParentMeetings />} />
             <Route path="/assignments" element={<AssignmentManagement />} />
             <Route path="/evaluation" element={<AssignmentEvaluation />} />
+            <Route path="/lesson-plans" element={<LessonPlanDashboard />} />
           </Routes>
         </div>
       </div>
