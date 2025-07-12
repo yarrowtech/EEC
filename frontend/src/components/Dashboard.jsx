@@ -9,6 +9,7 @@ import CoursesView from './CoursesView';
 import AchievementsView from './AchievementsView';
 import ThemeCustomizer from './ThemeCustomizer';
 import ProfileUpdate from './ProfileUpdate';
+import NoticeBoard from './NoticeBoard';
 
 const Dashboard = () => {
   const [activeView, setActiveView] = useState('dashboard');
@@ -24,6 +25,7 @@ const Dashboard = () => {
     achievements: <AchievementsView />,
     profile: <ProfileUpdate />,
     themecustomizer: <ThemeCustomizer />,
+    noticeboard: <NoticeBoard />,
   };
 
   const renderContent = () => {

@@ -130,7 +130,7 @@ const ParentPortal = () => {
       </div>
 
       {/* Main Content */}
-      <div className={`min-h-screen ${sidebarOpen ? 'md:ml-80' : 'md:ml-32'} flex-grow p-6 bg-gray-50 transition-all duration-300`}>
+      <div className={`overflow-y-scroll h-screen ${sidebarOpen ? 'md:ml-80' : 'md:ml-32'} flex-grow p-6 bg-gray-50 transition-all duration-300`}>
         <Routes>
           <Route path="/" element={<ParentDashboard />} />
           <Route path="attendance" element={<AttendanceReport />} />
