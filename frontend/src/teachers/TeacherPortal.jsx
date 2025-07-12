@@ -77,8 +77,8 @@ const TeacherPortal = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 lg:ml-64 min-h-screen overflow-hidden">
-        <div className="h-screen overflow-y-auto">
+      <div className="flex-1 lg:ml-64 min-h-screen overflow-y-scroll">
+        <div className="h-screen">
           <Routes>
             <Route path="/" element={<TeacherDashboard />} />
             <Route path="/attendance" element={<AttendanceManagement />} />
