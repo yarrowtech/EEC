@@ -86,7 +86,7 @@ const LoginForm = () => {
           navigate('/teachers');
           break;
         case "Parent":
-          navigate('/parent/dashboard');
+          navigate('/parents');
           break;
         case "Admin":
           navigate('/admin/dashboard');
@@ -102,9 +102,8 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-yellow-50 via-yellow-100 to-amber-100">
-      <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 max-w-md w-full mx-auto space-y-6 border border-white/20">
-        
+    <div className="w-screen h-screen flex items-center justify-center bg-[url('/xavier.jpeg')] bg-no-repeat bg-cover bg-center">
+      <div className="bg-white/90  backdrop-blur-sm rounded-2xl shadow-2xl p-8 max-w-md w-full mx-auto space-y-6 border border-white/20">
         {/* Header */}
         <div className="text-center space-y-2">
           <div className="mx-auto w-16 h-16 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full flex items-center justify-center mb-4">
