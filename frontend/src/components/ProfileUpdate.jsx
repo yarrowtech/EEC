@@ -5,14 +5,14 @@ import {
 } from 'lucide-react';
 
 const initialProfile = {
-  name: 'John Doe',
-  email: 'john@example.com',
-  username: 'johnny',
+  name: 'Koushik Bala',
+  email: 'koushik@example.com',
+  username: 'koushikb',
   password: '',
-  phone: '+1 (555) 123-4567',
-  address: '123 Main St, Anytown, USA',
-  dob: '2002-01-01',
-  education: 'Bachelor of Science',
+  phone: '+91 98765 43210',
+  address: 'Park Street, Kolkata, India',
+  dob: '2000-01-01',
+  education: 'Masters of Science',
   studentId: 'STU001',
   semester: 'Spring 2025',
   profilePic: '',
