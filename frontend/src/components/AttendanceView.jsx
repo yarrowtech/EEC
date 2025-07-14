@@ -18,23 +18,22 @@ const AttendanceView = () => {
   
   // Enhanced attendance data with more entries for calendar visualization
   const [attendanceRecords, setAttendanceRecords] = useState([
-    { id: 1, date: "2025-06-25", course: "JavaScript Fundamentals", status: "present", time: "10:00 AM", description: "ES6 Features and Modules" },
-    { id: 2, date: "2025-06-24", course: "React Development", status: "present", time: "2:00 PM", description: "Component Lifecycle Methods" },
-    { id: 3, date: "2025-06-23", course: "Database Design", status: "late", time: "11:00 AM", description: "SQL Joins and Relationships" },
-    { id: 4, date: "2025-06-22", course: "UI/UX Design", status: "present", time: "3:00 PM", description: "Wireframing and Prototyping" },
-    { id: 5, date: "2025-06-21", course: "JavaScript Fundamentals", status: "absent", time: "10:00 AM", description: "Async/Await and Promises" },
-    { id: 6, date: "2025-06-20", course: "React Development", status: "present", time: "2:00 PM", description: "State Management with Redux" },
-    { id: 7, date: "2025-06-19", course: "Database Design", status: "present", time: "11:00 AM", description: "Database Normalization" },
-    { id: 8, date: "2025-06-18", course: "UI/UX Design", status: "present", time: "3:00 PM", description: "User Research Methods" },
-    { id: 9, date: "2025-06-17", course: "JavaScript Fundamentals", status: "late", time: "10:00 AM", description: "DOM Manipulation" },
-    { id: 10, date: "2025-06-16", course: "React Development", status: "present", time: "2:00 PM", description: "React Hooks Deep Dive" },
-    { id: 11, date: "2025-06-15", course: "Database Design", status: "present", time: "11:00 AM", description: "NoSQL vs SQL Databases" },
-    { id: 12, date: "2025-06-14", course: "UI/UX Design", status: "absent", time: "3:00 PM", description: "Design Systems" },
-    { id: 13, date: "2025-06-13", course: "JavaScript Fundamentals", status: "present", time: "10:00 AM", description: "Error Handling" },
-    { id: 14, date: "2025-06-12", course: "React Development", status: "present", time: "2:00 PM", description: "Testing React Components" },
-    { id: 15, date: "2025-06-11", course: "Database Design", status: "late", time: "11:00 AM", description: "Performance Optimization" },
-  ]);
-
+  { id: 1, date: "2025-06-25", course: "Mathematics", status: "present", time: "10:00 AM", description: "Algebra: Linear Equations" },
+  { id: 2, date: "2025-06-24", course: "English", status: "present", time: "2:00 PM", description: "Poetry Analysis - Robert Frost" },
+  { id: 3, date: "2025-06-23", course: "Science", status: "late", time: "11:00 AM", description: "Human Digestive System" },
+  { id: 4, date: "2025-06-22", course: "History", status: "present", time: "3:00 PM", description: "The Revolt of 1857" },
+  { id: 5, date: "2025-06-21", course: "Mathematics", status: "absent", time: "10:00 AM", description: "Geometry: Triangles and Angles" },
+  { id: 6, date: "2025-06-20", course: "English", status: "present", time: "2:00 PM", description: "Letter Writing Practice" },
+  { id: 7, date: "2025-06-19", course: "Science", status: "present", time: "11:00 AM", description: "States of Matter" },
+  { id: 8, date: "2025-06-18", course: "History", status: "present", time: "3:00 PM", description: "Indian Independence Movement" },
+  { id: 9, date: "2025-06-17", course: "Mathematics", status: "late", time: "10:00 AM", description: "Probability and Statistics" },
+  { id: 10, date: "2025-06-16", course: "English", status: "present", time: "2:00 PM", description: "Essay Writing Techniques" },
+  { id: 11, date: "2025-06-15", course: "Science", status: "present", time: "11:00 AM", description: "Electric Circuits" },
+  { id: 12, date: "2025-06-14", course: "History", status: "absent", time: "3:00 PM", description: "Mughal Empire" },
+  { id: 13, date: "2025-06-13", course: "Mathematics", status: "present", time: "10:00 AM", description: "Data Handling and Graphs" },
+  { id: 14, date: "2025-06-12", course: "English", status: "present", time: "2:00 PM", description: "Grammar: Tenses and Verbs" },
+  { id: 15, date: "2025-06-11", course: "Science", status: "late", time: "11:00 AM", description: "Water Cycle and Conservation" },
+]);
   const [newRecord, setNewRecord] = useState({
     course: '',
     date: '',

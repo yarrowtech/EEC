@@ -28,53 +28,52 @@ const AssignmentView = () => {
 
   // Sample assignment data
   const assignments = [
-    {
-      id: 1,
-      title: "Database Design Project",
-      course: "Database Management Systems",
-      dueDate: "2025-06-20",
-      status: "pending",
-      priority: "high",
-      description: "Design and implement a relational database for a library management system",
-      submissionType: "file",
-      maxMarks: 100
-    },
-    {
-      id: 2,
-      title: "React Component Assessment",
-      course: "Web Development",
-      dueDate: "2025-06-18",
-      status: "completed",
-      priority: "medium",
-      description: "Create reusable React components with proper state management",
-      submissionType: "link",
-      maxMarks: 75,
-      submittedAt: "2025-06-15"
-    },
-    {
-      id: 3,
-      title: "Algorithm Analysis Report",
-      course: "Data Structures & Algorithms",
-      dueDate: "2025-06-12",
-      status: "overdue",
-      priority: "high",
-      description: "Analyze time and space complexity of sorting algorithms",
-      submissionType: "file",
-      maxMarks: 50
-    },
-    {
-      id: 4,
-      title: "Network Security Case Study",
-      course: "Cybersecurity",
-      dueDate: "2025-06-25",
-      status: "pending",
-      priority: "medium",
-      description: "Analyze a real-world security breach and propose solutions",
-      submissionType: "presentation",
-      maxMarks: 80
-    }
-  ];
-
+  {
+    id: 1,
+    title: "Geometry Project",
+    course: "Mathematics",
+    dueDate: "2025-06-20",
+    status: "pending",
+    priority: "high",
+    description: "Design and explain properties of different types of triangles",
+    submissionType: "file",
+    maxMarks: 100
+  },
+  {
+    id: 2,
+    title: "Essay Writing Assignment",
+    course: "English",
+    dueDate: "2025-06-18",
+    status: "completed",
+    priority: "medium",
+    description: "Write an essay on the importance of environmental conservation",
+    submissionType: "link",
+    maxMarks: 75,
+    submittedAt: "2025-06-15"
+  },
+  {
+    id: 3,
+    title: "Science Lab Report",
+    course: "Science",
+    dueDate: "2025-06-12",
+    status: "overdue",
+    priority: "high",
+    description: "Prepare a report on chemical reactions observed in the lab",
+    submissionType: "file",
+    maxMarks: 50
+  },
+  {
+    id: 4,
+    title: "History Presentation",
+    course: "History",
+    dueDate: "2025-06-25",
+    status: "pending",
+    priority: "medium",
+    description: "Create a presentation on India’s freedom struggle",
+    submissionType: "presentation",
+    maxMarks: 80
+  }
+];
 
   const getStatusColor = (status) => {
     switch (status) {
