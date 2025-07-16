@@ -14,9 +14,11 @@ import {
   File,
   Atom
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Sidebar = ({ activeView, setActiveView, isOpen, setIsOpen }) => {
+  const navigate = useNavigate();
+
   const menuItems = [
     { id: 'dashboard', name: 'Dashboard', icon: Home },
     { id: 'attendance', name: 'Attendance', icon: Users },
@@ -27,6 +29,13 @@ const Sidebar = ({ activeView, setActiveView, isOpen, setIsOpen }) => {
     { id: 'feedback', name: 'Feedback', icon: Atom, link: '/feedback' },
     { id: 'profile', name: 'Profile', icon: User },
   ];
+
+  const handleLogout = () => {
+    // Clear any auth tokens or user data here if needed
+    localStorage.removeItem('token'); // Example: remove JWT token
+    // Redirect to login page
+    navigate('/');
+  };
 
   return (
     <>
@@ -108,7 +117,10 @@ const Sidebar = ({ activeView, setActiveView, isOpen, setIsOpen }) => {
               <Settings size={20} className="flex-shrink-0" />
               {isOpen && <span className={`font-medium ${isOpen ? 'block' : 'hidden md:block'}`}>Settings</span>}
             </button>
-            <button className="w-full flex items-center space-x-3 px-3 py-3 rounded-lg text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors">
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center space-x-3 px-3 py-3 rounded-lg text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors"
+            >
               <LogOut size={20} className="flex-shrink-0" />
               {isOpen && <span className={`font-medium ${isOpen ? 'block' : 'hidden md:block'}`}>Logout</span>}
             </button>

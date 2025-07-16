@@ -16,11 +16,12 @@ import {
   ClipboardList,
   Clock
 } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const AdminHeader = ({ adminUser }) => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
+  const navigate = useNavigate();
 
   const navigationLinks = [
     { 
@@ -58,13 +59,19 @@ const AdminHeader = ({ adminUser }) => {
     }
   ];
 
+  const handleLogout = () => {
+    // Clear any auth tokens or user data here if needed
+    localStorage.removeItem('token'); // Example: remove JWT token
+    // Redirect to login page
+    navigate('/');
+  };
+
   return (
     <div className={`border-b border-gray-200 max-w-[95vw] box-border`}>
       <header className="bg-white py-3 px-6 w-full box-border">
         <div className="flex items-center justify-between w-full">
           {/* Left Section */}
           <div className="flex items-center gap-4">
-            
             {/* Search Bar */}
             <div className="hidden md:flex items-center">
               <div className="relative">
@@ -150,7 +157,10 @@ const AdminHeader = ({ adminUser }) => {
                     Settings
                   </button>
                   <div className="border-t border-gray-200 my-1"></div>
-                  <button className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 flex items-center gap-2">
+                  <button
+                    className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 flex items-center gap-2"
+                    onClick={handleLogout}
+                  >
                     <LogOut size={16} />
                     Logout
                   </button>
