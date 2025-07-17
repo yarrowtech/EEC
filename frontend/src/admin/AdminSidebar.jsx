@@ -75,6 +75,7 @@ const AdminSidebar = ({
             </div>
           </div>
         </div>
+        {/* Removed Logout Button */}
       </div>
     </>
   );

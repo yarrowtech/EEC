@@ -313,7 +313,7 @@ const WeeklyRoutine = () => {
   };
 
   const renderDayView = () => (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100">
+    <div className="bg-white rounded-xl shadow-sm border border-purple-400">
       <div className="p-4 sm:p-6 border-b border-gray-100">
         <div className="flex items-center justify-between">
           <h2 className="text-lg sm:text-xl font-semibold text-gray-900">
@@ -369,7 +369,7 @@ const WeeklyRoutine = () => {
           </div>
         ) : (
           <div className="text-center py-12">
-            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-purple-400 rounded-full flex items-center justify-center mx-auto mb-4">
               <Calendar className="text-gray-400" size={24} />
             </div>
             <h3 className="text-lg font-medium text-gray-900 mb-2">No Schedule Today</h3>
@@ -406,7 +406,7 @@ const WeeklyRoutine = () => {
           {/* Time slots */}
           <div className="relative">
             {getTimeSlots().map((time) => (
-              <div key={time} className="grid grid-cols-8 border-b border-gray-100 min-h-16 min-w-[700px] md:min-w-0">
+              <div key={time} className="grid grid-cols-8 border-b border-purple-400 min-h-16 min-w-[700px] md:min-w-0">
                 <div className="p-3 bg-gray-50 text-sm text-gray-600 text-center border-r border-gray-200">
                   {time}
                 </div>
@@ -504,7 +504,7 @@ const WeeklyRoutine = () => {
   );
 
   return (
-    <div className="max-w-full mx-auto space-y-4 sm:space-y-6 p-4 sm:p-6 bg-gray-50 min-h-screen overflow-x-hidden">
+    <div className="max-w-full mx-auto space-y-4 sm:space-y-6 p-4 sm:p-6 bg-gray-50 min-h-screen overflow-x-hidden border">
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center space-x-3">
@@ -520,13 +520,25 @@ const WeeklyRoutine = () => {
         </div>
         
         <div className="flex items-center space-x-4">
-          <div className="bg-white px-4 py-2 rounded-lg shadow-sm border">
+          {/* Current Time */}
+          <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-purple-400">
             <div className="text-sm text-gray-500">Current Time</div>
             <div className="text-lg font-semibold text-gray-900">{formatTime()}</div>
           </div>
-          
+          {/* Date View */}
+          <div className="bg-white px-4 py-2 rounded-lg shadow-sm border  border-purple-400">
+            <div className="text-sm text-gray-500">Date</div>
+            <div className="text-lg font-semibold text-gray-900">
+              {currentTime.toLocaleDateString(undefined, {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </div>
+          </div>
           {/* View Mode Toggle */}
-          <div className="flex bg-white rounded-lg shadow-sm border p-1">
+          <div className="flex bg-white rounded-lg shadow-sm border p-4 border-purple-400 space-x-2 ">
             <button
               onClick={() => setViewMode('day')}
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -566,7 +578,7 @@ const WeeklyRoutine = () => {
       
       {/* Day Selector (only show for day and timeline views) */}
       {(viewMode === 'day' || viewMode === 'timeline') && (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-6">
+        <div className="bg-white rounded-xl shadow-sm border border-purple-400 p-4 sm:p-6">
           <div className="grid grid-cols-7 gap-1 sm:gap-2">
             {daysOfWeek.map((day) => (
               <button
@@ -597,7 +609,7 @@ const WeeklyRoutine = () => {
       {viewMode === 'week' && renderWeekView()}
       
       {/* Weekly Overview Stats */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100">
+      <div className="bg-white rounded-xl shadow-sm border border-purple-400">
         <div className="p-4 sm:p-6 border-b border-gray-100">
           <h2 className="text-lg sm:text-xl font-semibold text-gray-900">Weekly Statistics</h2>
         </div>

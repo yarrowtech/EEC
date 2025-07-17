@@ -13,8 +13,8 @@ const FeedbackForm = ({ onClose, onSubmit }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-md">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 ">
+      <div className="bg-white rounded-lg p-6 w-full max-w-md ">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">We'd Love Your Feedback!</h2>
         <p className="text-gray-600 mb-6">Please take a moment to rate your experience.</p>
         

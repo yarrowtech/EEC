@@ -20,7 +20,7 @@ const AdminLayout = ({
   ];
 
   const currentBreadcrumbs = breadcrumbs.length > 0 ? breadcrumbs : defaultBreadcrumbs;
-
+  
   return (
     <div className="flex w-screen h-screen bg-gray-50">
       <AdminSidebar 
