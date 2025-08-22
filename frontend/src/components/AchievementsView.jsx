@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+    import React, { useState } from 'react';
 import { Trophy, Award, Medal, Star, Target, Calendar, CheckCircle, Lock, TrendingUp, Users, Clock, Book } from 'lucide-react';
 
 const AchievementsView = () => {

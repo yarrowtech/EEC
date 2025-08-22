@@ -35,132 +35,93 @@ const TeacherFeedback = () => {
   const [showPreviousFeedback, setShowPreviousFeedback] = useState(false);
 
   // Mock data for subjects and teachers
-  const subjects = [
-    {
-      id: 'mathematics',
-      name: 'Mathematics',
-      teacher: 'Dr. Sarah Johnson',
-      teacherImage: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
-      code: 'MATH-101',
-      schedule: 'Mon, Wed, Fri - 9:00 AM'
-    },
-    {
-      id: 'physics',
-      name: 'Physics',
-      teacher: 'Prof. Michael Chen',
-      teacherImage: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
-      code: 'PHY-201',
-      schedule: 'Tue, Thu - 11:00 AM'
-    },
-    {
-      id: 'chemistry',
-      name: 'Chemistry',
-      teacher: 'Dr. Emily Rodriguez',
-      teacherImage: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
-      code: 'CHEM-201',
-      schedule: 'Mon, Wed, Fri - 2:00 PM'
-    },
-    {
-      id: 'english',
-      name: 'English Literature',
-      teacher: 'Ms. Jennifer Davis',
-      teacherImage: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face',
-      code: 'ENG-301',
-      schedule: 'Tue, Thu - 10:00 AM'
-    },
-    {
-      id: 'history',
-      name: 'World History',
-      teacher: 'Mr. David Thompson',
-      teacherImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
-      code: 'HIST-201',
-      schedule: 'Mon, Wed - 1:00 PM'
-    },
-    {
-      id: 'biology',
-      name: 'Biology',
-      teacher: 'Dr. Lisa Anderson',
-      teacherImage: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face',
-      code: 'BIO-201',
-      schedule: 'Tue, Fri - 9:00 AM'
-    }
-  ];
+const subjects = [
+  {
+    id: 'mathematics',
+    name: 'Mathematics',
+    teacher: 'Dr. Anjali Mehra',
+    teacherImage: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+    code: 'MATH-101',
+    schedule: 'Mon, Wed, Fri - 9:00 AM'
+  },
+  {
+    id: 'physics',
+    name: 'Physics',
+    teacher: 'Prof. Rajiv Menon',
+    teacherImage: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+    code: 'PHY-201',
+    schedule: 'Tue, Thu - 11:00 AM'
+  },
+  {
+    id: 'chemistry',
+    name: 'Chemistry',
+    teacher: 'Dr. Neha Kapoor',
+    teacherImage: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+    code: 'CHEM-201',
+    schedule: 'Mon, Wed, Fri - 2:00 PM'
+  },
+  {
+    id: 'english',
+    name: 'English Literature',
+    teacher: 'Ms. Priya Sharma',
+    teacherImage: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face',
+    code: 'ENG-301',
+    schedule: 'Tue, Thu - 10:00 AM'
+  },
+  {
+    id: 'history',
+    name: 'World History',
+    teacher: 'Mr. Arjun Verma',
+    teacherImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+    code: 'HIST-201',
+    schedule: 'Mon, Wed - 1:00 PM'
+  },
+  {
+    id: 'biology',
+    name: 'Biology',
+    teacher: 'Dr. Kavita Iyer',
+    teacherImage: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face',
+    code: 'BIO-201',
+    schedule: 'Tue, Fri - 9:00 AM'
+  }
+];
 
-  // Rating categories for teacher evaluation
-  const ratingCategories = [
-    {
-      id: 'teaching_quality',
-      label: 'Teaching Quality',
-      description: 'How well does the teacher explain concepts?',
-      icon: Award
-    },
-    {
-      id: 'communication',
-      label: 'Communication',
-      description: 'How clear and effective is the teacher\'s communication?',
-      icon: MessageCircle
-    },
-    {
-      id: 'engagement',
-      label: 'Student Engagement',
-      description: 'How well does the teacher engage students in learning?',
-      icon: Users
-    },
-    {
-      id: 'preparation',
-      label: 'Class Preparation',
-      description: 'How well-prepared is the teacher for each class?',
-      icon: BookOpen
-    },
-    {
-      id: 'availability',
-      label: 'Availability & Support',
-      description: 'How accessible is the teacher for questions and help?',
-      icon: Heart
-    },
-    {
-      id: 'fairness',
-      label: 'Fair Assessment',
-      description: 'How fair and consistent is the teacher\'s grading?',
-      icon: Target
+// Updated previous feedback to match new names
+const previousFeedback = [
+  {
+    id: 1,
+    subject: 'Mathematics',
+    teacher: 'Dr. Anjali Mehra',
+    date: '2024-07-15',
+    rating: 4.5,
+    feedback: 'Excellent teacher! Very clear explanations and always willing to help.',
+    categories: {
+      teaching_quality: 5,
+      communication: 4,
+      engagement: 5,
+      preparation: 4,
+      availability: 5,
+      fairness: 4
     }
-  ];
+  },
+  {
+    id: 2,
+    subject: 'Physics',
+    teacher: 'Prof. Rajiv Menon',
+    date: '2024-07-10',
+    rating: 4.0,
+    feedback: 'Great practical demonstrations. Could improve on explaining complex theories.',
+    categories: {
+      teaching_quality: 4,
+      communication: 3,
+      engagement: 5,
+      preparation: 4,
+      availability: 4,
+      fairness: 4
+    }
+  }
+];
 
-  // Previous feedback data (mock)
-  const previousFeedback = [
-    {
-      id: 1,
-      subject: 'Mathematics',
-      teacher: 'Dr. Sarah Johnson',
-      date: '2024-07-15',
-      rating: 4.5,
-      feedback: 'Excellent teacher! Very clear explanations and always willing to help.',
-      categories: {
-        teaching_quality: 5,
-        communication: 4,
-        engagement: 5,
-        preparation: 4,
-        availability: 5,
-        fairness: 4
-      }
-    },
-    {
-      id: 2,
-      subject: 'Physics',
-      teacher: 'Prof. Michael Chen',
-      date: '2024-07-10',
-      rating: 4.0,
-      feedback: 'Great practical demonstrations. Could improve on explaining complex theories.',
-      categories: {
-        teaching_quality: 4,
-        communication: 3,
-        engagement: 5,
-        preparation: 4,
-        availability: 4,
-        fairness: 4
-      }
-    }
-  ];
 
   const handleRatingChange = (category, rating) => {
     setRatings(prev => ({ ...prev, [category]: rating }));
